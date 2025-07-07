@@ -20,10 +20,10 @@ jobs:
 
       - name: Download Godot 4.4.1 + Export Templates
         run: |
-          $GODOT_VERSION=4.4.1
+          GODOT_VERSION=4.4.1
           mkdir -p godot
           curl -L -o godot/godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
-          curl -L -o https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          curl -L -o godot/templates.tpz https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
           unzip godot/godot.zip -d godot/
           unzip godot/templates.tpz -d ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
           chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
