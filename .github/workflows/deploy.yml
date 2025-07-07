@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
+      BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
     steps:
       - name: Checkout Repo
