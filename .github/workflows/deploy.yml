@@ -63,7 +63,7 @@ jobs:
 
       - name: Deploy Web Build
         run: |
-          butler push build/web ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.web_channel }}
+          butler push build/web ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:${{ steps.channel.outputs.web_channel }}
 
       - name: Zip Windows Build
         run: |
@@ -73,8 +73,8 @@ jobs:
 
       - name: Deploy Windows Build
         run: |
-          butler push build/windows.zip ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.win_channel }}
+          butler push build/windows.zip ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:${{ steps.channel.outputs.win_channel }}
 
       - name: Deploy macOS Build
         run: |
-          butler push build/mac/game.zip ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.mac_channel }}
+          butler push build/mac/game.zip ${{ vars.ITCH_USER }}/${{ vars.ITCH_GAME }}:${{ steps.channel.outputs.mac_channel }}
