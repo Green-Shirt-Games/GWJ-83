@@ -28,11 +28,9 @@ jobs:
 
           # Prepare export templates path
           mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-          unzip godot/templates.tpz -d ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
-          
-          # Install Web export templates (not included in .tpz)
-          curl -L -o ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/web_release.zip https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/export_templates/web_release.zip
-          curl -L -o ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/web_debug.zip https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/export_templates/web_debug.zip
+          mkdir ~/.templateTemp
+          unzip godot/templates.tpz -d ~/.templateTemp
+          mv ~/.templateTemp/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
           
           chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
 
