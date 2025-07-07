@@ -1,0 +1,73 @@
+name: Export & Deploy Godot to itch.io (Web, Windows, macOS)
+
+on:
+  push:
+    branches:
+      - stage
+      - prod
+
+jobs:
+  export-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      BUTLER_API_KEY: ${{ secrets.ITCH_API_KEY }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Download Godot 4.4.1 + Export Templates
+        run: |
+          GODOT_VERSION=4.4.1
+          mkdir -p godot
+          curl -L -o godot/godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          curl -L -o https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          unzip godot/godot.zip -d godot/
+          unzip godot/templates.tpz -d ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+          chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
+
+      - name: Export Web, Windows, macOS
+        run: |
+          mkdir -p build/web build/windows build/mac
+          ./godot/Godot_v4.4.1-stable_linux.x86_64 --headless --export-release "Web"     build/web/index.html
+          ./godot/Godot_v4.4.1-stable_linux.x86_64 --headless --export-release "Windows" build/windows/game.exe
+          ./godot/Godot_v4.4.1-stable_linux.x86_64 --headless --export-release "macOS"   build/mac/game.zip
+
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/head/archive.zip
+          unzip butler.zip
+          chmod +x butler
+          sudo mv butler /usr/local/bin
+
+      - name: Determine Channels
+        id: channel
+        run: |
+          if [[ "${{ github.ref_name }}" == "prod" ]]; then
+            echo "web_channel=web" >> $GITHUB_OUTPUT
+            echo "win_channel=windows" >> $GITHUB_OUTPUT
+            echo "mac_channel=mac" >> $GITHUB_OUTPUT
+          else
+            echo "web_channel=web-beta" >> $GITHUB_OUTPUT
+            echo "win_channel=win-beta" >> $GITHUB_OUTPUT
+            echo "mac_channel=mac-beta" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Deploy Web Build
+        run: |
+          butler push build/web ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.web_channel }}
+
+      - name: Zip Windows Build
+        run: |
+          cd build/windows
+          zip -r ../windows.zip .
+        working-directory: .
+
+      - name: Deploy Windows Build
+        run: |
+          butler push build/windows.zip ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.win_channel }}
+
+      - name: Deploy macOS Build
+        run: |
+          butler push build/mac/game.zip ${{ secrets.ITCH_USER }}/${{ secrets.ITCH_GAME }}:${{ steps.channel.outputs.mac_channel }}
