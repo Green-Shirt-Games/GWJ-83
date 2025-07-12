@@ -1,18 +1,18 @@
 [gd_scene load_steps=14 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://bar_scene/bar.gd" id="1_2sgqr"]
-[ext_resource type="Texture2D" uid="uid://dpmi3p18u4f7r" path="res://raw_assets/bar_scene.png" id="1_ed2hp"]
 [ext_resource type="PackedScene" uid="uid://b0pmeksg8opv" path="res://bar_scene/bottle.tscn" id="1_so65v"]
+[ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://raw_assets/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://bar_scene/register.gd" id="3_7xow3"]
 [ext_resource type="Texture2D" uid="uid://ip7cebr66wk" path="res://raw_assets/coin.png" id="5_0owhu"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://bar_scene/drink_poof.tscn" id="6_4b3yy"]
 [ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://master_scene/button.gd" id="7_4b3yy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2hp"]
-size = Vector2(1154, 808)
+size = Vector2(1759, 808)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xow3"]
-size = Vector2(1160, 20)
+size = Vector2(810, 20)
 
 [sub_resource type="FontFile" id="FontFile_ed2hp"]
 subpixel_positioning = 0
@@ -180,7 +180,7 @@ font = SubResource("FontFile_ed2hp")
 font_size = 36
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sgqr"]
-size = Vector2(344.5, 149)
+size = Vector2(135.25, 87.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5usm7"]
 font_size = 51
@@ -190,9 +190,9 @@ script = ExtResource("1_2sgqr")
 drink_poof_scene = ExtResource("6_4b3yy")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(577, 350)
-scale = Vector2(1.435, 1.15667)
-texture = ExtResource("1_ed2hp")
+position = Vector2(579.5, 294.5)
+scale = Vector2(0.295103, 0.319545)
+texture = ExtResource("3_4b3yy")
 
 [node name="PhysicsBounds" type="Node2D" parent="."]
 
@@ -200,14 +200,14 @@ texture = ExtResource("1_ed2hp")
 position = Vector2(218, 441)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds"]
-position = Vector2(357, 436)
+position = Vector2(624.5, 302)
 shape = SubResource("RectangleShape2D_ed2hp")
 
 [node name="Bounds2" type="StaticBody2D" parent="PhysicsBounds"]
 position = Vector2(-931, -92)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds2"]
-position = Vector2(357, 402)
+position = Vector2(410, 381)
 shape = SubResource("RectangleShape2D_ed2hp")
 
 [node name="Bounds3" type="StaticBody2D" parent="PhysicsBounds"]
@@ -217,169 +217,98 @@ position = Vector2(215, -799)
 position = Vector2(361, 331)
 shape = SubResource("RectangleShape2D_ed2hp")
 
-[node name="Bounds4" type="StaticBody2D" parent="PhysicsBounds"]
-position = Vector2(1071, 350)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds4"]
-position = Vector2(357, 395)
-shape = SubResource("RectangleShape2D_ed2hp")
-
 [node name="Bounds6" type="StaticBody2D" parent="PhysicsBounds"]
 position = Vector2(1368, -180)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds6"]
-position = Vector2(357, 402)
+position = Vector2(647, 429)
 shape = SubResource("RectangleShape2D_ed2hp")
 
 [node name="Shelves" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Shelves"]
+[node name="TopShelf" type="StaticBody2D" parent="Shelves"]
 position = Vector2(-13, 0)
 collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/StaticBody2D"]
-position = Vector2(586, 112)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/TopShelf"]
+position = Vector2(736, 232)
 shape = SubResource("RectangleShape2D_7xow3")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Shelves"]
+[node name="BottomShelf" type="StaticBody2D" parent="Shelves"]
 position = Vector2(-8, 110)
-collision_layer = 2
+collision_layer = 4
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/StaticBody2D2"]
-position = Vector2(586, 112)
-shape = SubResource("RectangleShape2D_7xow3")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Shelves"]
-position = Vector2(-9, 220)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/StaticBody2D3"]
-position = Vector2(586, 112)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/BottomShelf"]
+position = Vector2(719, 143)
 shape = SubResource("RectangleShape2D_7xow3")
 
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="bottle" parent="Bottles" instance=ExtResource("1_so65v")]
-position = Vector2(282, 257)
+position = Vector2(633, 257)
 
 [node name="bottle2" parent="Bottles" instance=ExtResource("1_so65v")]
-position = Vector2(221, 377)
+position = Vector2(583, 256)
 
-[node name="BottleSpawnPoints" type="Node2D" parent="."]
+[node name="bottle3" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
 
-[node name="Point6" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(420, 38)
+[node name="bottle4" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
 
-[node name="Point7" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(462, 38)
+[node name="bottle5" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
 
-[node name="Point8" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(507, 39)
+[node name="bottle6" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
 
-[node name="Point9" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(544, 38)
+[node name="bottle7" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
 
-[node name="Point10" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(590, 37)
+[node name="TopShelfSpawnPoints" type="Node2D" parent="."]
 
-[node name="Point11" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(832, 33)
+[node name="Point11" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(395, 179)
 
-[node name="Point12" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(874, 33)
+[node name="Point12" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(644, 179)
 
-[node name="Point13" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(919, 34)
+[node name="Point13" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(762, 179)
 
-[node name="Point14" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(956, 33)
+[node name="Point14" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(859, 179)
 
-[node name="Point15" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(1002, 32)
+[node name="Point15" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(969, 179)
 
-[node name="Point16" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(60, 153)
+[node name="BottomShelfSpawnPoints" type="Node2D" parent="."]
 
-[node name="Point17" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(102, 153)
+[node name="Point6" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(453, 179)
 
-[node name="Point18" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(147, 154)
+[node name="Point7" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(702, 179)
 
-[node name="Point19" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(184, 153)
+[node name="Point8" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(820, 179)
 
-[node name="Point20" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(230, 152)
+[node name="Point9" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(917, 179)
 
-[node name="Point21" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(422, 151)
-
-[node name="Point22" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(464, 151)
-
-[node name="Point23" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(509, 152)
-
-[node name="Point24" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(546, 151)
-
-[node name="Point25" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(592, 150)
-
-[node name="Point26" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(834, 146)
-
-[node name="Point27" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(876, 146)
-
-[node name="Point28" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(921, 147)
-
-[node name="Point29" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(958, 146)
-
-[node name="Point30" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(1004, 145)
-
-[node name="Point31" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(420, 259)
-
-[node name="Point32" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(462, 259)
-
-[node name="Point33" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(507, 260)
-
-[node name="Point34" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(544, 259)
-
-[node name="Point35" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(590, 258)
-
-[node name="Point36" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(832, 254)
-
-[node name="Point37" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(874, 254)
-
-[node name="Point38" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(919, 255)
-
-[node name="Point39" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(956, 254)
-
-[node name="Point40" type="Node2D" parent="BottleSpawnPoints"]
-position = Vector2(1002, 253)
+[node name="Point10" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(1027, 179)
 
 [node name="Register" type="Node2D" parent="."]
 script = ExtResource("3_7xow3")
 
 [node name="ColorRect" type="ColorRect" parent="Register"]
-offset_left = 983.0
-offset_top = 344.0
-offset_right = 1133.0
-offset_bottom = 385.0
+offset_left = 179.0
+offset_top = 193.0
+offset_right = 329.0
+offset_bottom = 234.0
 color = Color(0.306923, 0.306923, 0.306923, 1)
 
 [node name="Label" type="Label" parent="Register/ColorRect"]
@@ -395,10 +324,10 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Register"]
-offset_left = 958.0
-offset_top = 425.0
-offset_right = 1119.0
-offset_bottom = 480.0
+offset_left = 9.0
+offset_top = 249.0
+offset_right = 170.0
+offset_bottom = 304.0
 text = "BUY"
 script = ExtResource("7_4b3yy")
 
@@ -408,15 +337,17 @@ script = ExtResource("7_4b3yy")
 position = Vector2(1, 22)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Register/BuyArea/Area2D"]
-position = Vector2(639.75, 399.5)
+position = Vector2(427.375, 283.75)
 shape = SubResource("RectangleShape2D_2sgqr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(54, 46)
 scale = Vector2(0.073125, 0.0779167)
 texture = ExtResource("5_0owhu")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 modulate = Color(0.212305, 0.212305, 0.212305, 1)
 offset_left = 85.0
 offset_top = 10.0
@@ -426,9 +357,9 @@ text = "200"
 label_settings = SubResource("LabelSettings_5usm7")
 
 [node name="ToTableButton" type="Button" parent="."]
-offset_left = 874.0
-offset_top = 574.0
-offset_right = 1016.0
-offset_bottom = 635.0
+offset_left = 995.0
+offset_top = 185.0
+offset_right = 1137.0
+offset_bottom = 246.0
 text = "Table"
 script = ExtResource("7_4b3yy")

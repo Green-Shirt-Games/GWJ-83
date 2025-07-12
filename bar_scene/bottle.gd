@@ -6,12 +6,12 @@ class_name Bottle
 @export var swing_frequency := 4.0  # How fast the object oscillates when swinging
 @export var max_angle := deg_to_rad(80)        # Limit how far it can rotate (in radians)
 @export var max_angular_v := 2.0
-@onready var mouse_area : Area2D = $Area2D
+@onready var mouse_area : Area2D = $Scale/Area2D
 
 @export var price : int = randi() % 20 + 1
 
 var glow_sprite : Sprite2D
-@onready var current_sprite : Sprite2D = $Sprite2D
+@onready var current_sprite : Sprite2D = $Scale/Sprite2D
 
 var dragging := false
 var mouse_offset := Vector2.ZERO
@@ -34,6 +34,9 @@ func _on_area_input(viewport, event, shape_idx):
 		get_viewport().set_input_as_handled()
 		freeze = true
 		linear_velocity = Vector2.ZERO
+		set_children_scale(1)
+		collision_layer = 1
+		collision_mask = 1
 
 func _input(event):
 	if dragging and event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -87,3 +90,7 @@ func create_glow_sprite():
 	glow_sprite.visible = false
 
 	current_sprite.add_child(glow_sprite)
+
+func set_children_scale(s : float) -> void:
+	for child in get_children():
+		child.scale = Vector2.ONE * s
