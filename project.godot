@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="TemplateProject"
-run/main_scene="uid://cjcmgmy52xdbm"
+run/main_scene="uid://csmtb1unug2lj"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[global_group]
+
+bottle=""
 
 [rendering]
 

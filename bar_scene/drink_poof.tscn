@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://d04kdpyuuofhl"]
+
+[ext_resource type="Texture2D" uid="uid://ckh8sfcsx386n" path="res://raw_assets/smoke.png" id="1_f8gc6"]
+[ext_resource type="Script" uid="uid://dkn5ewvhq78t3" path="res://bar_scene/drink_poof.gd" id="2_xenyq"]
+
+[sub_resource type="Gradient" id="Gradient_f8gc6"]
+offsets = PackedFloat32Array(0, 0.18863, 0.452196, 1)
+colors = PackedColorArray(0.929052, 0.263667, 1.92523e-07, 1, 0.820628, 0.50388, 0.28777, 1, 0.231373, 0.137255, 0.0705882, 0.964706, 0, 0, 0, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 40
+texture = ExtResource("1_f8gc6")
+one_shot = true
+lifetime_randomness = 0.24
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
+angle_max = 360.0
+scale_amount_min = 0.05
+scale_amount_max = 0.08
+color_ramp = SubResource("Gradient_f8gc6")
+script = ExtResource("2_xenyq")
