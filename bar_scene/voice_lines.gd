@@ -8,8 +8,6 @@ class_name VoiceLines
 
 func _ready() -> void:
 	visible = false
-	get_tree().create_timer(5).timeout.connect(func():
-		play_loss_line())
 
 func play_loss_line():
 	_play(_get_random_from(loss_lines))
