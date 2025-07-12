@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=14 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://bar_scene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Texture2D" uid="uid://dpmi3p18u4f7r" path="res://raw_assets/bar_scene.png" id="1_ed2hp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://bar_scene/register.gd" id="3_7xow3"]
 [ext_resource type="Texture2D" uid="uid://ip7cebr66wk" path="res://raw_assets/coin.png" id="5_0owhu"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://bar_scene/drink_poof.tscn" id="6_4b3yy"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://master_scene/button.gd" id="7_4b3yy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2hp"]
 size = Vector2(1154, 808)
@@ -399,6 +400,7 @@ offset_top = 425.0
 offset_right = 1119.0
 offset_bottom = 480.0
 text = "BUY"
+script = ExtResource("7_4b3yy")
 
 [node name="BuyArea" type="Node2D" parent="Register"]
 
@@ -429,3 +431,4 @@ offset_top = 574.0
 offset_right = 1016.0
 offset_bottom = 635.0
 text = "Table"
+script = ExtResource("7_4b3yy")
