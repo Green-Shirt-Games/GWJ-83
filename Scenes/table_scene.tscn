@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3fhimy2ae3ts"]
+
+[ext_resource type="Texture2D" uid="uid://sgy263fhrdw2" path="res://Assets/ScenePlans/Black_Jack_Table_V02.3.png" id="1_rijoi"]
+[ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
+
+[node name="TableScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u3oja")
+
+[node name="StandButton" type="Button" parent="." groups=["PlayButtons"]]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 570.0
+offset_right = 509.0
+offset_bottom = 598.0
+
+[node name="HitButton" type="Button" parent="." groups=["PlayButtons"]]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 612.0
+offset_right = 497.0
+offset_bottom = 640.0
+
+[node name="DoubleDownButton" type="Button" parent="." groups=["PlayButtons"]]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 568.0
+offset_right = 713.0
+offset_bottom = 596.0
+
+[node name="SplitButton" type="Button" parent="." groups=["PlayButtons"]]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 611.0
+offset_right = 723.0
+offset_bottom = 639.0
+
+[node name="ScenePlan" type="TextureRect" parent="."]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rijoi")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="ScenePlanDarkening" type="ColorRect" parent="."]
+z_index = -9
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.278431, 0.278431, 0.278431, 0.756863)
+metadata/_edit_lock_ = true
+
+[node name="temp_buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NewRound" type="Button" parent="temp_buttons"]
+layout_mode = 0
+offset_left = 303.0
+offset_top = 402.0
+offset_right = 394.0
+offset_bottom = 445.0
+text = "NewRound
+"
+
+[node name="temp_place_100_bet" type="Button" parent="." groups=["BetButtons"]]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 570.0
+offset_right = 338.0
+offset_bottom = 610.0
+text = "bet $100"
