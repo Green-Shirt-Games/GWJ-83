@@ -1,14 +1,21 @@
 extends Node2D
 class_name Bar
 
+signal to_table_pressed
+
 @onready var spawn_points : Array[Node] = $BottleSpawnPoints.get_children()
 @onready var bottles : Array[Node] = $Bottles.get_children()
 @export var drink_poof_scene : PackedScene
 @onready var register : Register = $Register
+@onready var to_table_button : Button = $ToTableButton
 
 func _ready() -> void:
 	_reset()
 	register.buy_pressed.connect(_on_buy_pressed)
+	to_table_button.pressed.connect(
+		func():
+			to_table_pressed.emit()
+	)
 
 
 func _reset():
