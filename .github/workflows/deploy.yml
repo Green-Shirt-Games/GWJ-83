@@ -3,7 +3,6 @@ name: Export & Deploy Godot to itch.io (Web, Windows, macOS)
 on:
   push:
     branches:
-      - dev
       - stage
       - prod
 
