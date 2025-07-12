@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0pmeksg8opv"]
 
 [ext_resource type="Script" uid="uid://bvh0c0jf72v65" path="res://bar_scene/bottle.gd" id="1_330qi"]
-[ext_resource type="Texture2D" uid="uid://h48iqsirruc5" path="res://raw_assets/Double_or_Die_Placholder.png" id="2_dt3hn"]
+[ext_resource type="Texture2D" uid="uid://h48iqsirruc5" path="res://raw_assets/sprites/Double_or_Die_Placholder.png" id="2_dt3hn"]
 
 [node name="bottle" type="RigidBody2D"]
 constant_force = Vector2(0, -9.8)

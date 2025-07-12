@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h7vvctfm8upg"
-path="res://.godot/imported/Bar_Thumbnail_V01_Blank.png-e3506719e44078bb3c84d995f7a15300.ctex"
+uid="uid://b1vihdra7lcvi"
+path="res://.godot/imported/door.png-eaa6f5e500f0bfda57b84e17586b88e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/Bar_Thumbnail_V01_Blank.png"
-dest_files=["res://.godot/imported/Bar_Thumbnail_V01_Blank.png-e3506719e44078bb3c84d995f7a15300.ctex"]
+source_file="res://raw_assets/sprites/door.png"
+dest_files=["res://.godot/imported/door.png-eaa6f5e500f0bfda57b84e17586b88e5.ctex"]
 
 [params]
 

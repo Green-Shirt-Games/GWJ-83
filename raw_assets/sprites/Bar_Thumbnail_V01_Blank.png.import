@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h48iqsirruc5"
-path="res://.godot/imported/Double_or_Die_Placholder.png-abbe6771355e62fe07572533f91e58c4.ctex"
+uid="uid://h7vvctfm8upg"
+path="res://.godot/imported/Bar_Thumbnail_V01_Blank.png-914ace7d5352fa7740e65de1a49679d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/Double_or_Die_Placholder.png"
-dest_files=["res://.godot/imported/Double_or_Die_Placholder.png-abbe6771355e62fe07572533f91e58c4.ctex"]
+source_file="res://raw_assets/sprites/Bar_Thumbnail_V01_Blank.png"
+dest_files=["res://.godot/imported/Bar_Thumbnail_V01_Blank.png-914ace7d5352fa7740e65de1a49679d5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcsuy82sttha0"
-path="res://.godot/imported/meadbottle.png-b8e101255dae890ccf009151225223c8.ctex"
+uid="uid://dpmi3p18u4f7r"
+path="res://.godot/imported/bar_scene.png-2f0b770bbebdb6dab50a6a717fea9827.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/meadbottle.png"
-dest_files=["res://.godot/imported/meadbottle.png-b8e101255dae890ccf009151225223c8.ctex"]
+source_file="res://raw_assets/sprites/bar_scene.png"
+dest_files=["res://.godot/imported/bar_scene.png-2f0b770bbebdb6dab50a6a717fea9827.ctex"]
 
 [params]
 

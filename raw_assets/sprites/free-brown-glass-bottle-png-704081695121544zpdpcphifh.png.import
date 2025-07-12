@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmrr6x0crj6u4"
-path="res://.godot/imported/Black_Jack_Table_V02.3.png-3eea12da3bfeee08224511d0048fee3e.ctex"
+uid="uid://dphrhi3hpaofk"
+path="res://.godot/imported/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png-17b9e7521f312d7e813a5b5daa31db15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/Black_Jack_Table_V02.3.png"
-dest_files=["res://.godot/imported/Black_Jack_Table_V02.3.png-3eea12da3bfeee08224511d0048fee3e.ctex"]
+source_file="res://raw_assets/sprites/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png"
+dest_files=["res://.godot/imported/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png-17b9e7521f312d7e813a5b5daa31db15.ctex"]
 
 [params]
 

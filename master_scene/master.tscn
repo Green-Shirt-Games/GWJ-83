@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://csmtb1unug2lj" path="res://bar_scene/bar.tscn" id="1_jon4l"]
 [ext_resource type="Script" uid="uid://cj8m3c8gns0dc" path="res://master_scene/master.gd" id="1_rjbwc"]
-[ext_resource type="Texture2D" uid="uid://cmrr6x0crj6u4" path="res://raw_assets/Black_Jack_Table_V02.3.png" id="2_mynku"]
+[ext_resource type="Texture2D" uid="uid://cmrr6x0crj6u4" path="res://raw_assets/sprites/Black_Jack_Table_V02.3.png" id="2_mynku"]
 [ext_resource type="Script" uid="uid://bluqiy46sep2r" path="res://master_scene/table.gd" id="3_p6r15"]
-[ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://raw_assets/door.png" id="3_rjbwc"]
+[ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://raw_assets/sprites/door.png" id="3_rjbwc"]
 [ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://master_scene/button.gd" id="5_45wvw"]
 [ext_resource type="Script" uid="uid://bc1mqqf0evoe0" path="res://master_scene/door.gd" id="5_ue4ay"]
 

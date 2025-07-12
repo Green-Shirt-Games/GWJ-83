@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ip7cebr66wk"
-path="res://.godot/imported/coin.png-89536227c26fab85dc24a8207f8306b6.ctex"
+uid="uid://cmrr6x0crj6u4"
+path="res://.godot/imported/Black_Jack_Table_V02.3.png-dc6c8a6185566e063cef7842ff8facd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/coin.png"
-dest_files=["res://.godot/imported/coin.png-89536227c26fab85dc24a8207f8306b6.ctex"]
+source_file="res://raw_assets/sprites/Black_Jack_Table_V02.3.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_V02.3.png-dc6c8a6185566e063cef7842ff8facd2.ctex"]
 
 [params]
 
