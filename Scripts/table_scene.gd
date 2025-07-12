@@ -32,7 +32,7 @@ func _change_state(new_state : GAME_STATES) -> void:
 			# wait for player to confirm bet
 		GAME_STATES.DEALING:
 			# enable 
-			# disable card action buttons, bet buttons
+			# disable all player's actions
 			# draw cards for player and dealer
 			# wait for animations to finish
 			pass
@@ -43,19 +43,22 @@ func _change_state(new_state : GAME_STATES) -> void:
 			pass
 		GAME_STATES.DEALER_TURN:
 			# enable
-			# disable action buttons, card bet buttons
+			# disable all player's actions
 			# dealer reveals hole_card, draws 'till value of cards is 17+
+			# wait for dealers' bust or stand
 			pass
 		GAME_STATES.RESULT:
 			# disable all player's actions
 			# check for dealer's bust, if not - check who's value is bigger
 			# add/remove/keep player's bet acording to results
+			# wait for animation to finish
 			pass
 		GAME_STATES.RESET:
 			pass
 			# disable all player's actions
 			# put all played cards in discard deck
 			# reset deck, if cards left is less than 15 (overkill?)
+			# wait for animation to finish
 
 func _game_start() -> void:
 	_prepare_deck()
