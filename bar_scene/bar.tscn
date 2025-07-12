@@ -14,6 +14,9 @@ size = Vector2(1154, 808)
 size = Vector2(1160, 20)
 
 [sub_resource type="FontFile" id="FontFile_ed2hp"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -210,7 +213,7 @@ shape = SubResource("RectangleShape2D_ed2hp")
 position = Vector2(215, -799)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds3"]
-position = Vector2(357, 402)
+position = Vector2(361, 331)
 shape = SubResource("RectangleShape2D_ed2hp")
 
 [node name="Bounds4" type="StaticBody2D" parent="PhysicsBounds"]
