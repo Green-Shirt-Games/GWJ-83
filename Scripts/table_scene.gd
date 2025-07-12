@@ -4,19 +4,12 @@ extends Control
 
 # temp code, to be moved to separate GamaManager, to keep data about table between scene changes
 
-var current_state : GAME_STATES
+var current_state : GAME_STATES 
 var draw_deck : Array[CardData] = []
 var discard_deck : Array[CardData] = []
+signal state_changed
 
 
-enum GAME_STATES {
-	BETTING,
-	DEALING,
-	PLAYER_TURN,
-	DEALER_TURN,
-	RESULT,
-	RESET
-	} 
 
 func _ready() -> void:
 	_prepare_deck()
@@ -24,6 +17,7 @@ func _ready() -> void:
 
 func _change_state(new_state : GAME_STATES) -> void:
 	current_state = new_state
+	state_changed.emit()
 	match current_state:
 		GAME_STATES.BETTING:
 			pass
