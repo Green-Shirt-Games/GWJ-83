@@ -1,3 +1,4 @@
+class_name ButtonWithSFX # better name?
 extends Button
 
 

@@ -1,11 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=14 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="PackedScene" uid="uid://b0pmeksg8opv" path="res://Scenes/BarScene/bottle.tscn" id="1_so65v"]
 [ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://Assets/Placeholders/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://Scenes/BarScene/drink_poof.tscn" id="6_4b3yy"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/MasterScene/button.gd" id="7_4b3yy"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="7_4b3yy"]
+[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="7_6oyxg"]
 [ext_resource type="PackedScene" uid="uid://dt2ut2wibke82" path="res://Scenes/BarScene/voice_lines.tscn" id="8_5usm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2hp"]
@@ -337,13 +338,15 @@ position = Vector2(1, 22)
 position = Vector2(427.375, 283.75)
 shape = SubResource("RectangleShape2D_2sgqr")
 
-[node name="ToTableButton" type="Button" parent="."]
-offset_left = 995.0
-offset_top = 185.0
-offset_right = 1137.0
-offset_bottom = 246.0
+[node name="RoomChangeButton" type="Button" parent="."]
+offset_left = 1004.0
+offset_top = 187.0
+offset_right = 1118.0
+offset_bottom = 247.0
 text = "Table"
-script = ExtResource("7_4b3yy")
+script = ExtResource("7_6oyxg")
+room_to_change_to = 1
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="Bartender" type="Node2D" parent="."]
 

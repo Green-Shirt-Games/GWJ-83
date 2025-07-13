@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=5 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Texture2D" uid="uid://sgy263fhrdw2" path="res://Assets/ScenePlans/Black_Jack_Table_V02.3.png" id="1_rijoi"]
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_hwd2d"]
+[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
 
 [node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "player_money_label")]
 layout_mode = 3
@@ -158,6 +159,26 @@ mouse_filter = 2
 alignment = 1
 script = ExtResource("3_hwd2d")
 metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="ChangeRoomToBar" type="Button" parent="."]
+layout_mode = 0
+offset_top = 186.0
+offset_right = 60.0
+offset_bottom = 326.0
+text = "Bar"
+script = ExtResource("4_kdndq")
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
+
+[node name="ChangeRoomToExit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1092.0
+offset_top = 186.0
+offset_right = 1152.0
+offset_bottom = 326.0
+text = "Exit"
+script = ExtResource("4_kdndq")
+room_to_change_to = 2
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]

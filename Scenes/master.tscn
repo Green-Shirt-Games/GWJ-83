@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d28q5hciylyr6"]
+[gd_scene load_steps=7 format=3 uid="uid://d28q5hciylyr6"]
 
 [ext_resource type="Script" uid="uid://cj8m3c8gns0dc" path="res://Scripts/MasterScene/master.gd" id="1_tdhcf"]
 [ext_resource type="PackedScene" uid="uid://csmtb1unug2lj" path="res://Scenes/BarScene/bar.tscn" id="2_ofqse"]
 [ext_resource type="PackedScene" uid="uid://c3fhimy2ae3ts" path="res://Scenes/table_scene.tscn" id="3_ofqse"]
-[ext_resource type="Script" uid="uid://bluqiy46sep2r" path="res://Scripts/MasterScene/table.gd" id="3_qwuhp"]
-[ext_resource type="Texture2D" uid="uid://cmrr6x0crj6u4" path="res://Assets/Placeholders/Black_Jack_Table_V02.3.png" id="4_4ttbv"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/MasterScene/button.gd" id="5_80ytr"]
 [ext_resource type="Script" uid="uid://bc1mqqf0evoe0" path="res://Scripts/MasterScene/door.gd" id="6_ovr7t"]
+[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="6_selfg"]
 [ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://Assets/Placeholders/door.png" id="7_5vn6p"]
 
 [node name="Master" type="Control"]
@@ -22,33 +20,10 @@ script = ExtResource("1_tdhcf")
 visible = false
 
 [node name="TableScene" parent="." instance=ExtResource("3_ofqse")]
+visible = false
 layout_mode = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Table" type="Node2D" parent="."]
-script = ExtResource("3_qwuhp")
-
-[node name="Sprite2D" type="Sprite2D" parent="Table"]
-position = Vector2(575.5, 324)
-scale = Vector2(0.296649, 0.294545)
-texture = ExtResource("4_4ttbv")
-
-[node name="BarButton" type="Button" parent="Table"]
-offset_left = 4.0
-offset_top = 284.0
-offset_right = 124.0
-offset_bottom = 346.0
-text = "Bar"
-script = ExtResource("5_80ytr")
-
-[node name="ExitButton" type="Button" parent="Table"]
-offset_left = 1019.0
-offset_top = 293.0
-offset_right = 1143.0
-offset_bottom = 357.0
-text = "Exit"
-script = ExtResource("5_80ytr")
 
 [node name="Door" type="Node2D" parent="."]
 visible = false
@@ -65,12 +40,15 @@ offset_top = 364.0
 offset_right = 135.0
 offset_bottom = 424.0
 text = "Table"
-script = ExtResource("5_80ytr")
+script = ExtResource("6_selfg")
+room_to_change_to = 1
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="Button2" type="Button" parent="Door"]
 offset_left = 1013.0
 offset_top = 407.0
 offset_right = 1126.0
 offset_bottom = 467.0
-text = "Table"
-script = ExtResource("5_80ytr")
+text = "Bar"
+script = ExtResource("6_selfg")
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
