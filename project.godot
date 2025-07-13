@@ -15,9 +15,23 @@ run/main_scene="uid://d28q5hciylyr6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Resources/default_bus_layout.tres"
+
 [autoload]
 
-SfxAutoload="*res://sfx_autoload/sfx_autoload.tscn"
+SfxAutoload="*res://Scenes/Globals/sfx_autoload.tscn"
+Global="*res://Scripts/Globals/Global.gd"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Resources/": "orange",
+"res://Scenes/": "yellow",
+"res://Scripts/": "red"
+}
 
 [global_group]
 
