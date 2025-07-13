@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1vihdra7lcvi"
-path="res://.godot/imported/door.png-e934a801aa703d9418fcd4c863587ddc.ctex"
+uid="uid://dphrhi3hpaofk"
+path="res://.godot/imported/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png-17b9e7521f312d7e813a5b5daa31db15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/door.png"
-dest_files=["res://.godot/imported/door.png-e934a801aa703d9418fcd4c863587ddc.ctex"]
+source_file="res://raw_assets/sprites/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png"
+dest_files=["res://.godot/imported/free-brown-glass-bottle-png-704081695121544zpdpcphifh.png-17b9e7521f312d7e813a5b5daa31db15.ctex"]
 
 [params]
 

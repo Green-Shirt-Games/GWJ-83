@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=16 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://bar_scene/bar.gd" id="1_2sgqr"]
 [ext_resource type="PackedScene" uid="uid://b0pmeksg8opv" path="res://bar_scene/bottle.tscn" id="1_so65v"]
-[ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://raw_assets/sprites/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
+[ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://raw_assets/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://bar_scene/register.gd" id="3_7xow3"]
+[ext_resource type="Texture2D" uid="uid://ip7cebr66wk" path="res://raw_assets/coin.png" id="5_0owhu"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://bar_scene/drink_poof.tscn" id="6_4b3yy"]
 [ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://master_scene/button.gd" id="7_4b3yy"]
-[ext_resource type="PackedScene" uid="uid://dt2ut2wibke82" path="res://bar_scene/voice_lines.tscn" id="8_5usm7"]
+[ext_resource type="Script" uid="uid://cjk2j4n22jqk3" path="res://bar_scene/voice_lines.gd" id="8_5usm7"]
+[ext_resource type="AudioStream" uid="uid://wmxuc6gl4uan" path="res://raw_assets/audio/voice_lines/bartender_loss_cursed_deck.mp3" id="9_pvw3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2hp"]
 size = Vector2(1759, 808)
@@ -182,6 +184,9 @@ font_size = 36
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sgqr"]
 size = Vector2(135.25, 87.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_5usm7"]
+font_size = 51
+
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_2sgqr")
 drink_poof_scene = ExtResource("6_4b3yy")
@@ -337,6 +342,22 @@ position = Vector2(1, 22)
 position = Vector2(427.375, 283.75)
 shape = SubResource("RectangleShape2D_2sgqr")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(54, 46)
+scale = Vector2(0.073125, 0.0779167)
+texture = ExtResource("5_0owhu")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color(0.212305, 0.212305, 0.212305, 1)
+offset_left = 85.0
+offset_top = 10.0
+offset_right = 172.0
+offset_bottom = 80.0
+text = "200"
+label_settings = SubResource("LabelSettings_5usm7")
+
 [node name="ToTableButton" type="Button" parent="."]
 offset_left = 995.0
 offset_top = 185.0
@@ -347,5 +368,10 @@ script = ExtResource("7_4b3yy")
 
 [node name="Bartender" type="Node2D" parent="."]
 
-[node name="VoiceLines" parent="Bartender" instance=ExtResource("8_5usm7")]
-position = Vector2(265, 63)
+[node name="VoiceLines" type="Node2D" parent="Bartender"]
+script = ExtResource("8_5usm7")
+voice_lines = Dictionary[String, AudioStream]({
+"loss_1": ExtResource("9_pvw3y")
+})
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bartender/VoiceLines"]

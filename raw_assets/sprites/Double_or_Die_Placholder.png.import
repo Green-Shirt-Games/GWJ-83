@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckh8sfcsx386n"
-path="res://.godot/imported/smoke.png-2e64c13a904faf4ea07b0331a5d1340a.ctex"
+uid="uid://h48iqsirruc5"
+path="res://.godot/imported/Double_or_Die_Placholder.png-47d637bffbbba37ce612c9d2ed8ab89b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/smoke.png"
-dest_files=["res://.godot/imported/smoke.png-2e64c13a904faf4ea07b0331a5d1340a.ctex"]
+source_file="res://raw_assets/sprites/Double_or_Die_Placholder.png"
+dest_files=["res://.godot/imported/Double_or_Die_Placholder.png-47d637bffbbba37ce612c9d2ed8ab89b.ctex"]
 
 [params]
 

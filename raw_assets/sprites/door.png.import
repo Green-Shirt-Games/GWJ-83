@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcsuy82sttha0"
-path="res://.godot/imported/meadbottle.png-b8e101255dae890ccf009151225223c8.ctex"
+uid="uid://b1vihdra7lcvi"
+path="res://.godot/imported/door.png-eaa6f5e500f0bfda57b84e17586b88e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raw_assets/meadbottle.png"
-dest_files=["res://.godot/imported/meadbottle.png-b8e101255dae890ccf009151225223c8.ctex"]
+source_file="res://raw_assets/sprites/door.png"
+dest_files=["res://.godot/imported/door.png-eaa6f5e500f0bfda57b84e17586b88e5.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d04kdpyuuofhl"]
 
-[ext_resource type="Texture2D" uid="uid://ckh8sfcsx386n" path="res://raw_assets/smoke.png" id="1_f8gc6"]
+[ext_resource type="Texture2D" uid="uid://ckh8sfcsx386n" path="res://raw_assets/sprites/smoke.png" id="1_f8gc6"]
 [ext_resource type="Script" uid="uid://dkn5ewvhq78t3" path="res://bar_scene/drink_poof.gd" id="2_xenyq"]
 
 [sub_resource type="Gradient" id="Gradient_f8gc6"]

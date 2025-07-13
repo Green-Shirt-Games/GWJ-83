@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://bdy5au2gq55ay"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://refined_res/voice_lines/voice_line.gd" id="1_sjxx8"]
+[ext_resource type="AudioStream" uid="uid://wmxuc6gl4uan" path="res://raw_assets/audio/voice_lines/bartender_loss_cursed_deck.mp3" id="1_xpa8u"]
+
+[resource]
+script = ExtResource("1_sjxx8")
+text = "Sorry Pal. Even the best brew can’t fix a cursed deck."
+audio_stream = ExtResource("1_xpa8u")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

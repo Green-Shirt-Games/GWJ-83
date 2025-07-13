@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt2ut2wibke82"]
+
+[ext_resource type="Script" uid="uid://cjk2j4n22jqk3" path="res://bar_scene/voice_lines.gd" id="1_ih56v"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://refined_res/voice_lines/voice_line.gd" id="2_xs6v1"]
+[ext_resource type="Resource" uid="uid://bdy5au2gq55ay" path="res://refined_res/voice_lines/bartender_loss_1.tres" id="3_mucyn"]
+[ext_resource type="Texture2D" uid="uid://dhfo25xlucod3" path="res://raw_assets/sprites/speech_bubble.png" id="4_3eudn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oluxr"]
+font_size = 25
+font_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="Animation" id="Animation_uv181"]
+resource_name = "fade_in_fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 4.96667),
+"transitions": PackedFloat32Array(0.450625, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 60), Vector2(-2, 30), Vector2(-2, 30), Vector2(-2, 60)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.43, 0.43), Vector2(0.43, 0.43), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="Animation" id="Animation_ih56v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.00003, 29)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.43, 0.43)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8ckn"]
+_data = {
+&"RESET": SubResource("Animation_ih56v"),
+&"fade_in_fade_out": SubResource("Animation_uv181")
+}
+
+[node name="VoiceLines" type="Node2D"]
+script = ExtResource("1_ih56v")
+loss_lines = Array[ExtResource("2_xs6v1")]([ExtResource("3_mucyn")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.00003, 29)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("4_3eudn")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -147.0
+offset_top = -149.0
+offset_right = 179.0
+offset_bottom = 27.0
+text = "Sorry Pal. Even the best brew can’t fix a cursed deck."
+label_settings = SubResource("LabelSettings_oluxr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+max_lines_visible = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p8ckn")
+}

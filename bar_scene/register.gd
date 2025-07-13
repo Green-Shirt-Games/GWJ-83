@@ -24,7 +24,7 @@ func _on_area_enter(area : Area2D):
 	if !area.is_in_group("bottle"):
 		return
 	
-	var bottle : Bottle = area.get_parent()
+	var bottle : Bottle = area.get_parent().get_parent()
 	
 	if !bottles.has(bottle): 
 		bottles.append(bottle)
@@ -36,7 +36,7 @@ func _on_area_exit(area : Area2D):
 	if !area.is_in_group("bottle"):
 		return
 	
-	var bottle : Bottle = area.get_parent()
+	var bottle : Bottle = area.get_parent().get_parent()
 	if bottles.has(bottle): 
 		bottles.erase(bottle)
 		running_total -= bottle.price
