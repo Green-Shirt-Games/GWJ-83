@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=8 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Texture2D" uid="uid://sgy263fhrdw2" path="res://Assets/ScenePlans/Black_Jack_Table_V02.3.png" id="1_rijoi"]
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_hwd2d"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
+[ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
+shader = ExtResource("6_4te6f")
+shader_parameter/up_left = Vector2(0.2, 0.1)
+shader_parameter/up_right = Vector2(0.8, 0.1)
+shader_parameter/down_right = Vector2(1, 1)
+shader_parameter/down_left = Vector2(0, 1)
+shader_parameter/plane_size = Vector2(1151, 181)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
+viewport_path = NodePath("TableSubViewPort")
 
 [node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "player_money_label")]
 layout_mode = 3
@@ -14,12 +26,52 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
-player_hands = NodePath("PlayerHands")
-dealer_hand = NodePath("DealerHand")
+player_hands = NodePath("TableSubViewPort/HandsContainer/PlayerHands")
+dealer_hand = NodePath("TableSubViewPort/HandsContainer/DealerHand")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
 player_money_label = NodePath("PlayerMoneyLabel")
+
+[node name="TableSubViewPort" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2069, 681)
+render_target_update_mode = 4
+
+[node name="HandsContainer" type="VBoxContainer" parent="TableSubViewPort"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 56
+alignment = 1
+
+[node name="DealerHand" type="HBoxContainer" parent="TableSubViewPort/HandsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("3_hwd2d")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="PlayerHands" type="HBoxContainer" parent="TableSubViewPort/HandsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 18
+alignment = 2
+
+[node name="PlayerHand_0" type="HBoxContainer" parent="TableSubViewPort/HandsContainer/PlayerHands"]
+z_index = 7
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+alignment = 1
+script = ExtResource("3_hwd2d")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
 
 [node name="PlayerMoneyLabel" type="Label" parent="."]
 layout_mode = 0
@@ -133,33 +185,6 @@ offset_right = 384.0
 offset_bottom = 480.0
 text = "draw cards"
 
-[node name="PlayerHands" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_top = 495.0
-offset_right = 1152.0
-offset_bottom = 570.0
-theme_override_constants/separation = 18
-alignment = 1
-
-[node name="PlayerHand_0" type="HBoxContainer" parent="PlayerHands"]
-z_index = 7
-layout_mode = 2
-mouse_filter = 2
-alignment = 1
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
-
-[node name="DealerHand" type="HBoxContainer" parent="."]
-z_index = 7
-layout_mode = 0
-offset_top = 388.0
-offset_right = 1152.0
-offset_bottom = 465.0
-mouse_filter = 2
-alignment = 1
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
-
 [node name="ChangeRoomToBar" type="Button" parent="."]
 layout_mode = 0
 offset_top = 186.0
@@ -179,6 +204,22 @@ text = "Exit"
 script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
+
+[node name="CardsOnTable" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4te6f")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -264.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_mqeqr")
+expand_mode = 3
+stretch_mode = 5
 
 [connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
