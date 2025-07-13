@@ -7,6 +7,7 @@ class_name Bottle
 @export var max_angle := deg_to_rad(80)        # Limit how far it can rotate (in radians)
 @export var max_angular_v := 2.0
 @onready var mouse_area : Area2D = $Scale/Area2D
+@onready var stream_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var price : int = randi() % 20 + 1
 
@@ -37,6 +38,7 @@ func _on_area_input(viewport, event, shape_idx):
 		set_children_scale(1)
 		collision_layer = 1
 		collision_mask = 1
+		stream_player.play()
 
 func _input(event):
 	if dragging and event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -94,3 +96,21 @@ func create_glow_sprite():
 func set_children_scale(s : float) -> void:
 	for child in get_children():
 		child.scale = Vector2.ONE * s
+
+
+var impact_threshold = Vector2(13, 75).length_squared() #This needs tweaking
+@export var audio_cooldown_sec = 1.5
+var on_cooldown = false
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if on_cooldown:
+		return
+	var contact_count = state.get_contact_count()
+	for i in contact_count:
+		var impulse = state.get_contact_impulse(i)
+		if impulse.length_squared() > impact_threshold:
+			var collider = state.get_contact_collider_object(i)
+			if not stream_player.playing:
+				stream_player.play()
+				on_cooldown = true
+				get_tree().create_timer(audio_cooldown_sec).timeout.connect(func():
+					on_cooldown = false)
