@@ -25,5 +25,6 @@ func update_visual() -> void:
 	temp_card_info.visible = face_up
 
 func reveal() -> void:
+	print("Card getting revealed")
 	face_up = true
 	update_visual()

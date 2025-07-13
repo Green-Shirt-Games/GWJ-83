@@ -2,10 +2,7 @@ class_name CardHand
 extends HBoxContainer
 
 var bust : bool = false
-var best_score : int = 0 :
-	set(value):
-		print("new best score: " , value)
-		best_score = value
+var best_score : int = 0
 
 func _ready() -> void:
 	child_entered_tree.connect(_update_best_score)
@@ -16,7 +13,6 @@ func reset() -> void:
 	bust = false
 
 func _update_best_score(_child : Node):
-	print("Child entered, calcualating new best score")
 	var possible_scores : Array[int] = [0]
 	for card in get_children():
 		if card is CardVisual:
@@ -26,13 +22,14 @@ func _update_best_score(_child : Node):
 					new_possible_scores.append(value + score)
 			possible_scores = new_possible_scores
 	
-	var to_bust : bool = false
+	var to_bust : bool = true
 	for score in possible_scores:
-		if score < Global.POINTS_LIMIT:
-			to_bust = true
+		if score <= Global.POINTS_LIMIT:
+			to_bust = false
 			break
 	if to_bust:
 		bust = true
+		print(name , " is busted: ", possible_scores.min())
 		best_score = possible_scores.min()
 	else:
 		var max_score := 0

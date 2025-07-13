@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_hwd2d"]
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "player_money_label")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "player_money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +17,7 @@ player_hands = NodePath("PlayerHands")
 dealer_hand = NodePath("DealerHand")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
+split_button = NodePath("PlayButtons/SplitButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 
 [node name="PlayerMoneyLabel" type="Label" parent="."]
@@ -27,6 +28,7 @@ theme_override_font_sizes/font_size = 64
 text = "10000"
 
 [node name="BetButtons" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -41,7 +43,6 @@ offset_bottom = 610.0
 text = "bet $100"
 
 [node name="PlayButtons" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -161,5 +162,6 @@ metadata/_custom_type_script = "uid://cc0j6473b8qdl"
 [connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
+[connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
 [connection signal="pressed" from="temp_buttons/DrawCardsButton" to="." method="_on_draw_cards_button_pressed"]

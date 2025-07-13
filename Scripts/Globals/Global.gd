@@ -8,7 +8,7 @@ const SUBSCENE_PATHS : Dictionary[String, String] = {
 	"card_visual" : "res://Scenes/SubScenes/card_visual.tscn" ,
 }
 
-const POINTS_LIMIT = 41
+const POINTS_LIMIT = 21
 
 # Player's data
 var money = 10000 :
