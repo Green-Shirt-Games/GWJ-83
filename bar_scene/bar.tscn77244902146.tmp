@@ -1,0 +1,377 @@
+[gd_scene load_steps=16 format=3 uid="uid://csmtb1unug2lj"]
+
+[ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://bar_scene/bar.gd" id="1_2sgqr"]
+[ext_resource type="PackedScene" uid="uid://b0pmeksg8opv" path="res://bar_scene/bottle.tscn" id="1_so65v"]
+[ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://raw_assets/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
+[ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://bar_scene/register.gd" id="3_7xow3"]
+[ext_resource type="Texture2D" uid="uid://ip7cebr66wk" path="res://raw_assets/coin.png" id="5_0owhu"]
+[ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://bar_scene/drink_poof.tscn" id="6_4b3yy"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://master_scene/button.gd" id="7_4b3yy"]
+[ext_resource type="Script" uid="uid://cjk2j4n22jqk3" path="res://bar_scene/voice_lines.gd" id="8_5usm7"]
+[ext_resource type="AudioStream" uid="uid://wmxuc6gl4uan" path="res://raw_assets/audio/voice_lines/bartender_loss_cursed_deck.mp3" id="9_pvw3y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed2hp"]
+size = Vector2(1759, 808)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xow3"]
+size = Vector2(810, 20)
+
+[sub_resource type="FontFile" id="FontFile_ed2hp"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/56/0/ascent = 0.0
+cache/0/56/0/descent = 0.0
+cache/0/56/0/underline_position = 0.0
+cache/0/56/0/underline_thickness = 0.0
+cache/0/56/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/76/0/ascent = 0.0
+cache/0/76/0/descent = 0.0
+cache/0/76/0/underline_position = 0.0
+cache/0/76/0/underline_thickness = 0.0
+cache/0/76/0/scale = 1.0
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/96/0/ascent = 0.0
+cache/0/96/0/descent = 0.0
+cache/0/96/0/underline_position = 0.0
+cache/0/96/0/underline_thickness = 0.0
+cache/0/96/0/scale = 1.0
+cache/0/106/0/ascent = 0.0
+cache/0/106/0/descent = 0.0
+cache/0/106/0/underline_position = 0.0
+cache/0/106/0/underline_thickness = 0.0
+cache/0/106/0/scale = 1.0
+cache/0/116/0/ascent = 0.0
+cache/0/116/0/descent = 0.0
+cache/0/116/0/underline_position = 0.0
+cache/0/116/0/underline_thickness = 0.0
+cache/0/116/0/scale = 1.0
+cache/0/126/0/ascent = 0.0
+cache/0/126/0/descent = 0.0
+cache/0/126/0/underline_position = 0.0
+cache/0/126/0/underline_thickness = 0.0
+cache/0/126/0/scale = 1.0
+cache/0/131/0/ascent = 0.0
+cache/0/131/0/descent = 0.0
+cache/0/131/0/underline_position = 0.0
+cache/0/131/0/underline_thickness = 0.0
+cache/0/131/0/scale = 1.0
+cache/0/141/0/ascent = 0.0
+cache/0/141/0/descent = 0.0
+cache/0/141/0/underline_position = 0.0
+cache/0/141/0/underline_thickness = 0.0
+cache/0/141/0/scale = 1.0
+cache/0/146/0/ascent = 0.0
+cache/0/146/0/descent = 0.0
+cache/0/146/0/underline_position = 0.0
+cache/0/146/0/underline_thickness = 0.0
+cache/0/146/0/scale = 1.0
+cache/0/151/0/ascent = 0.0
+cache/0/151/0/descent = 0.0
+cache/0/151/0/underline_position = 0.0
+cache/0/151/0/underline_thickness = 0.0
+cache/0/151/0/scale = 1.0
+cache/0/161/0/ascent = 0.0
+cache/0/161/0/descent = 0.0
+cache/0/161/0/underline_position = 0.0
+cache/0/161/0/underline_thickness = 0.0
+cache/0/161/0/scale = 1.0
+cache/0/166/0/ascent = 0.0
+cache/0/166/0/descent = 0.0
+cache/0/166/0/underline_position = 0.0
+cache/0/166/0/underline_thickness = 0.0
+cache/0/166/0/scale = 1.0
+cache/0/156/0/ascent = 0.0
+cache/0/156/0/descent = 0.0
+cache/0/156/0/underline_position = 0.0
+cache/0/156/0/underline_thickness = 0.0
+cache/0/156/0/scale = 1.0
+cache/0/136/0/ascent = 0.0
+cache/0/136/0/descent = 0.0
+cache/0/136/0/underline_position = 0.0
+cache/0/136/0/underline_thickness = 0.0
+cache/0/136/0/scale = 1.0
+cache/0/121/0/ascent = 0.0
+cache/0/121/0/descent = 0.0
+cache/0/121/0/underline_position = 0.0
+cache/0/121/0/underline_thickness = 0.0
+cache/0/121/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
+cache/0/101/0/ascent = 0.0
+cache/0/101/0/descent = 0.0
+cache/0/101/0/underline_position = 0.0
+cache/0/101/0/underline_thickness = 0.0
+cache/0/101/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/81/0/ascent = 0.0
+cache/0/81/0/descent = 0.0
+cache/0/81/0/underline_position = 0.0
+cache/0/81/0/underline_thickness = 0.0
+cache/0/81/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7xow3"]
+line_spacing = 6.4
+font = SubResource("FontFile_ed2hp")
+font_size = 36
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sgqr"]
+size = Vector2(135.25, 87.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5usm7"]
+font_size = 51
+
+[node name="Bar" type="Node2D"]
+script = ExtResource("1_2sgqr")
+drink_poof_scene = ExtResource("6_4b3yy")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(579.5, 294.5)
+scale = Vector2(0.295103, 0.319545)
+texture = ExtResource("3_4b3yy")
+
+[node name="PhysicsBounds" type="Node2D" parent="."]
+
+[node name="Bounds" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(218, 441)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds"]
+position = Vector2(624.5, 302)
+shape = SubResource("RectangleShape2D_ed2hp")
+
+[node name="Bounds2" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(-931, -92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds2"]
+position = Vector2(410, 381)
+shape = SubResource("RectangleShape2D_ed2hp")
+
+[node name="Bounds3" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(215, -799)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds3"]
+position = Vector2(361, 331)
+shape = SubResource("RectangleShape2D_ed2hp")
+
+[node name="Bounds6" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(1368, -180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds6"]
+position = Vector2(647, 429)
+shape = SubResource("RectangleShape2D_ed2hp")
+
+[node name="Shelves" type="Node2D" parent="."]
+
+[node name="TopShelf" type="StaticBody2D" parent="Shelves"]
+position = Vector2(-13, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/TopShelf"]
+position = Vector2(736, 232)
+shape = SubResource("RectangleShape2D_7xow3")
+
+[node name="BottomShelf" type="StaticBody2D" parent="Shelves"]
+position = Vector2(-8, 110)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shelves/BottomShelf"]
+position = Vector2(719, 143)
+shape = SubResource("RectangleShape2D_7xow3")
+
+[node name="Bottles" type="Node2D" parent="."]
+
+[node name="bottle" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(633, 257)
+
+[node name="bottle2" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="bottle3" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="bottle4" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="bottle5" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="bottle6" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="bottle7" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(583, 256)
+
+[node name="TopShelfSpawnPoints" type="Node2D" parent="."]
+
+[node name="Point11" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(395, 179)
+
+[node name="Point12" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(644, 179)
+
+[node name="Point13" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(762, 179)
+
+[node name="Point14" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(859, 179)
+
+[node name="Point15" type="Node2D" parent="TopShelfSpawnPoints"]
+position = Vector2(969, 179)
+
+[node name="BottomShelfSpawnPoints" type="Node2D" parent="."]
+
+[node name="Point6" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(453, 179)
+
+[node name="Point7" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(702, 179)
+
+[node name="Point8" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(820, 179)
+
+[node name="Point9" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(917, 179)
+
+[node name="Point10" type="Node2D" parent="BottomShelfSpawnPoints"]
+position = Vector2(1027, 179)
+
+[node name="Register" type="Node2D" parent="."]
+script = ExtResource("3_7xow3")
+
+[node name="ColorRect" type="ColorRect" parent="Register"]
+offset_left = 179.0
+offset_top = 193.0
+offset_right = 329.0
+offset_bottom = 234.0
+color = Color(0.306923, 0.306923, 0.306923, 1)
+
+[node name="Label" type="Label" parent="Register/ColorRect"]
+modulate = Color(0.662452, 0.662452, 0.662452, 1)
+layout_mode = 0
+offset_left = -22.0
+offset_top = -6.0
+offset_right = 143.0
+offset_bottom = 43.0
+text = "$ 0000000"
+label_settings = SubResource("LabelSettings_7xow3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Register"]
+offset_left = 9.0
+offset_top = 249.0
+offset_right = 170.0
+offset_bottom = 304.0
+text = "BUY"
+script = ExtResource("7_4b3yy")
+
+[node name="BuyArea" type="Node2D" parent="Register"]
+
+[node name="Area2D" type="Area2D" parent="Register/BuyArea"]
+position = Vector2(1, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Register/BuyArea/Area2D"]
+position = Vector2(427.375, 283.75)
+shape = SubResource("RectangleShape2D_2sgqr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(54, 46)
+scale = Vector2(0.073125, 0.0779167)
+texture = ExtResource("5_0owhu")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color(0.212305, 0.212305, 0.212305, 1)
+offset_left = 85.0
+offset_top = 10.0
+offset_right = 172.0
+offset_bottom = 80.0
+text = "200"
+label_settings = SubResource("LabelSettings_5usm7")
+
+[node name="ToTableButton" type="Button" parent="."]
+offset_left = 995.0
+offset_top = 185.0
+offset_right = 1137.0
+offset_bottom = 246.0
+text = "Table"
+script = ExtResource("7_4b3yy")
+
+[node name="Bartender" type="Node2D" parent="."]
+
+[node name="VoiceLines" type="Node2D" parent="Bartender"]
+script = ExtResource("8_5usm7")
+voice_lines = Dictionary[String, AudioStream]({
+"loss_1": ExtResource("9_pvw3y")
+})
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bartender/VoiceLines"]

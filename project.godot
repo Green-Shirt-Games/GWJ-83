@@ -10,23 +10,18 @@ config_version=5
 
 [application]
 
-config/name="GWJ-83"
-run/main_scene="uid://cjcmgmy52xdbm"
+config/name="TemplateProject"
+run/main_scene="uid://d28q5hciylyr6"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/Globals/Global.gd"
+SfxAutoload="*res://sfx_autoload/sfx_autoload.tscn"
 
-[file_customization]
+[global_group]
 
-folder_colors={
-"res://Assets/": "green",
-"res://Resources/": "orange",
-"res://Scenes/": "yellow",
-"res://Scripts/": "red"
-}
+bottle=""
 
 [rendering]
 
