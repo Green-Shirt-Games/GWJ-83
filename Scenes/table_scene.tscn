@@ -17,7 +17,7 @@ shader_parameter/plane_size = Vector2(1151, 181)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "player_money_label")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,7 @@ dealer_hand = NodePath("TableSubViewPort/HandsContainer/DealerHand")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
+double_down_button = NodePath("PlayButtons/DoubleDownButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]

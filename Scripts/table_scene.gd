@@ -221,5 +221,5 @@ func _on_double_down_button_pressed() -> void:
 	Global.money -= bet
 	bet *= 2
 	_add_card_to_player_hand()
-	await get_tree().create_timer(2)
+	await get_tree().create_timer(2).timeout
 	_change_state(Global.GAME_STATES.DEALER_TURN)
