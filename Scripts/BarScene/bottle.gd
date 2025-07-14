@@ -10,7 +10,7 @@ class_name Bottle
 @onready var collision_stream_player : AudioStreamPlayer2D = $CollisionStream
 @onready var pickup_stream_player : AudioStreamPlayer2D = $PickupStream
 
-@export var price : int = randi() % 20 + 1
+@export var bottle_resource : BottleData
 
 var glow_sprite : Sprite2D
 @onready var current_sprite : Sprite2D = $Scale/Sprite2D
@@ -27,6 +27,7 @@ func _ready():
 	mouse_area.mouse_entered.connect(_on_mouse_enter)
 	mouse_area.mouse_exited.connect(_on_mouse_exit)
 	create_glow_sprite()
+	set_hover_ui()
 
 func _on_area_input(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -115,3 +116,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 				on_cooldown = true
 				get_tree().create_timer(audio_cooldown_sec).timeout.connect(func():
 					on_cooldown = false)
+
+func set_hover_ui():
+	if bottle_resource == null:
+		return
+	$Scale/HoverUI/DrinkName.text = bottle_resource.drink_name
+	$Scale/HoverUI/Description.text = bottle_resource.description
+	$Scale/HoverUI/Price.text = str(bottle_resource.price)

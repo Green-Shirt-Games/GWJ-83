@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0pmeksg8opv"]
+[gd_scene load_steps=18 format=3 uid="uid://b0pmeksg8opv"]
 
 [ext_resource type="Script" uid="uid://bvh0c0jf72v65" path="res://Scripts/BarScene/bottle.gd" id="1_330qi"]
+[ext_resource type="Resource" uid="uid://drpsw5ntjn2sp" path="res://Scenes/BarScene/bottle_data/sneak_bet.tres" id="2_5movt"]
 [ext_resource type="Texture2D" uid="uid://h48iqsirruc5" path="res://Assets/Placeholders/Double_or_Die_Placholder.png" id="2_dt3hn"]
 [ext_resource type="AudioStream" uid="uid://ykkg36s0m56p" path="res://Assets/audio/sfx/sfx_bottleSlosh1.wav" id="3_1e1yx"]
 [ext_resource type="AudioStream" uid="uid://yw067ypjq28b" path="res://Assets/audio/sfx/sfx_bottleSlosh2.wav" id="4_uqc6d"]
@@ -10,6 +11,18 @@
 [ext_resource type="AudioStream" uid="uid://cmjh58m1wrxt4" path="res://Assets/audio/sfx/sfx_bottlePickup2.wav" id="8_fhcgw"]
 [ext_resource type="AudioStream" uid="uid://ddklyjgcn8qwc" path="res://Assets/audio/sfx/sfx_bottlePickup3.wav" id="9_5movt"]
 [ext_resource type="AudioStream" uid="uid://cry0cag6jaaar" path="res://Assets/audio/sfx/sfx_bottlePickup4.wav" id="10_mew61"]
+[ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="11_fhcgw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5movt"]
+font_size = 33
+font_color = Color(0.20871, 0.20871, 0.20871, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mew61"]
+font_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ksmxe"]
+font_size = 56
+font_color = Color(0.237539, 0.237539, 0.237539, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1mcdu"]
 random_pitch = 1.2
@@ -33,6 +46,7 @@ max_contacts_reported = 4
 constant_force = Vector2(0, -9.8)
 script = ExtResource("1_330qi")
 max_angular_v = 1.5
+bottle_resource = ExtResource("2_5movt")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
 position = Vector2(-1, 14)
@@ -51,6 +65,39 @@ position = Vector2(2.742e-05, 23.9275)
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Scale/Area2D"]
 position = Vector2(-1.00003, -9.92753)
 polygon = PackedVector2Array(6, -42, -3, -42, -3, -19, -10, -15, -11, 43, 12, 43, 12, -15, 5, -19)
+
+[node name="HoverUI" type="Sprite2D" parent="Scale"]
+position = Vector2(8, -97)
+scale = Vector2(0.235, 0.235)
+texture = ExtResource("11_fhcgw")
+
+[node name="DrinkName" type="Label" parent="Scale/HoverUI"]
+offset_left = -153.191
+offset_top = -187.234
+offset_right = 84.8085
+offset_bottom = -73.234
+text = "Drink Name"
+label_settings = SubResource("LabelSettings_5movt")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Scale/HoverUI"]
+offset_left = -153.191
+offset_top = -59.5745
+offset_right = 84.8085
+offset_bottom = 54.4255
+text = "This is a description of the drink!"
+label_settings = SubResource("LabelSettings_mew61")
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="Scale/HoverUI"]
+offset_left = -59.5745
+offset_top = 106.383
+offset_right = 36.4255
+offset_bottom = 183.383
+text = "100"
+label_settings = SubResource("LabelSettings_ksmxe")
 
 [node name="CollisionStream" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_1mcdu")

@@ -28,7 +28,7 @@ func _on_area_enter(area : Area2D):
 	
 	if !bottles.has(bottle): 
 		bottles.append(bottle)
-		running_total += bottle.price
+		running_total += bottle.bottle_resource.price
 		_update_price_ui()
 
 
@@ -39,7 +39,7 @@ func _on_area_exit(area : Area2D):
 	var bottle : Bottle = area.get_parent().get_parent()
 	if bottles.has(bottle): 
 		bottles.erase(bottle)
-		running_total -= bottle.price
+		running_total -= bottle.bottle_resource.price
 		_update_price_ui()
 
 
