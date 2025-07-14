@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://d1wod2njc1cl6"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_r1kvv"]
+[ext_resource type="AudioStream" uid="uid://dgtr1stbfdw2j" path="res://Assets/audio/voice_lines/dealer_theCardsKnow.mp3" id="1_yfs8w"]
+
+[resource]
+script = ExtResource("1_r1kvv")
+text = "The cards know their master."
+audio_stream = ExtResource("1_yfs8w")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"
