@@ -1,5 +1,5 @@
 extends Node2D
-class_name VoiceLines
+class_name BartenderVoiceLines
 
 @export var loss_lines : Array[VoiceLine]
 @export var win_lines : Array[VoiceLine]
