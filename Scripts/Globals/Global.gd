@@ -19,3 +19,6 @@ var money = 10000 :
 		money = value
 		money_changed.emit()
 signal money_changed
+
+
+var money_delta_since_bar : int = 0
