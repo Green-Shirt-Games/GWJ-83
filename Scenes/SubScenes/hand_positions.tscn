@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8ohshftrusmo"]
+
+[ext_resource type="Script" uid="uid://c1fi64mjo0mbq" path="res://Scripts/SubScenes/hand_positions.gd" id="1_nehgc"]
+
+[node name="CurrentHand" type="Node2D"]
+physics_interpolation_mode = 2
+z_index = 7
+script = ExtResource("1_nehgc")
+
+[node name="card1Pos" type="Marker2D" parent="."]
+
+[node name="CardOffset" type="Marker2D" parent="."]
+position = Vector2(132, 0)
