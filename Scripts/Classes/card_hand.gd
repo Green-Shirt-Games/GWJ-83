@@ -1,16 +1,22 @@
+## Node that keeps track of children card score and their position within itself
+
 class_name CardHand
-extends HBoxContainer
+extends Node2D
 
 var bust : bool = false
 var best_score : int = 0
 
 func _ready() -> void:
 	child_entered_tree.connect(_update_best_score)
+	child_entered_tree.connect(_update_card_positions)
 
 func reset() -> void:
 	for child in get_children():
 		child.queue_free()
 	bust = false
+
+func _update_card_positions(_child : Node):
+	pass # TODO
 
 func _update_best_score(_child : Node):
 	var possible_scores : Array[int] = [0]
