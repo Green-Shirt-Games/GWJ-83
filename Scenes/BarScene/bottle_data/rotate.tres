@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://drwab4steuc0j"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_31cae"]
+
+[resource]
+script = ExtResource("1_31cae")
+type = 5
+drink_name = "Rotate Randy"
+description = "Rotate all cards currently on the mat."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

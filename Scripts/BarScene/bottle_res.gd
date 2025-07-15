@@ -8,7 +8,8 @@ enum TYPE {
 	SPILL,
 	SHOE_SWAP,
 	ROTATE,
-	SNEAK_BET
+	SNEAK_BET,
+	DOUBLE
 }
 
 @export var type : TYPE
