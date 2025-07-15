@@ -53,6 +53,8 @@ var played_map : Dictionary[BottleData.TYPE, bool] = {}
 
 
 func on_drink_bought(bottle : Bottle):
+	if stream_player.playing:
+		return
 	var type : BottleData.TYPE = bottle.bottle_resource.type
 	if played_map.has(type):
 		return

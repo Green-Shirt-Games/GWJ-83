@@ -359,6 +359,7 @@ polygon = PackedVector2Array(-14.5459, -189.091, -80, -181.818, -98.1821, -141.8
 [node name="CollisionStream" type="AudioStreamPlayer2D" parent="Key"]
 
 [node name="HoverUI" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(68, -58)
 scale = Vector2(0.41, 0.41)
 texture = ExtResource("12_xi3jk")
