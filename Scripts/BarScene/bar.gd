@@ -1,32 +1,28 @@
 extends Node2D
 class_name Bar
 
-@onready var top_shelf_spawn_points : Array[Node] = $TopShelfSpawnPoints.get_children()
-@onready var bottom_shelf_spawn_points : Array[Node] = $BottomShelfSpawnPoints.get_children()
 @onready var bottles : Array[Node] = $Bottles.get_children()
 @export var drink_poof_scene : PackedScene
 @onready var register : Register = $Register
-
-var top_shelf_layer = 2
-var bottom_shelf_layer = 4
-var foreground_layer = 1
-var top_shelf_scale = 0.5
-var bottom_shelf_scale = 0.7
+@onready var hover_ui : DrinkHoverUI = $HoverUI
 
 func _ready() -> void:
 	_reset()
+	_bind_bottle_ui()
 	register.buy_pressed.connect(_on_buy_pressed)
 
 
 func _reset():
-	#Split bottles into two desired groups
-	bottles.shuffle()
-	var mid = bottles.size() / 2
-	var for_top_shelf = bottles.slice(0, mid)
-	var for_bottom_shelf = bottles.slice(mid)
-	
-	add_bottles_to_shelf(for_top_shelf, top_shelf_spawn_points, top_shelf_layer, top_shelf_scale)
-	add_bottles_to_shelf(for_bottom_shelf, bottom_shelf_spawn_points, bottom_shelf_layer, bottom_shelf_scale)
+	for bottle : Bottle in bottles:
+		bottle.reset()
+		bottle.collision_layer = 2
+		bottle.collision_mask = 2
+		bottle.z_index = 0
+
+
+func on_bar_entered():
+	var last_seen_money_delta : int = Global.money_delta_since_bar
+	pass #TODO trigger voice lines based on 
 
 
 func add_bottles_to_shelf(_bottles, spawn_points : Array[Node], layer : int, bottle_scale : float):
@@ -38,7 +34,8 @@ func add_bottles_to_shelf(_bottles, spawn_points : Array[Node], layer : int, bot
 		bottle.global_position = shuffled_points[i].global_position
 		bottle.collision_layer = layer
 		bottle.collision_mask = layer
-		bottle.set_children_scale(bottle_scale)
+		bottle.freeze = true
+		bottle.scale = Vector2.ONE * bottle_scale
 		i += 1
 
 func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
@@ -52,3 +49,34 @@ func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
 		var drink_poof = drink_poof_scene.instantiate()
 		drink_poof.global_position = bottle.global_position
 		add_child(drink_poof)
+
+func _bind_bottle_ui():
+	hover_ui.visible = false
+	for bottle : Bottle in bottles:
+		bottle.mouse_entered_bottle.connect(_on_bottle_mouse_enter)
+		bottle.mouse_exited_bottle.connect(_on_bottle_mouse_exit)
+
+
+var hovered_bottles : Array[Bottle] = []
+var bottle_of_interest : Bottle = null
+
+func _on_bottle_mouse_enter(bottle : Bottle):
+	
+	if hovered_bottles.has(bottle):
+		return
+	else:
+		hovered_bottles.append(bottle)
+	
+	bottle_of_interest = bottle
+	hover_ui.set_text(bottle.bottle_resource)
+	hover_ui.visible = true
+
+
+func _on_bottle_mouse_exit(bottle : Bottle):	
+	if hovered_bottles.has(bottle):
+		hovered_bottles.erase(bottle)
+	
+	if hovered_bottles.size() > 0:
+		hover_ui.set_text(hovered_bottles[0].bottle_resource)
+	else:
+		hover_ui.visible = false

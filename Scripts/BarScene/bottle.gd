@@ -1,19 +1,23 @@
 extends RigidBody2D
 class_name Bottle
 
+signal mouse_entered_bottle(bottle : Bottle)
+signal mouse_exited_bottle(bottle : Bottle)
+
 @export var sway_strength := 0.015  # How much mouse delta affects rotation force
 @export var angular_damping := 2.0  # Resistance to swinging
 @export var swing_frequency := 4.0  # How fast the object oscillates when swinging
 @export var max_angle := deg_to_rad(80)        # Limit how far it can rotate (in radians)
 @export var max_angular_v := 2.0
-@onready var mouse_area : Area2D = $Scale/Area2D
-@onready var collision_stream_player : AudioStreamPlayer2D = $CollisionStream
-@onready var pickup_stream_player : AudioStreamPlayer2D = $PickupStream
+@export var collision_stream_scene : PackedScene
+@export var pickup_stream_scene : PackedScene
+var collision_stream_player : AudioStreamPlayer2D
+var pickup_stream_player : AudioStreamPlayer2D
 
 @export var bottle_resource : BottleData
 
 var glow_sprite : Sprite2D
-@onready var current_sprite : Sprite2D = $Scale/Sprite2D
+@onready var current_sprite : Sprite2D = $Sprite2D
 
 var dragging := false
 var mouse_offset := Vector2.ZERO
@@ -21,13 +25,21 @@ var _angular_velocity := 0.0
 var swing_angle := 0.0
 var previous_mouse_pos := Vector2.ZERO
 
+var orig_position : Vector2
+var orig_scale : Vector2
+
 func _ready():
-	mouse_area.input_pickable = true
-	mouse_area.input_event.connect(_on_area_input)
-	mouse_area.mouse_entered.connect(_on_mouse_enter)
-	mouse_area.mouse_exited.connect(_on_mouse_exit)
+	input_pickable = true
+	input_event.connect(_on_area_input)
+	mouse_entered.connect(_on_mouse_enter)
+	mouse_exited.connect(_on_mouse_exit)
 	create_glow_sprite()
-	set_hover_ui()
+	orig_position = global_position
+	orig_scale = scale
+	collision_stream_player = collision_stream_scene.instantiate()
+	add_child(collision_stream_player)
+	pickup_stream_player = pickup_stream_scene.instantiate()
+	add_child(pickup_stream_player)
 
 func _on_area_input(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -37,9 +49,10 @@ func _on_area_input(viewport, event, shape_idx):
 		get_viewport().set_input_as_handled()
 		freeze = true
 		linear_velocity = Vector2.ZERO
-		set_children_scale(1)
+		scale = Vector2.ONE
 		collision_layer = 1
 		collision_mask = 1
+		z_index = 1
 		pickup_stream_player.play()
 
 func _input(event):
@@ -79,9 +92,11 @@ func _process(delta):
 
 func _on_mouse_enter():
 	glow_sprite.visible = true
+	mouse_entered_bottle.emit(self)
 
 func _on_mouse_exit():
 	glow_sprite.visible = false
+	mouse_exited_bottle.emit(self)
 
 func create_glow_sprite():
 	glow_sprite = Sprite2D.new()
@@ -94,10 +109,6 @@ func create_glow_sprite():
 	glow_sprite.visible = false
 
 	current_sprite.add_child(glow_sprite)
-
-func set_children_scale(s : float) -> void:
-	for child in get_children():
-		child.scale = Vector2.ONE * s
 
 
 var impact_threshold = Vector2(13, 75).length_squared() #This needs tweaking
@@ -116,10 +127,10 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 				on_cooldown = true
 				get_tree().create_timer(audio_cooldown_sec).timeout.connect(func():
 					on_cooldown = false)
+				return
 
-func set_hover_ui():
-	if bottle_resource == null:
-		return
-	$Scale/HoverUI/DrinkName.text = bottle_resource.drink_name
-	$Scale/HoverUI/Description.text = bottle_resource.description
-	$Scale/HoverUI/Price.text = str(bottle_resource.price)
+
+func reset():
+	freeze = true
+	scale = orig_scale
+	global_position = orig_position

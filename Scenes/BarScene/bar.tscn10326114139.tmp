@@ -1,20 +1,16 @@
-[gd_scene load_steps=28 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=24 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
+[ext_resource type="PackedScene" uid="uid://b0pmeksg8opv" path="res://Scenes/BarScene/bottle.tscn" id="1_so65v"]
 [ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://Assets/Placeholders/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
-[ext_resource type="PackedScene" uid="uid://dglc8ib8f514v" path="res://Scenes/BarScene/drinks/bluff_back.tscn" id="5_y8scv"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://Scenes/BarScene/drink_poof.tscn" id="6_4b3yy"]
-[ext_resource type="PackedScene" uid="uid://dftcc1l2sbp0" path="res://Scenes/BarScene/drinks/rotate_randy.tscn" id="6_dvsn3"]
-[ext_resource type="PackedScene" uid="uid://bg7r2egheyldm" path="res://Scenes/BarScene/drinks/double_or_die.tscn" id="6_y8scv"]
 [ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="7_4b3yy"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="7_6oyxg"]
 [ext_resource type="PackedScene" uid="uid://dt2ut2wibke82" path="res://Scenes/BarScene/voice_lines.tscn" id="8_5usm7"]
 [ext_resource type="Script" uid="uid://dwxsyhbgesoww" path="res://Scripts/BarScene/key.gd" id="9_xr7ad"]
-[ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/collision_stream.tscn" id="10_gf845"]
 [ext_resource type="Texture2D" uid="uid://byhrybn74btod" path="res://Assets/Placeholders/key.png" id="10_myndm"]
 [ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
-[ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/pickup_stream.tscn" id="11_bii46"]
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 
@@ -247,37 +243,11 @@ shape = SubResource("WorldBoundaryShape2D_xkl5v")
 
 [node name="Bottles" type="Node2D" parent="."]
 
-[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1185, 411)
-scale = Vector2(0.495, 0.495)
+[node name="bottle" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(751, 313)
 
-[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1237, 411)
-scale = Vector2(0.495, 0.495)
-
-[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1289, 412)
-scale = Vector2(0.495, 0.495)
-
-[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1379, 361)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1414, 359)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1448, 359)
-scale = Vector2(0.565, 0.565)
-
-[node name="DoubleOrDie" parent="Bottles" instance=ExtResource("6_y8scv")]
-position = Vector2(917, 360)
-scale = Vector2(0.5, 0.5)
-
-[node name="DoubleOrDie2" parent="Bottles" instance=ExtResource("6_y8scv")]
-position = Vector2(959, 361)
-scale = Vector2(0.5, 0.5)
+[node name="bottle2" parent="Bottles" instance=ExtResource("1_so65v")]
+position = Vector2(851, 316)
 
 [node name="Register" type="Node2D" parent="."]
 script = ExtResource("3_7xow3")
@@ -336,8 +306,6 @@ position = Vector2(389, 168)
 [node name="Key" type="RigidBody2D" parent="."]
 position = Vector2(1802, 93)
 script = ExtResource("9_xr7ad")
-collision_stream_scene = ExtResource("10_gf845")
-pickup_stream_scene = ExtResource("11_bii46")
 bottle_resource = ExtResource("10_xi3jk")
 
 [node name="Sprite2D" type="Sprite2D" parent="Key"]
