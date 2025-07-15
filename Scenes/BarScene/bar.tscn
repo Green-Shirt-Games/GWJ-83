@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=29 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://Assets/Placeholders/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://byhrybn74btod" path="res://Assets/Placeholders/key.png" id="10_myndm"]
 [ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
 [ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/pickup_stream.tscn" id="11_bii46"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender_key.tres" id="11_dvsn3"]
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 
@@ -330,8 +331,11 @@ metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="Bartender" type="Node2D" parent="."]
 
-[node name="VoiceLines" parent="Bartender" instance=ExtResource("8_5usm7")]
+[node name="VoiceLines" parent="Bartender" node_paths=PackedStringArray("key", "register") instance=ExtResource("8_5usm7")]
 position = Vector2(389, 168)
+key_line = ExtResource("11_dvsn3")
+key = NodePath("../../Key")
+register = NodePath("../../Register")
 
 [node name="Key" type="RigidBody2D" parent="."]
 position = Vector2(1802, 93)
@@ -355,6 +359,7 @@ polygon = PackedVector2Array(-14.5459, -189.091, -80, -181.818, -98.1821, -141.8
 [node name="CollisionStream" type="AudioStreamPlayer2D" parent="Key"]
 
 [node name="HoverUI" type="Sprite2D" parent="."]
+z_index = 3
 position = Vector2(68, -58)
 scale = Vector2(0.41, 0.41)
 texture = ExtResource("12_xi3jk")
