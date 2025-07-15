@@ -20,6 +20,7 @@ var on_cooldown : bool = false
 
 func _ready() -> void:
 	visible = false
+	on_free_drink()
 	#TODO bindings to events
 
 func on_dealer_blackjack():
