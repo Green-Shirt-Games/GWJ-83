@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rqhf0iqds60a"]
+[gd_scene load_steps=15 format=3 uid="uid://rqhf0iqds60a"]
 
 [ext_resource type="Script" uid="uid://bb40tbojixkd4" path="res://Scripts/Globals/sfx_autoload.gd" id="1_70o3o"]
 [ext_resource type="AudioStream" uid="uid://brrvojqhfr8nq" path="res://Assets/audio/sfx/sfx_ui_hover.wav" id="2_01q88"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cki57r7o02yup" path="res://Assets/audio/sfx/sfx_burning2.wav" id="9_6ay6m"]
 [ext_resource type="AudioStream" uid="uid://dsl335v8t0jxe" path="res://Assets/audio/sfx/sfx_burning3.wav" id="10_1x5yr"]
 [ext_resource type="AudioStream" uid="uid://b1kwpn14l8upa" path="res://Assets/audio/sfx/sfx_burning4.wav" id="11_pqd2d"]
+[ext_resource type="AudioStream" uid="uid://bhej88mgcilmu" path="res://Assets/audio/music/music_192bpm_loop.ogg" id="12_jw5bv"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kysf4"]
 streams_count = 4
@@ -44,3 +45,8 @@ bus = &"sfx"
 [node name="sfx_burning" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_gbtxh")
 bus = &"sfx"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_jw5bv")
+bus = &"music"
+parameters/looping = true
