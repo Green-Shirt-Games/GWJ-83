@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=29 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://Assets/Placeholders/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
@@ -18,7 +18,6 @@
 [ext_resource type="Resource" uid="uid://w4fu03yfg1ml" path="res://Scenes/Voicelines/bartender/bartender_key.tres" id="11_dvsn3"]
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
-[ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="19_n5rgj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
 
@@ -394,6 +393,3 @@ offset_right = 225.268
 offset_bottom = -15.683
 text = "100"
 label_settings = SubResource("LabelSettings_0dbcr")
-
-[node name="VoiceLines" parent="." instance=ExtResource("19_n5rgj")]
-position = Vector2(794, 173)
