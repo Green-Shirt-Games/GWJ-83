@@ -1,7 +1,7 @@
 extends Control
 
 @export_group("Internal connections")
-@export var player_hands : HBoxContainer
+@export var player_hands : Node2D
 @export var dealer_hand : CardHand
 @export var bet_buttons_container : Control
 @export var play_buttons_container : Control
@@ -221,5 +221,5 @@ func _on_double_down_button_pressed() -> void:
 	Global.money -= bet
 	bet *= 2
 	_add_card_to_player_hand()
-	await get_tree().create_timer(2)
+	await get_tree().create_timer(2).timeout
 	_change_state(Global.GAME_STATES.DEALER_TURN)
