@@ -26,13 +26,32 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
-player_hands = NodePath("TableSubViewPort/HandsContainer/PlayerHands")
-dealer_hand = NodePath("TableSubViewPort/HandsContainer/DealerHand")
+player_hands = NodePath("HandsContainer/PlayerHands")
+dealer_hand = NodePath("HandsContainer/DealerHand")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
 player_money_label = NodePath("PlayerMoneyLabel")
+
+[node name="HandsContainer" type="Node2D" parent="."]
+position = Vector2(60, 0)
+
+[node name="DealerHand" type="Node2D" parent="HandsContainer"]
+physics_interpolation_mode = 2
+position = Vector2(0, 347)
+script = ExtResource("3_hwd2d")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="PlayerHands" type="Node2D" parent="HandsContainer"]
+position = Vector2(1, 480)
+
+[node name="PlayerHand_0" type="Node2D" parent="HandsContainer/PlayerHands"]
+physics_interpolation_mode = 2
+z_index = 7
+position = Vector2(-1, 0)
+script = ExtResource("3_hwd2d")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]
 disable_3d = true
@@ -40,39 +59,6 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(2069, 681)
 render_target_update_mode = 4
-
-[node name="HandsContainer" type="VBoxContainer" parent="TableSubViewPort"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 56
-alignment = 1
-
-[node name="DealerHand" type="HBoxContainer" parent="TableSubViewPort/HandsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
-
-[node name="PlayerHands" type="HBoxContainer" parent="TableSubViewPort/HandsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/separation = 18
-alignment = 2
-
-[node name="PlayerHand_0" type="HBoxContainer" parent="TableSubViewPort/HandsContainer/PlayerHands"]
-z_index = 7
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-alignment = 1
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
 
 [node name="PlayerMoneyLabel" type="Label" parent="."]
 layout_mode = 0

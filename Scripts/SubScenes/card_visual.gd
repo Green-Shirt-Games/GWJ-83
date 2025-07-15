@@ -1,10 +1,8 @@
 class_name CardVisual
-extends TextureRect
+extends Sprite2D
 
 @export var face_up : bool = false
 @export var card_data : CardData
-
-@export var back_sprite : Texture2D
 
 func _ready() -> void:
 	update_visual()
@@ -17,14 +15,16 @@ func update_visual() -> void:
 	if face_up:
 		select_atlas_area()
 	else:
-		texture = back_sprite
+		texture = Global.CARD_BACK_TEXTURE
 
 func select_atlas_area() -> void:
 	var texture_region := AtlasTexture.new()
 	texture_region.atlas = Global.CARD_FRONT_ATLAS
 	
-	var atlas_x = (card_data.value as int) * Global.CARD_TEXTURE_SIZE.x
-	var atlas_y = (card_data.suit as int) * Global.CARD_TEXTURE_SIZE.y
+	var atlas_x = (card_data.value as int) * \
+			(Global.CARD_TEXTURE_SIZE.x)
+	var atlas_y = (card_data.suit as int) *  \
+			(Global.CARD_TEXTURE_SIZE.y)
 	
 	texture_region.region = Rect2(
 		Vector2(atlas_x, atlas_y),

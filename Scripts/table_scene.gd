@@ -1,7 +1,7 @@
 extends Control
 
 @export_group("Internal connections")
-@export var player_hands : HBoxContainer
+@export var player_hands : Node2D
 @export var dealer_hand : CardHand
 @export var bet_buttons_container : Control
 @export var play_buttons_container : Control

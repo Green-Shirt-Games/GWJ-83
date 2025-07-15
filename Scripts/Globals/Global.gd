@@ -21,5 +21,6 @@ var money = 10000 :
 signal money_changed
 
 # Cards shared data
-const CARD_TEXTURE_SIZE : Vector2 = Vector2(298, 433)
-const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/Cards_N0_Faces_CLN.png")
+const CARD_TEXTURE_SIZE : Vector2 = Vector2(303.5, 439.0)
+const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/BlackJack_Cards_Front.png")
+const CARD_BACK_TEXTURE : Texture2D = preload("res://Assets/BlackJack_Cards_Back.png")

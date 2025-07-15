@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://wp127nhyc5nn"]
 
-[ext_resource type="Script" uid="uid://qmoa0bcg2crd" path="res://Scripts/SubScenes/card_visual.gd" id="1_06vqg"]
 [ext_resource type="Shader" uid="uid://bm75wl0e47klt" path="res://Resources/Shaders/card_visual.gdshader" id="1_81gq5"]
-[ext_resource type="Texture2D" uid="uid://di7rlqs3bru4s" path="res://Assets/Placeholders/ph_card_back.png" id="3_v2y36"]
+[ext_resource type="Texture2D" uid="uid://c26i2b4xdjhgw" path="res://Assets/BlackJack_Cards_Front.png" id="2_06vqg"]
+[ext_resource type="Script" uid="uid://qmoa0bcg2crd" path="res://Scripts/SubScenes/card_visual.gd" id="3_81gq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v2y36"]
 shader = ExtResource("1_81gq5")
@@ -11,17 +11,8 @@ shader_parameter/top_right_offset = Vector2(0, 0)
 shader_parameter/bottom_left_offset = Vector2(0, 0)
 shader_parameter/bottom_right_offset = Vector2(0, 0)
 
-[node name="CardVisual" type="TextureRect"]
+[node name="CardVisual" type="Sprite2D"]
 material = SubResource("ShaderMaterial_v2y36")
-anchors_preset = -1
-anchor_right = 0.217014
-anchor_bottom = 0.540123
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-mouse_filter = 2
-expand_mode = 3
-script = ExtResource("1_06vqg")
-face_up = true
-back_sprite = ExtResource("3_v2y36")
+texture = ExtResource("2_06vqg")
+script = ExtResource("3_81gq5")
 metadata/_edit_use_anchors_ = true
