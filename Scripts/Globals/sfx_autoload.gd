@@ -1,5 +1,8 @@
 extends Node2D
 
+func music():
+	$music.play()
+
 func on_button_hover():
 	$ButtonHover.play()
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://dfm5gjpqcgk1d"]
+
+[ext_resource type="AudioStream" uid="uid://c5d4s2hiu1lsv" path="res://Assets/audio/voice_lines/dealer_wellWell.mp3" id="1_ey488"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_y5g77"]
+
+[resource]
+script = ExtResource("1_y5g77")
+text = "Well, well. Even the damned get lucky."
+audio_stream = ExtResource("1_ey488")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

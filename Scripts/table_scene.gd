@@ -23,6 +23,7 @@ func _ready() -> void:
 	Global.money_changed.connect(_update_money_label)
 	_update_money_label()
 
+
 func _change_state(new_state : Global.GAME_STATES) -> void:
 	current_state = new_state
 	state_changed.emit()

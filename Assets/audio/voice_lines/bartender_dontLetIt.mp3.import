@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bartender_dontLetIt.mp3-5a83576e4e08de3afec99
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
