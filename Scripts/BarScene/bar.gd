@@ -5,6 +5,7 @@ class_name Bar
 @export var drink_poof_scene : PackedScene
 @onready var register : Register = $Register
 @onready var hover_ui : DrinkHoverUI = $HoverUI
+@onready var key : Key = $Key
 
 func _ready() -> void:
 	_reset()
@@ -52,6 +53,8 @@ func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
 
 func _bind_bottle_ui():
 	hover_ui.visible = false
+	key.mouse_entered_bottle.connect(_on_bottle_mouse_enter)
+	key.mouse_exited_bottle.connect(_on_bottle_mouse_exit)
 	for bottle : Bottle in bottles:
 		bottle.mouse_entered_bottle.connect(_on_bottle_mouse_enter)
 		bottle.mouse_exited_bottle.connect(_on_bottle_mouse_exit)
