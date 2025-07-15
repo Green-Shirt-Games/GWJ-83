@@ -12,8 +12,14 @@ func _ready() -> void:
 
 func reset() -> void:
 	for child in get_children():
-		child.queue_free()
+		if (child as CardVisual).is_frozen:
+			(child as CardVisual).is_frozen = false
+		else:
+			child.queue_free()
 	bust = false
+
+func get_cards_amount() -> int:
+	return get_child_count()
 
 func _update_card_positions(_child : Node):
 	pass # TODO

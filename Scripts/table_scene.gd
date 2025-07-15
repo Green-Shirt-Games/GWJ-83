@@ -1,6 +1,11 @@
+class_name TableScene
 extends Control
 
 @export_group("Internal connections")
+@export_subgroup("Position markers")
+@export var shoe : Marker2D
+@export var discard: Marker2D
+@export_subgroup("UI elements")
 @export var player_hands : Node2D
 @export var dealer_hand : CardHand
 @export var bet_buttons_container : Control
@@ -9,6 +14,7 @@ extends Control
 @export var double_down_button : Button
 @export var player_money_label : Label
 
+
 # temp code, to be moved to separate GamaManager, to keep data about table between scene changes
 var active_player_hand : int = 0
 var current_state : Global.GAME_STATES 
@@ -16,6 +22,9 @@ var draw_deck : Array[CardData] = []
 var discard_deck : Array[CardData] = []
 var bet : int = 0 
 signal state_changed
+
+var default_card_fly_time : float = 0.3
+var skip_dealing : bool = false
 
 func _ready() -> void:
 	_game_start()
@@ -36,16 +45,20 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			play_buttons_container.visible = false
 			# wait for player to confirm bet
 		Global.GAME_STATES.DEALING:
-			# enable 
-			# disable all player's actions
-			bet_buttons_container.visible = false
-			play_buttons_container.visible = false
-			# draw cards for player and dealer
-			for i in 2:
-				_add_card_to_player_hand()
-			_add_card_to_dealer_hand(true)
-			_add_card_to_dealer_hand(false) # second drawn card is face down
-			# wait for animations to finish
+			if skip_dealing:
+				skip_dealing = false
+			else:
+				# enable 
+				# disable all player's actions
+				bet_buttons_container.visible = false
+				play_buttons_container.visible = false
+				
+				# draw cards for player and dealer
+				while (player_hands.get_child(0) as CardHand).get_cards_amount() < 2:
+					await _add_card_to_player_hand()
+				while dealer_hand.get_cards_amount() < 2:
+					await _add_card_to_dealer_hand(dealer_hand.get_cards_amount() < 1)
+			
 			_change_state(Global.GAME_STATES.PLAYER_TURN)
 		Global.GAME_STATES.PLAYER_TURN:
 			# enable action buttons
@@ -108,13 +121,18 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			bet_buttons_container.visible = false
 			# put all played cards in discard deck
 			for card in dealer_hand.get_children():
-				discard_deck.append((card as CardVisual).card_data)
+				if !(card as CardVisual).is_frozen:
+					discard_deck.append((card as CardVisual).card_data)
 			dealer_hand.reset()
 			for hand in player_hands.get_children():
 				for card in hand.get_children():
-					discard_deck.append((card as CardVisual).card_data)
+					if !(card as CardVisual).is_frozen:
+						discard_deck.append((card as CardVisual).card_data)
 				(hand as CardHand).reset()
 			if player_hands.get_child_count() > 1:
+				for card in player_hands.get_child(1).get_children():
+					# Move frozen cards to first player hand
+					move_card_to_hand(card, player_hands.get_child(0), -1 , false)
 				player_hands.remove_child(player_hands.get_child(1))
 			# reset deck, if cards left is less than 15 (overkill?)
 			if draw_deck.size() < 15:
@@ -147,9 +165,9 @@ func _reset_deck() -> void:
 	draw_deck.shuffle()
 
 #region CardDraw
-func _add_card_to_player_hand() -> void:
+func _add_card_to_player_hand():
 	var hand : CardHand = player_hands.get_child(active_player_hand)
-	hand.add_child(_draw_card())
+	await move_card_to_hand(_draw_card(), hand)
 	if hand.bust:
 		if active_player_hand >= player_hands.get_child_count() - 1:
 			_change_state(Global.GAME_STATES.RESULT)
@@ -159,17 +177,54 @@ func _add_card_to_player_hand() -> void:
 func _add_card_to_dealer_hand(face_up : bool) -> void:
 	var new_card : CardVisual = _draw_card()
 	new_card.face_up = face_up
-	dealer_hand.add_child(new_card)
+	await move_card_to_hand(new_card, dealer_hand)
 	new_card.update_visual()
 
 func _draw_card() -> CardVisual:
 	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
 	card.get_data(draw_deck.pop_front())
+	print(draw_deck.size())
+	add_child(card)
+	if card.card_data == null:
+		push_error("No data provided to card at draw")
+	card.position = shoe.position
 	return card
 #endregion
 
+func move_card_to_hand(card_to_move : CardVisual, to_hand : CardHand, 
+hand_position : int = -1, with_animation : bool = true):
+	# hand position might be useful, but can't figure out proper way to impliment TODO
+	var new_hand_position : int
+	if hand_position < 0:
+		new_hand_position = to_hand.get_child_count()
+	else:
+		new_hand_position = hand_position
+	if with_animation:
+		await animation_card_fly(card_to_move, get_visual_position_for_card(to_hand, new_hand_position))
+	card_to_move.reparent(to_hand)
 
-func _list_all_cards_in_hand(hand : CardHand) -> String:
+func move_card_to_shoe(card_to_move : CardVisual, with_animation : bool = true):
+	if with_animation:
+		await animation_card_fly(card_to_move, shoe.position)
+	draw_deck.insert(0, card_to_move.card_data)
+	card_to_move.queue_free()
+
+func move_card_to_discard(card_to_move : CardVisual, with_animation : bool = false):
+	if with_animation:
+		await animation_card_fly(card_to_move, discard.position)
+	discard_deck.append(card_to_move.card_data)
+	card_to_move.queue_free()
+
+func get_visual_position_for_card(in_hand : CardHand, at_hand_position : int) -> Vector2:
+	# TODO
+	return $Marker2D.position
+
+func animation_card_fly(card : CardVisual, to_position : Vector2, time_to_fly : float = default_card_fly_time):
+	var tween := get_tree().create_tween()
+	tween.tween_property(card, "position", to_position, time_to_fly)
+	await tween.finished
+
+func _list_all_cards_in_hand(hand : CardHand) -> String: # Debug function
 	var list : String = ""
 	for card in hand.get_children():
 		if list.length() > 0:
@@ -177,16 +232,24 @@ func _list_all_cards_in_hand(hand : CardHand) -> String:
 		list += (card as CardVisual).card_data.get_card_name()
 	return list
 
+#region Game results
+
 func _player_won(is_blackjack : bool = false) -> void:
-	Global.money += bet * 2
-	print("Player won ", bet * 2)
+	if is_blackjack:
+		Global.money += bet * 3
+		print("Player won with blackjack " ,  bet * 3)
+	else:
+		Global.money += bet * 2
+		print("Player won ", bet * 2)
 
 func _player_lost() -> void:
 	pass
 
 func _player_tied() -> void:
 	Global.money += bet
+#endregion
 
+#region UI buttons
 func _on_draw_cards_button_pressed() -> void:
 	_change_state(Global.GAME_STATES.DEALING)
 
@@ -218,8 +281,103 @@ func _on_stand_button_pressed() -> void:
 		_change_state(Global.GAME_STATES.DEALER_TURN)
 
 func _on_double_down_button_pressed() -> void:
-	Global.money -= bet
-	bet *= 2
-	_add_card_to_player_hand()
-	await get_tree().create_timer(2).timeout
-	_change_state(Global.GAME_STATES.DEALER_TURN)
+	if _double_bet():
+		_add_card_to_player_hand()
+		await get_tree().create_timer(2).timeout
+		_change_state(Global.GAME_STATES.DEALER_TURN)
+	else:
+		Global.not_enough_money.emit()
+
+#endregion
+
+func _double_bet() -> bool:
+	if Global.money >= bet:
+		Global.money -= bet
+		bet *= 2
+		return true
+	else:
+		return false
+
+# Bottle Effect handling
+func bottle_pressed(bottle_type : BottleData.TYPE) -> bool: 
+	match bottle_type:
+		BottleData.TYPE.PEEK_DEALER:
+			if dealer_hand.get_cards_amount() > 0:
+				for card in dealer_hand:
+					if card is CardVisual:
+						card.reveal()
+			else:
+				return false
+		BottleData.TYPE.PEEK_SHOE:
+			pass # TODO determine how to display data
+		BottleData.TYPE.SWAP:
+			pass
+			# pick random card in both active hands
+			if player_hands.get_child(active_player_hand).get_cards_amount() > 0 and dealer_hand.get_cards_amount() > 0:
+				var player_hand_to_pick_card_from = player_hands.get_child(active_player_hand)
+				var player_card_to_swap : CardVisual = player_hand_to_pick_card_from.get_children().pick_random()
+				var dealer_card_to_swap : CardVisual = dealer_hand.get_children().pick_random()
+				move_card_to_hand(player_card_to_swap, dealer_hand)
+				await move_card_to_hand(dealer_card_to_swap, player_hand_to_pick_card_from)
+			else:
+				return false
+		BottleData.TYPE.SPILL:
+			pass # TODO
+		BottleData.TYPE.SHOE_SWAP:
+			if player_hands.get_child(active_player_hand).get_child_count() > 0:
+				_add_card_to_player_hand()
+				await move_card_to_shoe(player_hands.get_child(active_player_hand).get_children().pick_random())
+			else:
+				return false
+		BottleData.TYPE.ROTATE:
+			pass
+		BottleData.TYPE.SNEAK_BET:
+			skip_dealing = true
+			_change_state(Global.GAME_STATES.BETTING)
+		BottleData.TYPE.DOUBLE:
+			if !_double_bet():
+				return false
+		_:
+			push_error("Unexpected bottle type triggered")
+			return false
+	return true
+	
+	#func instant_effect() -> void:
+	#pass
+	## instant effects: triggered once, effect naturaly removed by event
+	##Shoe Ray - Reveals the top card of the shoe
+	##Devil Ray - Reveals the devils hidden card
+	##Swap card - Swap one card for a dealers card
+	##Deck Swap - Discard a card and hit a new card
+	##Rotate drink - cards on the table are shuffled
+	##Bluff - Allows the player to change their bet after drawing cards
+		## Go back to BETTING stage and as special case go to PLAEYERS_TURN from that, skipping DEALING
+	##Double Down Drink - Double bet
+#
+#func temp_effects() -> void:
+	#pass
+	## triggered once, effect stays somewhere else 'till some signal (end of turn for most of those)
+	##Counter - See the count of the shoe
+	##Freeze Card
+#
+#func permanent_effect() -> void:
+	#pass
+	## triggered once, effect stays somewhere permanently
+	##Spill - marks a card for later
+
+
+func _on_button_pressed() -> void:
+	print("Cards in player's hand:")
+	for card in player_hands.get_child(active_player_hand).get_children():
+		print((card as CardVisual).card_data.get_card_name())
+	print("Cards in dealer's hand:")
+	for card in dealer_hand.get_children():
+		print((card as CardVisual).card_data.get_card_name())
+	await bottle_pressed(BottleData.TYPE.SWAP)
+	print("SWAP HAPPENED")
+	print("Cards in player's hand:")
+	for card in player_hands.get_child(active_player_hand).get_children():
+		print((card as CardVisual).card_data.get_card_name())
+	print("Cards in dealer's hand:")
+	for card in dealer_hand.get_children():
+		print((card as CardVisual).card_data.get_card_name())

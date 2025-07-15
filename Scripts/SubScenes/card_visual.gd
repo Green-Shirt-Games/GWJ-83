@@ -4,6 +4,8 @@ extends Sprite2D
 @export var face_up : bool = false
 @export var card_data : CardData
 
+var is_frozen : bool = false
+
 func _ready() -> void:
 	update_visual()
 
@@ -12,6 +14,10 @@ func get_data(card : CardData, _face_up : bool = true) -> void:
 	face_up = _face_up
 
 func update_visual() -> void:
+	if card_data == null:
+		push_error("No data was provided to card", self)
+		return
+	
 	if face_up:
 		select_atlas_area()
 	else:
