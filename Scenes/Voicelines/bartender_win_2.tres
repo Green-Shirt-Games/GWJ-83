@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://7jba7w3vdoyc"]
+
+[ext_resource type="AudioStream" uid="uid://jrl06yqc5ria" path="res://Assets/audio/voice_lines/bartender_drinkMadeTheHand.mp3" id="1_c2xs1"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_wcibb"]
+
+[resource]
+script = ExtResource("1_wcibb")
+text = "Drink made the hand, but you played it."
+audio_stream = ExtResource("1_c2xs1")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

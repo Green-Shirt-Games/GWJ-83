@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0pmeksg8opv"]
+
+[ext_resource type="Script" uid="uid://bvh0c0jf72v65" path="res://Scripts/BarScene/bottle.gd" id="1_c7q2s"]
+[ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/collision_stream.tscn" id="2_8cqpr"]
+[ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/pickup_stream.tscn" id="3_ier8e"]
+[ext_resource type="Resource" uid="uid://drpsw5ntjn2sp" path="res://Scenes/BarScene/bottle_data/sneak_bet.tres" id="4_rkv8q"]
+[ext_resource type="Texture2D" uid="uid://h48iqsirruc5" path="res://Assets/Placeholders/Double_or_Die_Placholder.png" id="5_ho5ck"]
+
+[node name="bottle" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 4
+constant_force = Vector2(0, -9.8)
+script = ExtResource("1_c7q2s")
+max_angular_v = 1.5
+collision_stream_scene = ExtResource("2_8cqpr")
+pickup_stream_scene = ExtResource("3_ier8e")
+bottle_resource = ExtResource("4_rkv8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 14)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho5ck")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1, 14)
+polygon = PackedVector2Array(14, -122, -8, -121, -7, -56, -28, -38, -30, 126, 34, 126, 34, -40, 14, -57)

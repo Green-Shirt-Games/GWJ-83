@@ -1,0 +1,395 @@
+[gd_scene load_steps=29 format=3 uid="uid://csmtb1unug2lj"]
+
+[ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
+[ext_resource type="Texture2D" uid="uid://h7vvctfm8upg" path="res://Assets/Placeholders/Bar_Thumbnail_V01_Blank.png" id="3_4b3yy"]
+[ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
+[ext_resource type="PackedScene" uid="uid://dglc8ib8f514v" path="res://Scenes/BarScene/drinks/bluff_back.tscn" id="5_y8scv"]
+[ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://Scenes/BarScene/drink_poof.tscn" id="6_4b3yy"]
+[ext_resource type="PackedScene" uid="uid://dftcc1l2sbp0" path="res://Scenes/BarScene/drinks/rotate_randy.tscn" id="6_dvsn3"]
+[ext_resource type="PackedScene" uid="uid://bg7r2egheyldm" path="res://Scenes/BarScene/drinks/double_or_die.tscn" id="6_y8scv"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="7_4b3yy"]
+[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="7_6oyxg"]
+[ext_resource type="PackedScene" uid="uid://dt2ut2wibke82" path="res://Scenes/BarScene/voice_lines.tscn" id="8_5usm7"]
+[ext_resource type="Script" uid="uid://dwxsyhbgesoww" path="res://Scripts/BarScene/key.gd" id="9_xr7ad"]
+[ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/collision_stream.tscn" id="10_gf845"]
+[ext_resource type="Texture2D" uid="uid://byhrybn74btod" path="res://Assets/Placeholders/key.png" id="10_myndm"]
+[ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
+[ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/pickup_stream.tscn" id="11_bii46"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender_key.tres" id="11_dvsn3"]
+[ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
+[ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_myndm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xi3jk"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xkl5v"]
+
+[sub_resource type="FontFile" id="FontFile_ed2hp"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/56/0/ascent = 0.0
+cache/0/56/0/descent = 0.0
+cache/0/56/0/underline_position = 0.0
+cache/0/56/0/underline_thickness = 0.0
+cache/0/56/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/76/0/ascent = 0.0
+cache/0/76/0/descent = 0.0
+cache/0/76/0/underline_position = 0.0
+cache/0/76/0/underline_thickness = 0.0
+cache/0/76/0/scale = 1.0
+cache/0/86/0/ascent = 0.0
+cache/0/86/0/descent = 0.0
+cache/0/86/0/underline_position = 0.0
+cache/0/86/0/underline_thickness = 0.0
+cache/0/86/0/scale = 1.0
+cache/0/96/0/ascent = 0.0
+cache/0/96/0/descent = 0.0
+cache/0/96/0/underline_position = 0.0
+cache/0/96/0/underline_thickness = 0.0
+cache/0/96/0/scale = 1.0
+cache/0/106/0/ascent = 0.0
+cache/0/106/0/descent = 0.0
+cache/0/106/0/underline_position = 0.0
+cache/0/106/0/underline_thickness = 0.0
+cache/0/106/0/scale = 1.0
+cache/0/116/0/ascent = 0.0
+cache/0/116/0/descent = 0.0
+cache/0/116/0/underline_position = 0.0
+cache/0/116/0/underline_thickness = 0.0
+cache/0/116/0/scale = 1.0
+cache/0/126/0/ascent = 0.0
+cache/0/126/0/descent = 0.0
+cache/0/126/0/underline_position = 0.0
+cache/0/126/0/underline_thickness = 0.0
+cache/0/126/0/scale = 1.0
+cache/0/131/0/ascent = 0.0
+cache/0/131/0/descent = 0.0
+cache/0/131/0/underline_position = 0.0
+cache/0/131/0/underline_thickness = 0.0
+cache/0/131/0/scale = 1.0
+cache/0/141/0/ascent = 0.0
+cache/0/141/0/descent = 0.0
+cache/0/141/0/underline_position = 0.0
+cache/0/141/0/underline_thickness = 0.0
+cache/0/141/0/scale = 1.0
+cache/0/146/0/ascent = 0.0
+cache/0/146/0/descent = 0.0
+cache/0/146/0/underline_position = 0.0
+cache/0/146/0/underline_thickness = 0.0
+cache/0/146/0/scale = 1.0
+cache/0/151/0/ascent = 0.0
+cache/0/151/0/descent = 0.0
+cache/0/151/0/underline_position = 0.0
+cache/0/151/0/underline_thickness = 0.0
+cache/0/151/0/scale = 1.0
+cache/0/161/0/ascent = 0.0
+cache/0/161/0/descent = 0.0
+cache/0/161/0/underline_position = 0.0
+cache/0/161/0/underline_thickness = 0.0
+cache/0/161/0/scale = 1.0
+cache/0/166/0/ascent = 0.0
+cache/0/166/0/descent = 0.0
+cache/0/166/0/underline_position = 0.0
+cache/0/166/0/underline_thickness = 0.0
+cache/0/166/0/scale = 1.0
+cache/0/156/0/ascent = 0.0
+cache/0/156/0/descent = 0.0
+cache/0/156/0/underline_position = 0.0
+cache/0/156/0/underline_thickness = 0.0
+cache/0/156/0/scale = 1.0
+cache/0/136/0/ascent = 0.0
+cache/0/136/0/descent = 0.0
+cache/0/136/0/underline_position = 0.0
+cache/0/136/0/underline_thickness = 0.0
+cache/0/136/0/scale = 1.0
+cache/0/121/0/ascent = 0.0
+cache/0/121/0/descent = 0.0
+cache/0/121/0/underline_position = 0.0
+cache/0/121/0/underline_thickness = 0.0
+cache/0/121/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
+cache/0/101/0/ascent = 0.0
+cache/0/101/0/descent = 0.0
+cache/0/101/0/underline_position = 0.0
+cache/0/101/0/underline_thickness = 0.0
+cache/0/101/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/81/0/ascent = 0.0
+cache/0/81/0/descent = 0.0
+cache/0/81/0/underline_position = 0.0
+cache/0/81/0/underline_thickness = 0.0
+cache/0/81/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7xow3"]
+line_spacing = 6.4
+font = SubResource("FontFile_ed2hp")
+font_size = 36
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sgqr"]
+size = Vector2(247, 135.75)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xi3jk"]
+font_size = 33
+font_color = Color(0.20871, 0.20871, 0.20871, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xkl5v"]
+font_color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0dbcr"]
+font_size = 56
+font_color = Color(0.237539, 0.237539, 0.237539, 1)
+
+[node name="Bar" type="Node2D"]
+script = ExtResource("1_2sgqr")
+drink_poof_scene = ExtResource("6_4b3yy")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.666569, 0.666569, 0.666569, 1)
+position = Vector2(960, 545)
+scale = Vector2(0.494588, 0.490454)
+texture = ExtResource("3_4b3yy")
+
+[node name="PhysicsBounds" type="Node2D" parent="."]
+
+[node name="Bounds" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(922, 599)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds"]
+shape = SubResource("WorldBoundaryShape2D_xr7ad")
+
+[node name="Bounds2" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(590, 517)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds2"]
+rotation = 1.57079
+shape = SubResource("WorldBoundaryShape2D_myndm")
+
+[node name="Bounds3" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(965, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds3"]
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_xi3jk")
+
+[node name="Bounds6" type="StaticBody2D" parent="PhysicsBounds"]
+position = Vector2(1368, -180)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PhysicsBounds/Bounds6"]
+position = Vector2(549, 698)
+rotation = -1.57079
+shape = SubResource("WorldBoundaryShape2D_xkl5v")
+
+[node name="Bottles" type="Node2D" parent="."]
+
+[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1185, 411)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1237, 411)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1289, 412)
+scale = Vector2(0.495, 0.495)
+
+[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1379, 361)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1414, 359)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1448, 359)
+scale = Vector2(0.565, 0.565)
+
+[node name="DoubleOrDie" parent="Bottles" instance=ExtResource("6_y8scv")]
+position = Vector2(917, 360)
+scale = Vector2(0.5, 0.5)
+
+[node name="DoubleOrDie2" parent="Bottles" instance=ExtResource("6_y8scv")]
+position = Vector2(959, 361)
+scale = Vector2(0.5, 0.5)
+
+[node name="Register" type="Node2D" parent="."]
+script = ExtResource("3_7xow3")
+
+[node name="ColorRect" type="ColorRect" parent="Register"]
+offset_left = 295.0
+offset_top = 385.0
+offset_right = 445.0
+offset_bottom = 426.0
+color = Color(0.306923, 0.306923, 0.306923, 1)
+
+[node name="Label" type="Label" parent="Register/ColorRect"]
+modulate = Color(0.662452, 0.662452, 0.662452, 1)
+layout_mode = 0
+offset_left = -22.0
+offset_top = -6.0
+offset_right = 143.0
+offset_bottom = 43.0
+text = "$ 0000000"
+label_settings = SubResource("LabelSettings_7xow3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Register"]
+offset_left = 88.0
+offset_top = 570.0
+offset_right = 249.0
+offset_bottom = 625.0
+text = "BUY"
+script = ExtResource("7_4b3yy")
+
+[node name="BuyArea" type="Node2D" parent="Register"]
+position = Vector2(688, 575)
+
+[node name="Area2D" type="Area2D" parent="Register/BuyArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Register/BuyArea/Area2D"]
+position = Vector2(25.5, -24.125)
+shape = SubResource("RectangleShape2D_2sgqr")
+
+[node name="RoomChangeButton" type="Button" parent="."]
+offset_left = 1809.0
+offset_top = 389.0
+offset_right = 1923.0
+offset_bottom = 449.0
+text = "Table"
+script = ExtResource("7_6oyxg")
+room_to_change_to = 1
+metadata/_custom_type_script = "uid://ctj7y128tfi67"
+
+[node name="Bartender" type="Node2D" parent="."]
+
+[node name="VoiceLines" parent="Bartender" node_paths=PackedStringArray("key", "register") instance=ExtResource("8_5usm7")]
+position = Vector2(389, 168)
+key_line = ExtResource("11_dvsn3")
+key = NodePath("../../Key")
+register = NodePath("../../Register")
+
+[node name="Key" type="RigidBody2D" parent="."]
+position = Vector2(1802, 93)
+script = ExtResource("9_xr7ad")
+collision_stream_scene = ExtResource("10_gf845")
+pickup_stream_scene = ExtResource("11_bii46")
+bottle_resource = ExtResource("10_xi3jk")
+
+[node name="Sprite2D" type="Sprite2D" parent="Key"]
+position = Vector2(13, 28)
+scale = Vector2(0.275, 0.275)
+texture = ExtResource("10_myndm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Key"]
+position = Vector2(13, 28)
+scale = Vector2(0.275, 0.275)
+polygon = PackedVector2Array(-14.5459, -189.091, -80, -181.818, -98.1821, -141.818, -76.6, -98.4, -72.3, -51.6, -90.9092, -47.2727, -90.9092, -29.0909, -72.4, -22, -65.4546, 61.8182, -21.8184, 61.8182, -21.8184, 43.6364, 7.27246, 43.6364, 7.27246, -47.2727, -25.4546, -47.2727, -25.4546, -101.818, 10.9087, -112.727, 18.1816, -163.636)
+
+[node name="PickupStream" type="AudioStreamPlayer2D" parent="Key"]
+
+[node name="CollisionStream" type="AudioStreamPlayer2D" parent="Key"]
+
+[node name="HoverUI" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(68, -58)
+scale = Vector2(0.41, 0.41)
+texture = ExtResource("12_xi3jk")
+offset = Vector2(192.683, -195.122)
+script = ExtResource("13_xkl5v")
+
+[node name="DrinkName" type="Label" parent="HoverUI"]
+offset_left = 36.5854
+offset_top = -402.439
+offset_right = 274.585
+offset_bottom = -288.439
+text = "Drink Name"
+label_settings = SubResource("LabelSettings_xi3jk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="HoverUI"]
+offset_left = 39.0244
+offset_top = -287.805
+offset_right = 277.024
+offset_bottom = -173.805
+text = "This is a description of the drink!"
+label_settings = SubResource("LabelSettings_xkl5v")
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="HoverUI"]
+offset_left = 129.268
+offset_top = -92.6829
+offset_right = 225.268
+offset_bottom = -15.683
+text = "100"
+label_settings = SubResource("LabelSettings_0dbcr")

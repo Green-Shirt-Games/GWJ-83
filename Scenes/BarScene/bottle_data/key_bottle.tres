@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://b0u48oyo6wsnm"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_ek1x5"]
+
+[resource]
+script = ExtResource("1_ek1x5")
+type = 0
+drink_name = "Key?"
+description = ""
+price = 100000
+metadata/_custom_type_script = "uid://b2l7btycw868p"

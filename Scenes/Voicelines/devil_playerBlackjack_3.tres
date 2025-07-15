@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://c5k46dfjn3sxs"]
+
+[ext_resource type="AudioStream" uid="uid://b8rpwkk7gne52" path="res://Assets/audio/voice_lines/dealer_touchedByGrace.mp3" id="1_apr8e"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_cndn0"]
+
+[resource]
+script = ExtResource("1_cndn0")
+text = "Touched by grace? Or did you strike a bargain I don’t know about?"
+audio_stream = ExtResource("1_apr8e")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"
