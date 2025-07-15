@@ -4,11 +4,10 @@ class_name BottleData
 enum TYPE {
 	PEEK_DEALER,
 	PEEK_SHOE,
-	SWAP,
+	SWAP_DEALER,
 	SPILL,
 	SHOE_SWAP,
 	ROTATE,
-	SNEAK_BET,
 	DOUBLE
 }
 
