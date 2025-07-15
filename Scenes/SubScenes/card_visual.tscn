@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://wp127nhyc5nn"]
 
 [ext_resource type="Shader" uid="uid://bm75wl0e47klt" path="res://Resources/Shaders/card_visual.gdshader" id="1_81gq5"]
-[ext_resource type="Texture2D" uid="uid://c26i2b4xdjhgw" path="res://Assets/BlackJack_Cards_Front.png" id="2_06vqg"]
+[ext_resource type="Texture2D" uid="uid://ch05vgqs4yaku" path="res://Assets/BlackJack_Cards_Back.png" id="2_06vqg"]
 [ext_resource type="Script" uid="uid://qmoa0bcg2crd" path="res://Scripts/SubScenes/card_visual.gd" id="3_81gq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v2y36"]

@@ -5,13 +5,14 @@ extends Sprite2D
 @export var card_data : CardData
 
 var is_frozen : bool = false
+const DEFAULT_FLIP_TIME : float = 0.3
 
-func _ready() -> void:
-	update_visual()
+
 
 func get_data(card : CardData, _face_up : bool = true) -> void:
 	card_data = card
 	face_up = _face_up
+	update_visual()
 
 func update_visual() -> void:
 	if card_data == null:
@@ -37,6 +38,17 @@ func select_atlas_area() -> void:
 		Global.CARD_TEXTURE_SIZE)
 	
 	texture = texture_region
+
+func flip(to_face_up : bool):
+	if to_face_up == face_up:
+		return
+	
+	var tween_1 := get_tree().create_tween()
+	await tween_1.tween_property(self, "scale", Vector2(0.01, 1), DEFAULT_FLIP_TIME).finished
+	face_up = to_face_up
+	update_visual()
+	var tween_2 := get_tree().create_tween()
+	await tween_2.tween_property(self, "scale", Vector2(1,1), DEFAULT_FLIP_TIME)
 
 func reveal() -> void:
 	print("Card getting revealed")
