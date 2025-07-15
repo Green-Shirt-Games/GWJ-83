@@ -20,6 +20,8 @@ var money = 10000 :
 		money_changed.emit()
 signal money_changed
 
+var money_delta_since_bar : int = 0
+
 # Cards shared data
 const CARD_TEXTURE_SIZE : Vector2 = Vector2(303.5, 439.0)
 const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/BlackJack_Cards_Front.png")
