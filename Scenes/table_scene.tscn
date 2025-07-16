@@ -9,10 +9,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
-shader_parameter/up_left = Vector2(0, 0)
-shader_parameter/up_right = Vector2(1, 0)
-shader_parameter/down_right = Vector2(1, 1)
-shader_parameter/down_left = Vector2(0, 1)
+shader_parameter/up_left = Vector2(0.21, 0)
+shader_parameter/up_right = Vector2(0.79, 0)
+shader_parameter/down_right = Vector2(1, 0.86)
+shader_parameter/down_left = Vector2(0, 0.86)
 shader_parameter/plane_size = Vector2(0, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
@@ -45,10 +45,9 @@ position = Vector2(376, 397)
 [node name="CardsOnTable" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_4te6f")
 layout_mode = 0
-offset_left = 97.0
-offset_top = 408.0
-offset_right = 6551.0
-offset_bottom = 1417.0
+offset_top = 406.0
+offset_right = 7876.0
+offset_bottom = 1461.0
 scale = Vector2(0.146261, 0.151635)
 texture = SubResource("ViewportTexture_mqeqr")
 
