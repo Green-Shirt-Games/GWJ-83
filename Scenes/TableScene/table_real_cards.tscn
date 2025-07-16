@@ -13,9 +13,9 @@ discard_marker = NodePath("discard_position")
 table_size = NodePath("TableSizeReference")
 
 [node name="TableSizeReference" type="ColorRect" parent="."]
-visible = false
-offset_right = 3456.0
-offset_bottom = 1608.0
+offset_right = 3945.5
+offset_bottom = 1009.7
+color = Color(1, 1, 1, 0.737255)
 
 [node name="shoe_position" type="Marker2D" parent="."]
 position = Vector2(2453, 759)

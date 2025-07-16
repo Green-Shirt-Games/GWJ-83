@@ -1,18 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=9 format=3 uid="uid://c3fhimy2ae3ts"]
 
-[ext_resource type="Texture2D" uid="uid://sgy263fhrdw2" path="res://Assets/ScenePlans/Black_Jack_Table_V02.3.png" id="1_rijoi"]
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
+[ext_resource type="Script" uid="uid://j8fypgqg4iji" path="res://Scripts/table_sub_view_port_debugging.gd" id="3_4te6f"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
+[ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
-shader_parameter/up_left = Vector2(0.2, 0.4)
-shader_parameter/up_right = Vector2(0.8, 0.4)
-shader_parameter/down_right = Vector2(1, 0.8)
-shader_parameter/down_left = Vector2(0, 0.8)
-shader_parameter/plane_size = Vector2(3456, 1608)
+shader_parameter/up_left = Vector2(0, 0)
+shader_parameter/up_right = Vector2(1, 0)
+shader_parameter/down_right = Vector2(1, 1)
+shader_parameter/down_left = Vector2(0, 1)
+shader_parameter/plane_size = Vector2(0, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
@@ -42,28 +43,22 @@ position = Vector2(751, 418)
 position = Vector2(376, 397)
 
 [node name="CardsOnTable" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0.203922)
 material = SubResource("ShaderMaterial_4te6f")
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -514.0
-offset_right = -1.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 97.0
+offset_top = 408.0
+offset_right = 6551.0
+offset_bottom = 1417.0
+scale = Vector2(0.146261, 0.151635)
 texture = SubResource("ViewportTexture_mqeqr")
-expand_mode = 5
-stretch_mode = 4
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(3456, 1608)
+size = Vector2i(3945, 1009)
 render_target_update_mode = 4
+script = ExtResource("3_4te6f")
 
 [node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
 
@@ -139,11 +134,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_rijoi")
+texture = ExtResource("4_14o7i")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="ScenePlanDarkening" type="ColorRect" parent="."]
+visible = false
 z_index = -9
 layout_mode = 1
 anchors_preset = 15
