@@ -29,6 +29,8 @@ func second_players_hand(activate : bool) -> void:
 	else:
 		player_hands[0].table_size_x = table_size.get_rect().size.x
 		player_hands[0].offset_direction = 1
+	for hand in player_hands:
+		hand._update_card_positions(null)
 
 func _on_debug_pressed() -> void:
 	dealers_hand._update_card_positions(null)
@@ -46,3 +48,15 @@ func move_card_to_shoe(card_to_move : CardVisual):
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(card_to_move, "position", shoe_marker.position, 0.2) # TODO attach to global fly timer
 	await tween.finished
+
+
+func _on_button_pressed() -> void:
+	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
+	card.get_data(CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.CLUB))
+	player_hands[0].add_child(card)
+
+
+func _on_button_2_pressed() -> void:
+	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
+	card.get_data(CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.CLUB))
+	player_hands[1].add_child(card)

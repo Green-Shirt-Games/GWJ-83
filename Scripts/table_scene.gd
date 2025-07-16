@@ -106,6 +106,8 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 				for card in player_hands[1].get_children():
 					move_card_to_hand(card, player_hands[0])
 				player_hands[1].is_active = false
+			active_player_hand = 0
+			cards_table.second_players_hand(false)
 			# reset deck, if cards left is less than 15 (overkill?)
 			if draw_deck.size() < 15:
 				_reset_deck()
@@ -211,6 +213,7 @@ func _on_hit_button_pressed() -> void:
 
 func _on_split_button_pressed() -> void:
 	player_hands[1].is_active = true
+	cards_table.second_players_hand(true)
 	player_hands[0].get_child(1).reparent(player_hands[1], true)
 	active_player_hand = 1
 	_add_card_to_player_hand()

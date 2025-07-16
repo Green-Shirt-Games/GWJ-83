@@ -13,7 +13,6 @@ discard_marker = NodePath("discard_position")
 table_size = NodePath("TableSizeReference")
 
 [node name="TableSizeReference" type="ColorRect" parent="."]
-visible = false
 offset_right = 3456.0
 offset_bottom = 1608.0
 
@@ -42,3 +41,29 @@ metadata/_custom_type_script = "uid://cc0j6473b8qdl"
 [node name="PlayerHand1" type="Node2D" parent="."]
 script = ExtResource("3_gs6tb")
 metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 446.0
+offset_top = 441.0
+offset_right = 454.0
+offset_bottom = 449.0
+theme_override_font_sizes/font_size = 84
+text = "add card hand 1"
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+offset_left = 1374.0
+offset_top = 441.0
+offset_right = 2036.0
+offset_bottom = 564.0
+theme_override_font_sizes/font_size = 84
+text = "add card hand 2"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1704, 763)
+enabled = false
+zoom = Vector2(0.3, 0.3)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
