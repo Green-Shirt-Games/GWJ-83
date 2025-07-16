@@ -16,7 +16,8 @@ func get_data(card : CardData, _face_up : bool = true) -> void:
 
 func update_visual() -> void:
 	if card_data == null:
-		push_error("No data was provided to card", self)
+		push_error("No data was provided to card: ", self, " Getting default card")
+		card_data = CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.SPADE)
 		return
 	
 	if face_up:
@@ -50,7 +51,5 @@ func flip(to_face_up : bool):
 	var tween_2 := get_tree().create_tween()
 	await tween_2.tween_property(self, "scale", Vector2(1,1), DEFAULT_FLIP_TIME)
 
-func reveal() -> void:
-	print("Card getting revealed")
-	face_up = true
-	update_visual()
+func reveal():
+	await flip(true)

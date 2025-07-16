@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://778cx47lq7g5"]
+
+[ext_resource type="Script" uid="uid://b0cqsr81gl500" path="res://Scenes/TableScene/table_real_cards.gd" id="1_kdkp6"]
+[ext_resource type="PackedScene" uid="uid://wp127nhyc5nn" path="res://Scenes/SubScenes/card_visual.tscn" id="2_ic403"]
+[ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_gs6tb"]
+
+[node name="TableRealCards" type="Node2D" node_paths=PackedStringArray("dealers_hand", "player_hands", "table_size")]
+script = ExtResource("1_kdkp6")
+dealers_hand = NodePath("DealersHand")
+player_hands = [NodePath("PlayerHand0"), NodePath("PlayerHand1")]
+table_size = NodePath("TableSizeReference")
+
+[node name="TableSizeReference" type="ColorRect" parent="."]
+offset_right = 3456.0
+offset_bottom = 1608.0
+
+[node name="DealersHand" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="CardVisual" parent="DealersHand" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual2" parent="DealersHand" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual3" parent="DealersHand" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual4" parent="DealersHand" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="debugCamera" type="Camera2D" parent="."]
+position = Vector2(1708, 708)
+zoom = Vector2(0.3, 0.3)
+
+[node name="PlayerHand0" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="CardVisual2" parent="PlayerHand0" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual3" parent="PlayerHand0" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual4" parent="PlayerHand0" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual5" parent="PlayerHand0" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="PlayerHand1" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="CardVisual2" parent="PlayerHand1" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual3" parent="PlayerHand1" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual4" parent="PlayerHand1" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="CardVisual5" parent="PlayerHand1" instance=ExtResource("2_ic403")]
+position = Vector2(1700.5, 708)
+
+[node name="debug" type="Button" parent="."]
+offset_left = 2153.0
+offset_top = 627.0
+offset_right = 3960.0
+offset_bottom = 810.0
+theme_override_font_sizes/font_size = 128
+text = "move cards to their positions"
+
+[connection signal="pressed" from="debug" to="." method="_on_debug_pressed"]

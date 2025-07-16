@@ -72,18 +72,13 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 		Global.GAME_STATES.DEALER_TURN:
 			# enable
 			# disable all player's actions
-			for hand in player_hands.get_children():
-				print("Player's cards in " , hand.name, " : ", _list_all_cards_in_hand(hand))
 			split_button.visible = false
 			play_buttons_container.visible = false
 			bet_buttons_container.visible = false
 			# dealer reveals hole_card, draws 'till value of cards is 17+
-			(dealer_hand.get_child(1) as CardVisual).reveal()
-			await get_tree().create_timer(2).timeout
+			await (dealer_hand.get_child(1) as CardVisual).reveal()
 			while dealer_hand.best_score < 17:
-				await get_tree().create_timer(2).timeout
-				_add_card_to_dealer_hand(true)
-			print("Dealer's cards:" , _list_all_cards_in_hand(dealer_hand))
+				await _add_card_to_dealer_hand(true)
 			_change_state(Global.GAME_STATES.RESULT)
 		Global.GAME_STATES.RESULT:
 			# disable all player's actions
@@ -112,7 +107,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 								_player_tied()
 					else:
 						push_error("Unexpected node in player's hands folder")
-			await get_tree().create_timer(2).timeout
+			await get_tree().create_timer(2).timeout #TODO move this await to voiceline trigger
 			_change_state(Global.GAME_STATES.RESET)
 		Global.GAME_STATES.RESET:
 			pass
@@ -138,7 +133,6 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			if draw_deck.size() < 15:
 				_reset_deck()
 			# wait for animation to finish
-			await get_tree().create_timer(2).timeout
 			_change_state(Global.GAME_STATES.BETTING)
 
 func _check_if_split_possible() -> bool:
@@ -224,14 +218,6 @@ func animation_card_fly(card : CardVisual, to_position : Vector2, time_to_fly : 
 	tween.tween_property(card, "position", to_position, time_to_fly)
 	await tween.finished
 
-func _list_all_cards_in_hand(hand : CardHand) -> String: # Debug function
-	var list : String = ""
-	for card in hand.get_children():
-		if list.length() > 0:
-			list += ", "
-		list += (card as CardVisual).card_data.get_card_name()
-	return list
-
 #region Game results
 
 func _player_won(is_blackjack : bool = false) -> void:
@@ -282,8 +268,7 @@ func _on_stand_button_pressed() -> void:
 
 func _on_double_down_button_pressed() -> void:
 	if _double_bet():
-		_add_card_to_player_hand()
-		await get_tree().create_timer(2).timeout
+		await _add_card_to_player_hand()
 		_change_state(Global.GAME_STATES.DEALER_TURN)
 	else:
 		Global.not_enough_money.emit()
@@ -342,28 +327,6 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			return false
 	return true
 	
-	#func instant_effect() -> void:
-	#pass
-	## instant effects: triggered once, effect naturaly removed by event
-	##Shoe Ray - Reveals the top card of the shoe
-	##Devil Ray - Reveals the devils hidden card
-	##Swap card - Swap one card for a dealers card
-	##Deck Swap - Discard a card and hit a new card
-	##Rotate drink - cards on the table are shuffled
-	##Bluff - Allows the player to change their bet after drawing cards
-		## Go back to BETTING stage and as special case go to PLAEYERS_TURN from that, skipping DEALING
-	##Double Down Drink - Double bet
-#
-#func temp_effects() -> void:
-	#pass
-	## triggered once, effect stays somewhere else 'till some signal (end of turn for most of those)
-	##Counter - See the count of the shoe
-	##Freeze Card
-#
-#func permanent_effect() -> void:
-	#pass
-	## triggered once, effect stays somewhere permanently
-	##Spill - marks a card for later
 
 
 func _on_button_pressed() -> void:
