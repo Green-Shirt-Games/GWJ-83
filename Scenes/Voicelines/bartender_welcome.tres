@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://byshkrt4gbrwv"]
+
+[ext_resource type="AudioStream" uid="uid://bydr8q5rrfdv4" path="res://Assets/audio/voice_lines/bartender_welcome.mp3" id="1_3h0bl"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_p4qs6"]
+
+[resource]
+script = ExtResource("1_p4qs6")
+text = "Welcome to my bar, mortal. Each bottle here holds a secret edge - if you can afford it. Place what you desire by the register and call me. The price is steep, but so is the game you’re playing."
+audio_stream = ExtResource("1_3h0bl")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"
