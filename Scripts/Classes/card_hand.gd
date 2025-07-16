@@ -13,6 +13,9 @@ var default_y_position : float
 var default_x_position : float = 0.0
 var between_cards_space_percent = 0.1
 var card_fly_time : float = 0.5 # TODO move to global
+var is_active : bool = true
+
+signal all_cards_in_position
 
 func _ready() -> void:
 	child_entered_tree.connect(_update_best_score)
@@ -29,8 +32,12 @@ func reset() -> void:
 func get_cards_amount() -> int:
 	return get_child_count()
 
-func pre_parenting_card_position_adjustment(card : CardVisual) -> void:
-	CardVisual.position -= self.position
+# use reparent(*, true)
+#func pre_parenting_card_position_adjustment(card : CardVisual) -> void:
+	#card.position -= self.position
+#
+#func unparenting_card_position_adjustment(card : CardVisual) -> void:
+	#card.position += self.position
 
 func _update_card_positions(_child : Node):
 	var offset : float = 0.0
@@ -45,6 +52,7 @@ func _update_card_positions(_child : Node):
 			((-1 * offset_direction * (get_child_count() - 1) * Global.CARD_TEXTURE_SIZE.x * (1 + between_cards_space_percent)) / 2) + default_x_position ,
 			card_fly_time)
 	await tween.finished
+	all_cards_in_position.emit()
 
 func get_card_to_position(card : CardVisual, to_position : Vector2):
 	var tween : Tween = get_tree().create_tween()

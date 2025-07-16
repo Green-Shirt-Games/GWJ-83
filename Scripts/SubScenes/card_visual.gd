@@ -16,8 +16,7 @@ func get_data(card : CardData, _face_up : bool = true) -> void:
 
 func update_visual() -> void:
 	if card_data == null:
-		push_error("No data was provided to card: ", self, " Getting default card")
-		card_data = CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.SPADE)
+		push_error("No data was provided to card: ", self)
 		return
 	
 	if face_up:
