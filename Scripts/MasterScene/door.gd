@@ -11,8 +11,3 @@ func _ready() -> void:
 		func():
 			to_table_pressed.emit()
 	)
-	
-	to_table_button2.pressed.connect(
-		func():
-			to_table_pressed.emit()
-	)
