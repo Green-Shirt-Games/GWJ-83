@@ -8,7 +8,7 @@ class_name DrinkHoverUI
 
 @export var fade_duration : float = 0.3
 
-var tween : Tween = create_tween()
+var tween : Tween = null
 
 func _ready() -> void:
 	visible = false
@@ -24,7 +24,7 @@ func set_text(bottle_data : BottleData):
 
 
 func fade_in() -> void:
-	if tween.is_running():
+	if tween != null and tween.is_running():
 		tween.kill()
 	visible = true
 	modulate.a = 0.0
@@ -34,7 +34,7 @@ func fade_in() -> void:
 
 
 func fade_out() -> void:
-	if tween.is_running():
+	if tween != null and tween.is_running():
 		tween.kill()
 	tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, fade_duration)

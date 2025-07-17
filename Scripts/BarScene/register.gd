@@ -72,7 +72,7 @@ func _update_price_ui():
 func _update_value_index(index : int, new_value : String):
 	var label : Label = value_labels[index]
 	
-	await get_tree().create_timer(randf_range(0.1, 0.2)).timeout
+	await get_tree().create_timer(randf_range(0.1, 0.4)).timeout
 	
 	label.text = ""
 	audio_stream.play()
