@@ -7,6 +7,7 @@ signal too_poor()
 @onready var buy_button : Button = $Button
 @onready var buy_area : Area2D = $BuyArea/Area2D
 @onready var values_parent : Node2D = $Values
+@onready var audio_stream : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @export var bottle_parent : Bottle
 
 var running_total : int = 0
@@ -61,6 +62,7 @@ func _update_price_ui():
 	var index : int = 0
 	for i in range(padded_str.length()):
 		if padded_str[i] != current_total_str[i]:
+			await get_tree().create_timer(0.1).timeout
 			_update_value_index(i, padded_str[i])
 	
 	current_total_str = padded_str
@@ -69,6 +71,7 @@ func _update_price_ui():
 func _update_value_index(index : int, new_value : String):
 	var label : Label = value_labels[index]
 	label.text = new_value
+	audio_stream.play()
 
 
 func clear():
