@@ -232,17 +232,12 @@ func _player_tied(hand_id : int) -> void:
 			Global.money += second_hand_bet
 #endregion
 
+func _update_money_label() -> void:
+	player_money_label.text = "money: " + str(Global.money)
+
 #region UI buttons
 func _on_draw_cards_button_pressed() -> void:
 	_change_state(Global.GAME_STATES.DEALING)
-
-func _on_temp_place_100_bet_pressed() -> void:
-	bet = 100
-	Global.money -= bet
-	_change_state(Global.GAME_STATES.DEALING)
-
-func _update_money_label() -> void:
-	player_money_label.text = "money: " + str(Global.money)
 
 func _on_hit_button_pressed() -> void:
 	_add_card_to_player_hand()
@@ -359,9 +354,9 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			player_hands[0]._update_card_positions(null)
 			player_hands[1]._update_card_positions(null)
 			dealer_hand._update_card_positions(null)
-		BottleData.TYPE.DOUBLE:
-			skip_dealing = true
-			_change_state(Global.GAME_STATES.BETTING)
+		#BottleData.TYPE.SNEAK_BET:
+			#skip_dealing = true
+			#_change_state(Global.GAME_STATES.BETTING)
 		BottleData.TYPE.DOUBLE:
 			if !_double_bet():
 				return false
