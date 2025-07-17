@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="VoiceLine" load_steps=2 format=3 uid="uid://bdy5au2gq55ay"]
-
-[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_sjxx8"]
-
-[resource]
-script = ExtResource("1_sjxx8")
-text = "Don’t let it rattle you. Refill’s coming up."
-metadata/_custom_type_script = "uid://b3xr6xsonyukf"

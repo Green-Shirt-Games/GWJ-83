@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://dvdsic0137v64"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_jf8ev"]
+[ext_resource type="AudioStream" uid="uid://upgscabh46oe" path="res://Assets/audio/voice_lines/dealer_wereEven.mp3" id="1_lrm46"]
+
+[resource]
+script = ExtResource("1_jf8ev")
+text = "We’re even. Which is boring. Shall we try again?"
+audio_stream = ExtResource("1_lrm46")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

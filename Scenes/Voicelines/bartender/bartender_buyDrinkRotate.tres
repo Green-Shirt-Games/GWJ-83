@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://dgvm40mngvbun"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_v54kp"]
+[ext_resource type="AudioStream" uid="uid://b48xxkt4svyuj" path="res://Assets/audio/voice_lines/bartender_youDidntHearThis.mp3" id="1_ypxs6"]
+
+[resource]
+script = ExtResource("1_v54kp")
+text = "You didn’t hear this from me - but this one helps... tilt fate."
+audio_stream = ExtResource("1_ypxs6")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

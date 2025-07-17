@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://bqaifwk80qc1c"]
+
+[ext_resource type="AudioStream" uid="uid://b3x5fhh541hjm" path="res://Assets/audio/voice_lines/dealer_doubleDown.wav" id="1_aqj5n"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_gdr1x"]
+
+[resource]
+script = ExtResource("1_gdr1x")
+text = "Oh. So you're looking to double down are you?"
+audio_stream = ExtResource("1_aqj5n")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

@@ -1,23 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=9 format=3 uid="uid://c3fhimy2ae3ts"]
 
-[ext_resource type="Texture2D" uid="uid://sgy263fhrdw2" path="res://Assets/ScenePlans/Black_Jack_Table_V02.3.png" id="1_rijoi"]
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
-[ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_hwd2d"]
+[ext_resource type="Script" uid="uid://j8fypgqg4iji" path="res://Scripts/table_sub_view_port_debugging.gd" id="3_4te6f"]
+[ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
+[ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
-shader_parameter/up_left = Vector2(0.2, 0.1)
-shader_parameter/up_right = Vector2(0.8, 0.1)
-shader_parameter/down_right = Vector2(1, 1)
-shader_parameter/down_left = Vector2(0, 1)
-shader_parameter/plane_size = Vector2(1151, 181)
+shader_parameter/up_left = Vector2(0.2, 0)
+shader_parameter/up_right = Vector2(0.8, 0)
+shader_parameter/down_right = Vector2(1, 0.845)
+shader_parameter/down_left = Vector2(0, 0.845)
+shader_parameter/plane_size = Vector2(0, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("player_hands", "dealer_hand", "bet_buttons_container", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("shoe", "discard", "cards_table", "bet_buttons_container", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,39 +27,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
-player_hands = NodePath("HandsContainer/PlayerHands")
-dealer_hand = NodePath("HandsContainer/DealerHand")
+shoe = NodePath("")
+discard = NodePath("")
+cards_table = NodePath("TableSubViewPort/TableRealCards")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 
-[node name="HandsContainer" type="Node2D" parent="."]
-position = Vector2(60, 0)
-
-[node name="DealerHand" type="Node2D" parent="HandsContainer"]
-physics_interpolation_mode = 2
-position = Vector2(0, 347)
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
-
-[node name="PlayerHands" type="Node2D" parent="HandsContainer"]
-position = Vector2(1, 480)
-
-[node name="PlayerHand_0" type="Node2D" parent="HandsContainer/PlayerHands"]
-physics_interpolation_mode = 2
-z_index = 7
-position = Vector2(-1, 0)
-script = ExtResource("3_hwd2d")
-metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+[node name="CardsOnTable" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4te6f")
+layout_mode = 0
+offset_top = 675.0
+offset_right = 13127.0
+offset_bottom = 2462.0
+scale = Vector2(0.146261, 0.151635)
+texture = SubResource("ViewportTexture_mqeqr")
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(2069, 681)
+size = Vector2i(3945, 1009)
 render_target_update_mode = 4
+script = ExtResource("3_4te6f")
+
+[node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
 
 [node name="PlayerMoneyLabel" type="Label" parent="."]
 layout_mode = 0
@@ -132,45 +127,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_rijoi")
+texture = ExtResource("4_14o7i")
 expand_mode = 1
 metadata/_edit_lock_ = true
-
-[node name="ScenePlanDarkening" type="ColorRect" parent="."]
-z_index = -9
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.278431, 0.278431, 0.278431, 0.756863)
-metadata/_edit_lock_ = true
-
-[node name="temp_buttons" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="NewRound" type="Button" parent="temp_buttons"]
-layout_mode = 0
-offset_left = 303.0
-offset_top = 402.0
-offset_right = 394.0
-offset_bottom = 445.0
-text = "NewRound
-"
-
-[node name="DrawCardsButton" type="Button" parent="temp_buttons"]
-layout_mode = 0
-offset_left = 290.0
-offset_top = 449.0
-offset_right = 384.0
-offset_bottom = 480.0
-text = "draw cards"
 
 [node name="ChangeRoomToBar" type="Button" parent="."]
 layout_mode = 0
@@ -192,25 +151,17 @@ script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
-[node name="CardsOnTable" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_4te6f")
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -264.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("ViewportTexture_mqeqr")
-expand_mode = 3
-stretch_mode = 5
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 385.0
+offset_right = 281.0
+offset_bottom = 450.0
+text = "Rotate"
 
 [connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
-[connection signal="pressed" from="temp_buttons/DrawCardsButton" to="." method="_on_draw_cards_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
