@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_ek1x5")
-type = 0
+type = 7
 drink_name = "Key?"
-description = ""
-price = 100000
+description = "This is my ticket out of here."
+price = 10000
 metadata/_custom_type_script = "uid://b2l7btycw868p"

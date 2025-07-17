@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://778cx47lq7g5"]
+
+[ext_resource type="Script" uid="uid://b0cqsr81gl500" path="res://Scenes/TableScene/table_real_cards.gd" id="1_kdkp6"]
+[ext_resource type="Texture2D" uid="uid://qwavtq5xvuac" path="res://icon.svg" id="2_kdkp6"]
+[ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_gs6tb"]
+
+[node name="TableRealCards" type="Node2D" node_paths=PackedStringArray("dealers_hand", "player_hands", "shoe_marker", "discard_marker", "table_size")]
+script = ExtResource("1_kdkp6")
+dealers_hand = NodePath("DealersHand")
+player_hands = [NodePath("PlayerHand0"), NodePath("PlayerHand1")]
+shoe_marker = NodePath("shoe_position")
+discard_marker = NodePath("discard_position")
+table_size = NodePath("TableSizeReference")
+
+[node name="TableSizeReference" type="ColorRect" parent="."]
+visible = false
+offset_right = 3945.5
+offset_bottom = 1009.7
+color = Color(1, 1, 1, 0.737255)
+
+[node name="shoe_position" type="Marker2D" parent="."]
+position = Vector2(2453, 759)
+
+[node name="Sprite2D2" type="Sprite2D" parent="shoe_position"]
+visible = false
+texture = ExtResource("2_kdkp6")
+
+[node name="discard_position" type="Marker2D" parent="."]
+position = Vector2(487, 768)
+
+[node name="Sprite2D" type="Sprite2D" parent="discard_position"]
+visible = false
+texture = ExtResource("2_kdkp6")
+
+[node name="DealersHand" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="PlayerHand0" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"
+
+[node name="PlayerHand1" type="Node2D" parent="."]
+script = ExtResource("3_gs6tb")
+metadata/_custom_type_script = "uid://cc0j6473b8qdl"

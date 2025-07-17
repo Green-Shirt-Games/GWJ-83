@@ -1,0 +1,174 @@
+[gd_scene load_steps=27 format=3 uid="uid://bwuc7joieayh"]
+
+[ext_resource type="Script" uid="uid://68o4bg5b0uwg" path="res://Scripts/BarScene/devil_voice_lines.gd" id="1_qjari"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="2_1lxpv"]
+[ext_resource type="Resource" uid="uid://c3t4lsih83d48" path="res://Scenes/Voicelines/devil/devil_dealerBlackjack_1.tres" id="3_ng161"]
+[ext_resource type="Resource" uid="uid://conf1b5fivxfa" path="res://Scenes/Voicelines/devil/devil_dealerBlackjack_2.tres" id="4_66bmf"]
+[ext_resource type="Resource" uid="uid://kyrbrxgonxql" path="res://Scenes/Voicelines/devil/devil_dealerBlackjack_3.tres" id="5_i0u8b"]
+[ext_resource type="Resource" uid="uid://bjyycwkais6ew" path="res://Scenes/Voicelines/devil/devil_playerBlackjack_1.tres" id="6_4dakb"]
+[ext_resource type="Resource" uid="uid://bxcnnwlthq84i" path="res://Scenes/Voicelines/devil/devil_playerBlackjack_2.tres" id="7_q1wb1"]
+[ext_resource type="Resource" uid="uid://c5k46dfjn3sxs" path="res://Scenes/Voicelines/devil/devil_playerBlackjack_3.tres" id="8_xwosy"]
+[ext_resource type="Resource" uid="uid://dfm5gjpqcgk1d" path="res://Scenes/Voicelines/devil/devil_win2.tres" id="9_5kv5o"]
+[ext_resource type="Resource" uid="uid://dbdc2sk72w5m4" path="res://Scenes/Voicelines/devil/devil_win_1.tres" id="10_bqhjx"]
+[ext_resource type="Texture2D" uid="uid://dhfo25xlucod3" path="res://Assets/Placeholders/speech_bubble.png" id="11_dj2h6"]
+[ext_resource type="Resource" uid="uid://tfj5yj8rw0ee" path="res://Scenes/Voicelines/devil/devil_loss_1.tres" id="11_gb3uh"]
+[ext_resource type="Resource" uid="uid://ccj8ggasximvk" path="res://Scenes/Voicelines/devil/devil_loss_2.tres" id="12_e0tqu"]
+[ext_resource type="Resource" uid="uid://d1wod2njc1cl6" path="res://Scenes/Voicelines/devil/devil_loss_3.tres" id="13_42jo6"]
+[ext_resource type="Resource" uid="uid://yorge1xpcj5x" path="res://Scenes/Voicelines/devil/devil_greeting_1.tres" id="14_mwx2d"]
+[ext_resource type="Resource" uid="uid://cpa5igksk0a82" path="res://Scenes/Voicelines/devil/devil_greeting_2.tres" id="15_pje32"]
+[ext_resource type="Resource" uid="uid://bf2ymrd5raqb" path="res://Scenes/Voicelines/devil/devil_tie_1.tres" id="16_8f8oh"]
+[ext_resource type="Resource" uid="uid://dxsjrqrws7vns" path="res://Scenes/Voicelines/devil/devil_tie_2.tres" id="17_aql21"]
+[ext_resource type="Resource" uid="uid://dvdsic0137v64" path="res://Scenes/Voicelines/devil/devil_tie_3.tres" id="18_rqpqu"]
+[ext_resource type="Resource" uid="uid://bqaifwk80qc1c" path="res://Scenes/Voicelines/devil/devil_doubledown.tres" id="19_65i28"]
+[ext_resource type="Resource" uid="uid://bp6pi1nimcetg" path="res://Scenes/Voicelines/devil/devil_endgame.tres" id="20_8qvyv"]
+[ext_resource type="Resource" uid="uid://cvk4d13nrse07" path="res://Scenes/Voicelines/devil/devil_freeDrink.tres" id="21_0dqht"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oluxr"]
+font_size = 25
+font_color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="Animation" id="Animation_ih56v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2.00003, 29)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.43, 0.43)]
+}
+
+[sub_resource type="Animation" id="Animation_uv181"]
+resource_name = "fade_in_fade_out"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 4.96667),
+"transitions": PackedFloat32Array(0.450625, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, 60), Vector2(-2, 30), Vector2(-2, 0), Vector2(-2, -30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.43, 0.43), Vector2(0.43, 0.43), Vector2(0.3, 0.3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p8ckn"]
+_data = {
+&"RESET": SubResource("Animation_ih56v"),
+&"fade_in_fade_out": SubResource("Animation_uv181")
+}
+
+[node name="VoiceLines" type="Node2D"]
+script = ExtResource("1_qjari")
+dealer_blackjack = Array[ExtResource("2_1lxpv")]([ExtResource("3_ng161"), ExtResource("4_66bmf"), ExtResource("5_i0u8b")])
+player_blackjack = Array[ExtResource("2_1lxpv")]([ExtResource("6_4dakb"), ExtResource("7_q1wb1"), ExtResource("8_xwosy")])
+dealer_wins = Array[ExtResource("2_1lxpv")]([ExtResource("11_gb3uh"), ExtResource("12_e0tqu"), ExtResource("13_42jo6")])
+player_wins = Array[ExtResource("2_1lxpv")]([ExtResource("9_5kv5o"), ExtResource("10_bqhjx")])
+greetings = Array[ExtResource("2_1lxpv")]([ExtResource("14_mwx2d"), ExtResource("15_pje32")])
+pushes = Array[ExtResource("2_1lxpv")]([ExtResource("16_8f8oh"), ExtResource("17_aql21"), ExtResource("18_rqpqu")])
+player_double_down = ExtResource("19_65i28")
+end_game = ExtResource("20_8qvyv")
+free_drink = ExtResource("21_0dqht")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"dialogue"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.00003, 29)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("11_dj2h6")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -147.0
+offset_top = -149.0
+offset_right = 179.0
+offset_bottom = 27.0
+text = "Sorry Pal. Even the best brew can’t fix a cursed deck."
+label_settings = SubResource("LabelSettings_oluxr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+max_lines_visible = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p8ckn")
+}

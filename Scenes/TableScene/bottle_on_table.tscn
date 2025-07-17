@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b71srrbmadufy"]
+
+[ext_resource type="Script" uid="uid://rrptotrsk588" path="res://Scripts/TableScene/bottle_on_table.gd" id="1_02d8i"]
+
+[node name="BottleOnTable" type="TextureButton"]
+script = ExtResource("1_02d8i")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
