@@ -76,11 +76,12 @@ func _update_best_score(_child : Node):
 	var possible_scores : Array[int] = [0]
 	for card in get_children():
 		if card is CardVisual:
-			var new_possible_scores : Array[int] = []
-			for value in card.card_data.get_card_values():
-				for score in possible_scores:
-					new_possible_scores.append(value + score)
-			possible_scores = new_possible_scores
+			if card.face_up:
+				var new_possible_scores : Array[int] = []
+				for value in card.card_data.get_card_values():
+					for score in possible_scores:
+						new_possible_scores.append(value + score)
+				possible_scores = new_possible_scores
 	
 	var to_bust : bool = true
 	for score in possible_scores:
@@ -89,7 +90,6 @@ func _update_best_score(_child : Node):
 			break
 	if to_bust:
 		bust = true
-		print(name , " is busted: ", possible_scores.min())
 		best_score = possible_scores.min()
 	else:
 		var max_score := 0

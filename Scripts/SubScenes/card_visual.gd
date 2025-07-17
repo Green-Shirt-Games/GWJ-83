@@ -48,7 +48,7 @@ func flip(to_face_up : bool):
 	face_up = to_face_up
 	update_visual()
 	var tween_2 := get_tree().create_tween()
-	await tween_2.tween_property(self, "scale", Vector2(1,1), DEFAULT_FLIP_TIME)
+	await tween_2.tween_property(self, "scale", Vector2(1,1), DEFAULT_FLIP_TIME).finished
 
 func reveal():
 	await flip(true)

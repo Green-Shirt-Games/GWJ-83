@@ -9,10 +9,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
-shader_parameter/up_left = Vector2(0.21, 0)
-shader_parameter/up_right = Vector2(0.79, 0)
-shader_parameter/down_right = Vector2(1, 0.86)
-shader_parameter/down_left = Vector2(0, 0.86)
+shader_parameter/up_left = Vector2(0.2, 0)
+shader_parameter/up_right = Vector2(0.8, 0)
+shader_parameter/down_right = Vector2(1, 0.845)
+shader_parameter/down_left = Vector2(0, 0.845)
 shader_parameter/plane_size = Vector2(0, 0)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
@@ -27,8 +27,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
-shoe = NodePath("Shoe")
-discard = NodePath("DiscardDeck")
+shoe = NodePath("")
+discard = NodePath("")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
@@ -36,18 +36,12 @@ split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 
-[node name="Shoe" type="Marker2D" parent="."]
-position = Vector2(751, 418)
-
-[node name="DiscardDeck" type="Marker2D" parent="."]
-position = Vector2(376, 397)
-
 [node name="CardsOnTable" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_4te6f")
 layout_mode = 0
-offset_top = 406.0
-offset_right = 7876.0
-offset_bottom = 1461.0
+offset_top = 675.0
+offset_right = 13127.0
+offset_bottom = 2462.0
 scale = Vector2(0.146261, 0.151635)
 texture = SubResource("ViewportTexture_mqeqr")
 
@@ -137,43 +131,6 @@ texture = ExtResource("4_14o7i")
 expand_mode = 1
 metadata/_edit_lock_ = true
 
-[node name="ScenePlanDarkening" type="ColorRect" parent="."]
-visible = false
-z_index = -9
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.278431, 0.278431, 0.278431, 0.756863)
-metadata/_edit_lock_ = true
-
-[node name="temp_buttons" type="Control" parent="."]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="NewRound" type="Button" parent="temp_buttons"]
-layout_mode = 0
-offset_left = 303.0
-offset_top = 402.0
-offset_right = 394.0
-offset_bottom = 445.0
-text = "NewRound
-"
-
-[node name="DrawCardsButton" type="Button" parent="temp_buttons"]
-layout_mode = 0
-offset_left = 290.0
-offset_top = 449.0
-offset_right = 384.0
-offset_bottom = 480.0
-text = "draw cards"
-
 [node name="ChangeRoomToBar" type="Button" parent="."]
 layout_mode = 0
 offset_top = 186.0
@@ -194,9 +151,17 @@ script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 385.0
+offset_right = 281.0
+offset_bottom = 450.0
+text = "Rotate"
+
 [connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
-[connection signal="pressed" from="temp_buttons/DrawCardsButton" to="." method="_on_draw_cards_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

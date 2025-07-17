@@ -53,6 +53,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 				bet_buttons_container.visible = false
 				play_buttons_container.visible = false
 				while player_hands[0].get_cards_amount() < 2:
+					#await _give_player_two_same_cards()
 					await _add_card_to_player_hand()
 				if dealer_hand.get_cards_amount() < 1:
 					await _add_card_to_dealer_hand(true)
@@ -67,7 +68,11 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			split_button.visible = false
 			play_buttons_container.visible = false
 			bet_buttons_container.visible = false
-			await (dealer_hand.get_child(1) as CardVisual).reveal()
+			for hand in player_hands:
+				for card in hand.get_children():
+					await (card as CardVisual).reveal()
+			for card in dealer_hand.get_children():
+				await (card as CardVisual).reveal()
 			while dealer_hand.best_score < 17:
 				await _add_card_to_dealer_hand(true)
 			_change_state(Global.GAME_STATES.RESULT)
@@ -112,7 +117,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			if draw_deck.size() < 15:
 				_reset_deck()
 			# wait for animation to finish
-			await get_tree().create_timer(0.1) # TODO Connect to all card fly speed
+			await get_tree().create_timer(0.1).timeout # TODO Connect to all card fly speed
 			_change_state(Global.GAME_STATES.BETTING)
 
 func _check_if_split_possible() -> bool:
@@ -148,6 +153,15 @@ func _add_card_to_player_hand():
 		else:
 			_change_state(Global.GAME_STATES.RESULT)
 
+func _give_player_two_same_cards(): # DebugTool
+	var hand : CardHand = player_hands[active_player_hand]
+	var card = _draw_card()
+	var card_two = _draw_card()
+	card_two.card_data = card.card_data
+	card_two.update_visual()
+	move_card_to_hand(card, hand)
+	move_card_to_hand(card_two, hand)
+
 func _add_card_to_dealer_hand(face_up : bool) -> void:
 	var new_card : CardVisual = _draw_card()
 	new_card.face_up = face_up
@@ -163,7 +177,6 @@ func _draw_card() -> CardVisual:
 #endregion
 
 func move_card_to_hand(card_to_move : CardVisual, to_hand : CardHand):
-	# hand position might be useful, but can't figure out proper way to impliment TODO
 	if card_to_move.get_parent() != to_hand:
 		card_to_move.reparent(to_hand, true)
 	await to_hand.all_cards_in_position
@@ -254,7 +267,9 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			else:
 				return false
 		BottleData.TYPE.PEEK_SHOE:
-			pass # TODO determine how to display data
+			pass # TODO
+			# Plan:
+			# create a copy of top shoe card, flip it. On draw - q_free that card
 		BottleData.TYPE.SWAP:
 			pass
 			# pick random card in both active hands
@@ -274,7 +289,33 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			else:
 				return false
 		BottleData.TYPE.ROTATE:
-			pass
+			if player_hands[1].is_active:
+				if player_hands[0].get_child_count() > 0 and player_hands[1].get_child_count() > 0 and dealer_hand.get_child_count() > 0:
+					var player_card_0 = player_hands[0].get_children().front()
+					var player_card_1 = player_hands[1].get_children().back()
+					var dealer_card = dealer_hand.get_children().front()
+					
+					dealer_card.reparent(cards_table)
+					player_card_1.reparent(dealer_hand)
+					player_card_0.reparent(player_hands[1])
+					player_hands[1].move_child(player_card_0, 0)
+					dealer_card.reparent(player_hands[0])
+				else:
+					return false
+			else:
+				if player_hands[0].get_child_count() > 0 and dealer_hand.get_child_count() > 0:
+					var player_card = player_hands[0].get_children().back()
+					var dealers_card = dealer_hand.get_children().front() # Correct
+					
+					dealers_card.reparent(cards_table)
+					player_card.reparent(dealer_hand)
+					dealers_card.reparent(player_hands[0]) # Correct
+					player_hands[0].move_child(dealers_card, 0)
+				else:
+					return false
+			player_hands[0]._update_card_positions(null)
+			player_hands[1]._update_card_positions(null)
+			dealer_hand._update_card_positions(null)
 		BottleData.TYPE.SNEAK_BET:
 			skip_dealing = true
 			_change_state(Global.GAME_STATES.BETTING)
@@ -285,21 +326,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			push_error("Unexpected bottle type triggered")
 			return false
 	return true
-	
 
 
 func _on_button_pressed() -> void:
-	print("Cards in player's hand:")
-	for card in player_hands[active_player_hand].get_children():
-		print((card as CardVisual).card_data.get_card_name())
-	print("Cards in dealer's hand:")
-	for card in dealer_hand.get_children():
-		print((card as CardVisual).card_data.get_card_name())
-	await bottle_pressed(BottleData.TYPE.SWAP)
-	print("SWAP HAPPENED")
-	print("Cards in player's hand:")
-	for card in player_hands[active_player_hand].get_children():
-		print((card as CardVisual).card_data.get_card_name())
-	print("Cards in dealer's hand:")
-	for card in dealer_hand.get_children():
-		print((card as CardVisual).card_data.get_card_name())
+	bottle_pressed(BottleData.TYPE.ROTATE)
