@@ -1,6 +1,7 @@
 class_name CardsTable
 extends Node2D
 
+@export_group("Internal connections")
 @export var dealers_hand : CardHand
 @export var player_hands : Array[CardHand]
 @export var shoe_marker : Marker2D

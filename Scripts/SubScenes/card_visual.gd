@@ -52,3 +52,4 @@ func flip(to_face_up : bool):
 
 func reveal():
 	await flip(true)
+	(get_parent() as CardHand)._update_best_score(null)

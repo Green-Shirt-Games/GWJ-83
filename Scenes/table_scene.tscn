@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=13 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
-[ext_resource type="Script" uid="uid://j8fypgqg4iji" path="res://Scripts/table_sub_view_port_debugging.gd" id="3_4te6f"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
 [ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
+[ext_resource type="Script" uid="uid://s08pio8docya" path="res://Scripts/TableScene/bet_manager.gd" id="4_ikeqq"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="5_5mnm2"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
+[ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
+[ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
+[ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -18,7 +22,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("shoe", "discard", "cards_table", "bet_buttons_container", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "cards_table", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,10 +31,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
-shoe = NodePath("")
-discard = NodePath("")
+bet_manager = NodePath("BetManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
-bet_buttons_container = NodePath("BetButtons")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
@@ -51,7 +53,6 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(3945, 1009)
 render_target_update_mode = 4
-script = ExtResource("3_4te6f")
 
 [node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
 
@@ -62,14 +63,20 @@ offset_bottom = 108.0
 theme_override_font_sizes/font_size = 64
 text = "10000"
 
-[node name="BetButtons" type="Control" parent="."]
-visible = false
+[node name="BetManager" type="Control" parent="." node_paths=PackedStringArray("table", "confirm_bet", "min_bet_button", "lower_bet_button", "increase_bet_button", "max_bet_button")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+script = ExtResource("4_ikeqq")
+table = NodePath("..")
+confirm_bet = NodePath("BetButton")
+min_bet_button = NodePath("MinBetButton")
+lower_bet_button = NodePath("DecreaseBetButton")
+increase_bet_button = NodePath("IncreaseBetButton")
+max_bet_button = NodePath("MaxBetButton")
 
-[node name="temp_place_100_bet" type="Button" parent="BetButtons"]
+[node name="temp_place_100_bet" type="Button" parent="BetManager"]
 layout_mode = 0
 offset_left = 214.0
 offset_top = 570.0
@@ -77,7 +84,65 @@ offset_right = 338.0
 offset_bottom = 610.0
 text = "bet $100"
 
+[node name="BetButton" type="Button" parent="BetManager"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 961.0
+offset_right = 1036.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 24
+text = "10"
+script = ExtResource("5_5mnm2")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
+
+[node name="IncreaseBetButton" type="Button" parent="BetManager"]
+layout_mode = 0
+offset_left = 1058.0
+offset_top = 961.0
+offset_right = 1096.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 24
+text = ">"
+script = ExtResource("5_5mnm2")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
+
+[node name="DecreaseBetButton" type="Button" parent="BetManager"]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 964.0
+offset_right = 812.0
+offset_bottom = 1033.0
+theme_override_font_sizes/font_size = 24
+text = "<
+"
+script = ExtResource("5_5mnm2")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
+
+[node name="MaxBetButton" type="Button" parent="BetManager"]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 961.0
+offset_right = 1150.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 24
+text = ">>"
+script = ExtResource("5_5mnm2")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
+
+[node name="MinBetButton" type="Button" parent="BetManager"]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 964.0
+offset_right = 758.0
+offset_bottom = 1033.0
+theme_override_font_sizes/font_size = 24
+text = "<<
+"
+script = ExtResource("5_5mnm2")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
+
 [node name="PlayButtons" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,40 +150,42 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="StandButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 426.0
-offset_top = 570.0
-offset_right = 509.0
-offset_bottom = 598.0
+offset_left = 638.0
+offset_top = 898.0
+offset_right = 794.0
+offset_bottom = 978.0
 text = "Stand"
 
 [node name="HitButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 414.0
-offset_top = 612.0
-offset_right = 497.0
-offset_bottom = 640.0
+offset_left = 629.0
+offset_top = 998.0
+offset_right = 766.0
+offset_bottom = 1067.0
 text = "Hit"
 
 [node name="DoubleDownButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 630.0
-offset_top = 568.0
-offset_right = 713.0
-offset_bottom = 596.0
+offset_left = 1069.0
+offset_top = 900.0
+offset_right = 1232.0
+offset_bottom = 976.0
 text = "DoubleDown"
 
 [node name="SplitButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 611.0
-offset_right = 723.0
-offset_bottom = 639.0
+offset_left = 1097.0
+offset_top = 1002.0
+offset_right = 1246.0
+offset_bottom = 1059.0
 text = "Split"
 
 [node name="ScenePlan" type="TextureRect" parent="."]
+visible = false
 z_index = -10
 layout_mode = 1
 anchors_preset = 15
@@ -129,6 +196,57 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_14o7i")
 expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="SceneBackground" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Curtain" type="TextureRect" parent="SceneBackground"]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_5mnm2")
+expand_mode = 3
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="Table" type="TextureRect" parent="SceneBackground"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_6mqhf")
+expand_mode = 3
+stretch_mode = 6
+metadata/_edit_lock_ = true
+
+[node name="Decorations" type="TextureRect" parent="SceneBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_gauwj")
+expand_mode = 3
+stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="ChangeRoomToBar" type="Button" parent="."]
@@ -151,17 +269,13 @@ script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 113.0
-offset_top = 385.0
-offset_right = 281.0
-offset_bottom = 450.0
-text = "Rotate"
-
-[connection signal="pressed" from="BetButtons/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
+[connection signal="pressed" from="BetManager/temp_place_100_bet" to="." method="_on_temp_place_100_bet_pressed"]
+[connection signal="pressed" from="BetManager/BetButton" to="BetManager" method="_on_bet_button_pressed"]
+[connection signal="pressed" from="BetManager/IncreaseBetButton" to="BetManager" method="_on_increase_bet_button_pressed"]
+[connection signal="pressed" from="BetManager/DecreaseBetButton" to="BetManager" method="_on_decrease_bet_button_pressed"]
+[connection signal="pressed" from="BetManager/MaxBetButton" to="BetManager" method="_on_max_bet_button_pressed"]
+[connection signal="pressed" from="BetManager/MinBetButton" to="BetManager" method="_on_min_bet_button_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
