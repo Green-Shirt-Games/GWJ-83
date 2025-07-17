@@ -55,14 +55,15 @@ func _on_body_exit(body):
 		running_total -= bottle.bottle_resource.price
 		_update_price_ui()
 
-
+var padded_str : String
 func _update_price_ui():
-	var padded_str := "%09d" % running_total
+	padded_str = "%09d" % running_total
 	
 	var index : int = 0
-	for i in range(padded_str.length()):
+	var shuffled_indexes : Array = range(padded_str.length())
+	shuffled_indexes.shuffle()
+	for i in shuffled_indexes:
 		if padded_str[i] != current_total_str[i]:
-			await get_tree().create_timer(0.1).timeout
 			_update_value_index(i, padded_str[i])
 	
 	current_total_str = padded_str
@@ -70,6 +71,14 @@ func _update_price_ui():
 
 func _update_value_index(index : int, new_value : String):
 	var label : Label = value_labels[index]
+	
+	await get_tree().create_timer(randf_range(0.1, 0.2)).timeout
+	
+	label.text = ""
+	audio_stream.play()
+	
+	await get_tree().create_timer(0.05).timeout
+	
 	label.text = new_value
 	audio_stream.play()
 

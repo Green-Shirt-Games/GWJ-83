@@ -41,8 +41,8 @@
 size = Vector2(247, 135.75)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l6nsw"]
-random_pitch = 2.0
-random_volume_offset_db = 2.42
+random_pitch = 2.35
+random_volume_offset_db = 11.73
 streams_count = 1
 stream_0/stream = ExtResource("15_bq1mk")
 
@@ -289,7 +289,7 @@ label_settings = ExtResource("10_jdxvu")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Register"]
 stream = SubResource("AudioStreamRandomizer_l6nsw")
-max_polyphony = 6
+max_polyphony = 18
 bus = &"sfx"
 
 [node name="RoomChangeButton" type="Button" parent="."]
@@ -333,17 +333,17 @@ polygon = PackedVector2Array(-14.5459, -189.091, -80, -181.818, -98.1821, -141.8
 
 [node name="HoverUI" type="Sprite2D" parent="."]
 z_index = 3
-position = Vector2(-345, 416)
+position = Vector2(-101, 60)
 scale = Vector2(0.85125, 0.901667)
 texture = ExtResource("12_xi3jk")
-offset = Vector2(192.683, -195.122)
+offset = Vector2(-116.274, 205.248)
 script = ExtResource("13_xkl5v")
 
 [node name="DrinkName" type="Label" parent="HoverUI"]
-offset_left = 37.0295
-offset_top = -391.98
-offset_right = 275.029
-offset_bottom = -277.98
+offset_left = -269.016
+offset_top = 8.87244
+offset_right = -31.0165
+offset_bottom = 122.872
 text = "Double or Die"
 label_settings = ExtResource("25_1gf8g")
 horizontal_alignment = 1
@@ -351,18 +351,18 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Description" type="Label" parent="HoverUI"]
-offset_left = 39.0244
-offset_top = -287.805
-offset_right = 277.024
-offset_bottom = -173.805
+offset_left = -267.021
+offset_top = 113.047
+offset_right = -29.0217
+offset_bottom = 227.047
 text = "This is a description of the drink!"
 label_settings = ExtResource("26_iif6y")
 autowrap_mode = 2
 
 [node name="Price" type="Label" parent="HoverUI"]
-offset_left = 135.708
-offset_top = -88.098
-offset_right = 281.708
-offset_bottom = -11.098
+offset_left = -170.338
+offset_top = 312.754
+offset_right = -24.3377
+offset_bottom = 389.754
 text = "100"
 label_settings = ExtResource("27_6pcw6")
