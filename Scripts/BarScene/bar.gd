@@ -52,7 +52,6 @@ func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
 		add_child(drink_poof)
 
 func _bind_bottle_ui():
-	hover_ui.visible = false
 	key.mouse_entered_bottle.connect(_on_bottle_mouse_enter)
 	key.mouse_exited_bottle.connect(_on_bottle_mouse_exit)
 	for bottle : Bottle in bottles:
@@ -72,7 +71,7 @@ func _on_bottle_mouse_enter(bottle : Bottle):
 	
 	bottle_of_interest = bottle
 	hover_ui.set_text(bottle.bottle_resource)
-	hover_ui.visible = true
+	await hover_ui.fade_in()
 
 
 func _on_bottle_mouse_exit(bottle : Bottle):	
@@ -82,4 +81,4 @@ func _on_bottle_mouse_exit(bottle : Bottle):
 	if hovered_bottles.size() > 0:
 		hover_ui.set_text(hovered_bottles[0].bottle_resource)
 	else:
-		hover_ui.visible = false
+		await hover_ui.fade_out()

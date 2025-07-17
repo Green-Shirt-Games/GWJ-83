@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://dijw3jhr23nnr"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_06nco"]
+
+[resource]
+script = ExtResource("1_06nco")
+type = 4
+drink_name = "Top Draw"
+description = "Swap a card for the shoes top card."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://cp83diku4ys2n"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_x0762"]
+
+[resource]
+script = ExtResource("1_x0762")
+type = 0
+drink_name = "Devil's Eye"
+description = "Reveals the dealers hidden card."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

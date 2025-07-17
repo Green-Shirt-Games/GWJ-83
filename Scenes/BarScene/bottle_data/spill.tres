@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://c8avb32msdj08"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_v8r3p"]
+
+[resource]
+script = ExtResource("1_v8r3p")
+type = 3
+drink_name = "Marked Reserve"
+description = "Spill this onto your cards to mark them."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

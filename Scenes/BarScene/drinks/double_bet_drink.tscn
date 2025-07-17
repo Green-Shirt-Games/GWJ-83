@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dglc8ib8f514v"]
 
 [ext_resource type="Script" uid="uid://bvh0c0jf72v65" path="res://Scripts/BarScene/bottle.gd" id="1_8m7oe"]
-[ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/collision_stream.tscn" id="2_o45sk"]
-[ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/pickup_stream.tscn" id="3_3x17j"]
-[ext_resource type="Resource" uid="uid://c7hswv4an0iw5" path="res://Scenes/BarScene/bottle_data/peek_deck.tres" id="4_8m7oe"]
+[ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/sfx_objects/collision_stream.tscn" id="2_o45sk"]
+[ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/sfx_objects/pickup_stream.tscn" id="3_3x17j"]
+[ext_resource type="Resource" uid="uid://drpsw5ntjn2sp" path="res://Scenes/BarScene/bottle_data/double_bet.tres" id="4_8m7oe"]
 [ext_resource type="Texture2D" uid="uid://bqfkpupjqdb2i" path="res://Assets/Placeholders/Bluff_Back_Barn_Cln.png" id="5_8m7oe"]
 
 [node name="BluffBack" type="RigidBody2D"]
