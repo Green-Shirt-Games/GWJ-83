@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://drpsw5ntjn2sp"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_6kudy"]
+
+[resource]
+script = ExtResource("1_6kudy")
+type = 6
+drink_name = "Double or Die"
+description = "Doubles the size of your current bet!"
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

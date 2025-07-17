@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d28q5hciylyr6"]
+[gd_scene load_steps=5 format=3 uid="uid://d28q5hciylyr6"]
 
 [ext_resource type="Script" uid="uid://cj8m3c8gns0dc" path="res://Scripts/MasterScene/master.gd" id="1_tdhcf"]
 [ext_resource type="PackedScene" uid="uid://csmtb1unug2lj" path="res://Scenes/BarScene/bar.tscn" id="2_ofqse"]
 [ext_resource type="PackedScene" uid="uid://c3fhimy2ae3ts" path="res://Scenes/table_scene.tscn" id="3_ofqse"]
-[ext_resource type="Script" uid="uid://bc1mqqf0evoe0" path="res://Scripts/MasterScene/door.gd" id="6_ovr7t"]
-[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="6_selfg"]
-[ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://Assets/Placeholders/door.png" id="7_5vn6p"]
+[ext_resource type="PackedScene" uid="uid://dt5odtoulb7f" path="res://Scenes/DoorScene/door.tscn" id="4_2xxif"]
 
 [node name="Master" type="Control"]
 layout_mode = 3
@@ -26,30 +24,4 @@ layout_mode = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Door" type="Node2D" parent="."]
-visible = false
-script = ExtResource("6_ovr7t")
-
-[node name="Sprite2D" type="Sprite2D" parent="Door"]
-position = Vector2(576.5, 326)
-scale = Vector2(0.600521, 0.609259)
-texture = ExtResource("7_5vn6p")
-
-[node name="Button" type="Button" parent="Door"]
-offset_left = 22.0
-offset_top = 364.0
-offset_right = 135.0
-offset_bottom = 424.0
-text = "Table"
-script = ExtResource("6_selfg")
-room_to_change_to = 1
-metadata/_custom_type_script = "uid://ctj7y128tfi67"
-
-[node name="Button2" type="Button" parent="Door"]
-offset_left = 1013.0
-offset_top = 407.0
-offset_right = 1126.0
-offset_bottom = 467.0
-text = "Bar"
-script = ExtResource("6_selfg")
-metadata/_custom_type_script = "uid://ctj7y128tfi67"
+[node name="Door" parent="." instance=ExtResource("4_2xxif")]
