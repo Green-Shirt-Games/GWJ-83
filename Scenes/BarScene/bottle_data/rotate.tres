@@ -6,6 +6,6 @@
 script = ExtResource("1_31cae")
 type = 5
 drink_name = "Rotate Randy"
-description = "Rotate all cards currently on the mat."
+description = "Rotate all cards currently on the mat in a random direction."
 price = 100
 metadata/_custom_type_script = "uid://b2l7btycw868p"

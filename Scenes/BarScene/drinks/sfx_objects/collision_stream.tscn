@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://ciynnnmdh5kys"]
+
+[ext_resource type="AudioStream" uid="uid://ykkg36s0m56p" path="res://Assets/audio/sfx/sfx_bottleSlosh1.wav" id="1_dlke6"]
+[ext_resource type="AudioStream" uid="uid://yw067ypjq28b" path="res://Assets/audio/sfx/sfx_bottleSlosh2.wav" id="2_rwmn8"]
+[ext_resource type="AudioStream" uid="uid://8h3q02vos772" path="res://Assets/audio/sfx/sfx_bottleSlosh3.wav" id="3_14hvb"]
+[ext_resource type="AudioStream" uid="uid://ln2vdk7poy8x" path="res://Assets/audio/sfx/sfx_bottleSlosh4.wav" id="4_bjqf4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1mcdu"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("1_dlke6")
+stream_1/stream = ExtResource("2_rwmn8")
+stream_2/stream = ExtResource("3_14hvb")
+stream_3/stream = ExtResource("4_bjqf4")
+
+[node name="CollisionStream" type="AudioStreamPlayer2D"]
+stream = SubResource("AudioStreamRandomizer_1mcdu")
+bus = &"sfx"

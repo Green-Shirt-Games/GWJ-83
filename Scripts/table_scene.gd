@@ -313,7 +313,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			pass # TODO
 			# Plan:
 			# create a copy of top shoe card, flip it. On draw - q_free that card
-		BottleData.TYPE.SWAP:
+		BottleData.TYPE.SWAP_DEALER:
 			pass
 			# pick random card in both active hands
 			if player_hands[active_player_hand].get_cards_amount() > 0 and dealer_hand.get_cards_amount() > 0:
@@ -359,7 +359,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			player_hands[0]._update_card_positions(null)
 			player_hands[1]._update_card_positions(null)
 			dealer_hand._update_card_positions(null)
-		BottleData.TYPE.SNEAK_BET:
+		BottleData.TYPE.DOUBLE:
 			skip_dealing = true
 			_change_state(Global.GAME_STATES.BETTING)
 		BottleData.TYPE.DOUBLE:

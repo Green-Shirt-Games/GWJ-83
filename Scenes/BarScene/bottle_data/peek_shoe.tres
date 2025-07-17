@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://c7hswv4an0iw5"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_r4l6o"]
+
+[resource]
+script = ExtResource("1_r4l6o")
+type = 1
+drink_name = "Peek Easy"
+description = "Reveals the top card of the shoe."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"

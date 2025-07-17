@@ -27,3 +27,16 @@ var money_delta_since_bar : int = 0
 const CARD_TEXTURE_SIZE : Vector2 = Vector2(303.5, 439.0)
 const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/BlackJack_Cards_Front.png")
 const CARD_BACK_TEXTURE : Texture2D = preload("res://Assets/BlackJack_Cards_Back.png")
+
+
+func _ready() -> void:
+	change_room.connect(_on_room_change)
+
+func _on_room_change(to : ROOMS):
+	match to:
+		ROOMS.BAR:
+			SfxAutoload.fade_down_melody()
+		ROOMS.DOOR:
+			SfxAutoload.fade_down_melody()
+		ROOMS.TABLE:
+			SfxAutoload.fade_up_melody()

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BottleData" load_steps=2 format=3 uid="uid://435eebgeh3c"]
+
+[ext_resource type="Script" uid="uid://b2l7btycw868p" path="res://Scripts/BarScene/bottle_res.gd" id="1_ylu0n"]
+
+[resource]
+script = ExtResource("1_ylu0n")
+type = 2
+drink_name = "Second Hand"
+description = "Swap one of your cards for the dealers face up card at random."
+price = 100
+metadata/_custom_type_script = "uid://b2l7btycw868p"
