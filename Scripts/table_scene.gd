@@ -25,7 +25,6 @@ var hands_played : int = 0
 var bet : int = 0
 var second_hand_bet : int = 0
 signal state_changed(to_stage)
-signal bet_changed
 
 var default_card_fly_time : float = 0.3
 var skip_dealing : bool = false

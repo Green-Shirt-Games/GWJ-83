@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdnnc236wpjht"]
+
+[ext_resource type="Script" uid="uid://5au7atlqa23e" path="res://Scripts/TableScene/bet_visual_manager.gd" id="1_53bja"]
+
+[node name="BetVisualManager" type="Node2D" node_paths=PackedStringArray("pile")]
+script = ExtResource("1_53bja")
+pile = NodePath("PileOfChips")
+
+[node name="PileOfChips" type="Node2D" parent="."]
+
+[node name="debugCamera" type="Camera2D" parent="."]

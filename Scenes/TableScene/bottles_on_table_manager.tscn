@@ -5,7 +5,7 @@
 [node name="BottlesOnTableManager" type="Node2D" node_paths=PackedStringArray("bottles_locations")]
 physics_interpolation_mode = 2
 script = ExtResource("1_q20ei")
-bottles_locations = [NodePath(""), NodePath(""), NodePath("")]
+bottles_locations = [null, null, null]
 metadata/_custom_type_script = "uid://bgn28b8ql60eb"
 
 [node name="Button" type="Button" parent="."]
