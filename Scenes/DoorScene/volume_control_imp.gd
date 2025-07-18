@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 	tail_sprite.global_position.y = get_global_mouse_position().y
 	var length_delta = tail_sprite.position.y - tail_start
 	set_tail_pos(length_delta)
+	SfxAutoload.set_volume_scale(value)
 
 func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

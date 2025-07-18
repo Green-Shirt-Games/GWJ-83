@@ -44,6 +44,8 @@ func table_can_fit_another_bottle() -> bool:
 func add_bottle_to_table(bottle_data : BottleData) -> void:
 	table.bottles_manager.add_bottle(bottle_data)
 
+var bottle_type_to_res : Dictionary[BottleData.TYPE, BottleData] = {}
+
 func _ready() -> void:
 	change_room.connect(_on_room_change)
 
