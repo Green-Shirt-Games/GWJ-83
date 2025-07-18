@@ -21,9 +21,7 @@ func burning():
 
 func set_volume_scale(value : float):
 	volume_scale = clampf(value, 0, 1)
-	_new_max_volume = _linear_to_db(volume_scale, _melody_starting_db)
-	rhythm.volume_db = _new_max_volume
-	melody.volume_db = _new_max_volume - melody_fade_db if faded else _new_max_volume
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), _linear_to_db(volume_scale, 0))
 
 @export var melody_fade_time : float = 3
 @export var melody_fade_db : float = -6

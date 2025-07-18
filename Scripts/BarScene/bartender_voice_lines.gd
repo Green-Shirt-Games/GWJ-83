@@ -22,6 +22,7 @@ func _ready() -> void:
 	register.buy_pressed.connect(_on_purchase_made)
 	register.too_poor.connect(_not_enough_chips)
 	register.too_many.connect(_too_many)
+	Global.change_room.connect(_on_scene_change)
 
 func play_loss_line():
 	_play(_get_random_from(loss_lines))
@@ -78,3 +79,9 @@ func on_drink_bought(bottle : Bottle):
 			_play(buy_rotate)
 		BottleData.TYPE.DOUBLE:
 			_play(buy_bluff)
+
+
+func _on_scene_change(room : Global.ROOMS):
+	if room == Global.ROOMS.BAR && !Global.bar_entered_yet:
+		on_first_enter()
+		Global.bar_entered_yet = true

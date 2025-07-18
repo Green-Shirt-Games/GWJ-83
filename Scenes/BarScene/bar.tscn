@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=35 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -21,7 +21,6 @@
 [ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
 [ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/sfx_objects/pickup_stream.tscn" id="11_bii46"]
 [ext_resource type="PackedScene" uid="uid://4bivqmq8y1yo" path="res://Scenes/BarScene/drinks/swap_shoe.tscn" id="11_bq1mk"]
-[ext_resource type="Resource" uid="uid://w4fu03yfg1ml" path="res://Scenes/Voicelines/bartender/bartender_key.tres" id="11_dvsn3"]
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="15_bq1mk"]
@@ -312,7 +311,6 @@ metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="VoiceLines" parent="Bartender" node_paths=PackedStringArray("key", "register") instance=ExtResource("8_5usm7")]
 position = Vector2(389, 168)
-key_line = ExtResource("11_dvsn3")
 key = NodePath("../../Key")
 register = NodePath("../../Register")
 
