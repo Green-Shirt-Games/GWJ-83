@@ -18,11 +18,6 @@ func bottle():
 func burning():
 	$sfx_burning.play()
 
-
-func set_volume_scale(value : float):
-	volume_scale = clampf(value, 0, 1)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), _linear_to_db(volume_scale, 0))
-
 @export var melody_fade_time : float = 2
 @export var melody_fade_db : float = -12
 const min_volume : float = -80.0
@@ -49,7 +44,7 @@ func _set_melody(db : float):
 	melody_tween = create_tween()
 	melody_tween.tween_property(melody, "volume_db", db, melody_fade_time)
 
-func _linear_to_db(volume : float, max_db : float) -> float:
+func linear_to_db(volume : float, max_db : float) -> float:
 	if volume <= 0.0:
 		return min_volume
 	return lerp(min_volume, max_db, pow(volume, 0.5))
