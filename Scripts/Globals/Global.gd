@@ -32,7 +32,8 @@ const CARD_BACK_TEXTURE : Texture2D = preload("res://Assets/BlackJack_Cards_Back
 const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 	"default" : {
 		"texture" : "res://Assets/Bottles/default_bottle.png" ,
-		"mask" : "res://Assets/Bottles/default_bottle.png"
+		"mask" : "res://Assets/Bottles/default_bottle.png",
+		"pressed" : "res://Assets/Bottles/default_bottle_pressed.png" ,
 	}
 }
 

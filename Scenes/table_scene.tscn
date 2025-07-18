@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="PackedScene" uid="uid://dwuji6cv1kqcf" path="res://Scenes/TableScene/bet_manager.tscn" id="4_ikeqq"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
-[ext_resource type="Script" uid="uid://bgn28b8ql60eb" path="res://Scripts/TableScene/bottles_manager.gd" id="5_5mnm2"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
+[ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -22,7 +22,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "cards_table", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "split_button", "double_down_button", "player_money_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +32,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u3oja")
 bet_manager = NodePath("BetManager")
+bottles_manager = NodePath("BottlesOnTableManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 play_buttons_container = NodePath("PlayButtons")
 split_button = NodePath("PlayButtons/SplitButton")
@@ -67,15 +68,6 @@ text = "10000"
 [node name="BetManager" parent="." node_paths=PackedStringArray("table") instance=ExtResource("4_ikeqq")]
 layout_mode = 1
 table = NodePath("..")
-
-[node name="BottlesManager" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("5_5mnm2")
 
 [node name="PlayButtons" type="Control" parent="."]
 visible = false
@@ -173,6 +165,7 @@ stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="Decorations" type="TextureRect" parent="SceneBackground"]
+z_index = 5
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -205,6 +198,27 @@ text = "Exit"
 script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
+
+[node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations") instance=ExtResource("10_5mnm2")]
+bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), NodePath("../BottlePositionMarkers/MarkerForBottle1"), NodePath("../BottlePositionMarkers/MarkerForBottle2"), NodePath("../BottlePositionMarkers/MarkerForBottle3"), NodePath("../BottlePositionMarkers/MarkerForBottle4")]
+stages_where_player_can_drink = Array[int]([0])
+
+[node name="BottlePositionMarkers" type="Node2D" parent="."]
+
+[node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
+position = Vector2(196, 948)
+
+[node name="MarkerForBottle1" type="Marker2D" parent="BottlePositionMarkers"]
+position = Vector2(265, 948)
+
+[node name="MarkerForBottle2" type="Marker2D" parent="BottlePositionMarkers"]
+position = Vector2(338, 948)
+
+[node name="MarkerForBottle3" type="Marker2D" parent="BottlePositionMarkers"]
+position = Vector2(408, 948)
+
+[node name="MarkerForBottle4" type="Marker2D" parent="BottlePositionMarkers"]
+position = Vector2(487, 948)
 
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]

@@ -24,25 +24,27 @@ var discard_deck : Array[CardData] = []
 var hands_played : int = 0
 var bet : int = 0
 var second_hand_bet : int = 0
-signal state_changed
+signal state_changed(to_stage)
 signal bet_changed
 
 var default_card_fly_time : float = 0.3
 var skip_dealing : bool = false
 
 func _ready() -> void:
+	Global.table = self
 	player_hands = cards_table.player_hands
 	dealer_hand = cards_table.dealers_hand
 	player_hands[1].is_active = false
+	Global.money_changed.connect(_update_money_label)
+	visibility_changed.connect(update_bet_manager)
+	state_changed.connect(bottles_manager.disable_bottles_if_needed)
 	_game_start()
 	_change_state(Global.GAME_STATES.BETTING)
-	Global.money_changed.connect(_update_money_label)
 	_update_money_label()
-	visibility_changed.connect(update_bet_manager)
 
 func _change_state(new_state : Global.GAME_STATES) -> void:
 	current_state = new_state
-	state_changed.emit()
+	state_changed.emit(new_state)
 	match current_state:
 		Global.GAME_STATES.BETTING:
 			
