@@ -102,102 +102,102 @@ shape = SubResource("WorldBoundaryShape2D_xkl5v")
 
 [node name="Bottles" type="Node2D" parent="."]
 
-[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1185, 411)
-scale = Vector2(0.495, 0.495)
-
-[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1237, 411)
-scale = Vector2(0.495, 0.495)
-
-[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1289, 412)
-scale = Vector2(0.495, 0.495)
-
-[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1390, 398)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1425, 396)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1459, 396)
-scale = Vector2(0.565, 0.565)
-
 [node name="PeekShoe" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(709, 321)
+position = Vector2(709, 268)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekShoe2" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(750, 317)
+position = Vector2(781, 264)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekShoe3" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(791, 319)
+position = Vector2(852, 265)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(689, 395)
+position = Vector2(704, 330)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer2" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(729, 393)
+position = Vector2(744, 328)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer3" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(769, 392)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(905, 397)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill2" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(945, 395)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill3" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(986, 394)
+position = Vector2(784, 327)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1052, 320)
+position = Vector2(1000, 249)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer2" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1091, 320)
+position = Vector2(1094, 251)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer3" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1133, 320)
+position = Vector2(1186, 250)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1527, 322)
+position = Vector2(1365, 268)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe2" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1570, 321)
+position = Vector2(1456, 266)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe3" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1619, 323)
+position = Vector2(1558, 264)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1408, 370)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1514, 369)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1620, 370)
+scale = Vector2(0.565, 0.565)
+
+[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1172, 349)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1224, 349)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1276, 350)
+scale = Vector2(0.495, 0.495)
+
+[node name="Spill" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(895, 332)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="Spill2" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(967, 330)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="Spill3" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(1044, 329)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
