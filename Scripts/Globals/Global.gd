@@ -1,6 +1,7 @@
 extends Node
 
 signal key_purchased
+signal welcome_line_finished
 var bar_entered_yet : bool = false
 enum ROOMS{BAR, TABLE, DOOR}
 @warning_ignore("unused_signal")
