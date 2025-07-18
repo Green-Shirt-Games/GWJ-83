@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=43 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -25,8 +25,16 @@
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="15_bq1mk"]
 [ext_resource type="AudioStream" uid="uid://d3lnceouftdaf" path="res://Assets/audio/sfx/sfx_registerKaching.wav" id="16_l6nsw"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="20_1gf8g"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_noMoney_1.tres" id="20_fviv3"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_noMoney_2.tres" id="21_lv4k3"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_noMoney_3.tres" id="22_q1qnd"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_noMoney_4.tres" id="23_gvgwj"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_full_1.tres" id="24_ieg7i"]
 [ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="25_1gf8g"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_full_2.tres" id="25_ysudv"]
 [ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="26_iif6y"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender/bartender_full_3.tres" id="26_vemb2"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="27_6pcw6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
@@ -311,6 +319,8 @@ metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="VoiceLines" parent="Bartender" node_paths=PackedStringArray("key", "register") instance=ExtResource("8_5usm7")]
 position = Vector2(389, 168)
+too_poor_lines = Array[ExtResource("20_1gf8g")]([ExtResource("20_fviv3"), ExtResource("21_lv4k3"), ExtResource("22_q1qnd"), ExtResource("23_gvgwj")])
+too_many_drink_lines = Array[ExtResource("20_1gf8g")]([ExtResource("24_ieg7i"), ExtResource("25_ysudv"), ExtResource("26_vemb2")])
 key = NodePath("../../Key")
 register = NodePath("../../Register")
 
