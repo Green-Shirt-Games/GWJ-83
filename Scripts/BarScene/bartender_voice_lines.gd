@@ -3,10 +3,13 @@ class_name BartenderVoiceLines
 
 @export var loss_lines : Array[VoiceLine]
 @export var win_lines : Array[VoiceLine]
+@export var too_poor_lines : Array[VoiceLine]
+@export var too_many_drink_lines : Array[VoiceLine]
 @export var buy_bluff : VoiceLine
 @export var buy_peek : VoiceLine
 @export var buy_rotate : VoiceLine
 @export var key_line : VoiceLine
+@export var welcome_line : VoiceLine
 @export var key : Key
 @export var register : Register
 @onready var stream_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -18,6 +21,7 @@ func _ready() -> void:
 	key.key_touched_early.connect(_on_key_touched_early)
 	register.buy_pressed.connect(_on_purchase_made)
 	register.too_poor.connect(_not_enough_chips)
+	register.too_many.connect(_too_many)
 
 func play_loss_line():
 	_play(_get_random_from(loss_lines))
@@ -38,7 +42,10 @@ func _on_purchase_made(bottles : Array[Bottle], total_price : int):
 
 
 func _not_enough_chips():
-	pass #TODO
+	_play(_get_random_from(too_poor_lines))
+
+func _too_many():
+	_play(_get_random_from(too_many_drink_lines))
 
 func _play(voice_line : VoiceLine) -> void:
 	if stream_player.playing:
@@ -50,6 +57,9 @@ func _play(voice_line : VoiceLine) -> void:
 
 
 var played_map : Dictionary[BottleData.TYPE, bool] = {}
+
+func on_first_enter():
+	_play(welcome_line)
 
 
 func on_drink_bought(bottle : Bottle):

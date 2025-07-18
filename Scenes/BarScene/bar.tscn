@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=36 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="15_bq1mk"]
+[ext_resource type="AudioStream" uid="uid://d3lnceouftdaf" path="res://Assets/audio/sfx/sfx_registerKaching.wav" id="16_l6nsw"]
 [ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="25_1gf8g"]
 [ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="26_iif6y"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="27_6pcw6"]
@@ -287,8 +288,13 @@ offset_bottom = 424.0
 text = "0"
 label_settings = ExtResource("10_jdxvu")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Register"]
+[node name="ValueTicks" type="AudioStreamPlayer2D" parent="Register"]
 stream = SubResource("AudioStreamRandomizer_l6nsw")
+max_polyphony = 18
+bus = &"sfx"
+
+[node name="KachingPlayer" type="AudioStreamPlayer2D" parent="Register"]
+stream = ExtResource("16_l6nsw")
 max_polyphony = 18
 bus = &"sfx"
 
