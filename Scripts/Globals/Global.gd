@@ -29,6 +29,8 @@ const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/BlackJack_Cards_Front
 const CARD_BACK_TEXTURE : Texture2D = preload("res://Assets/BlackJack_Cards_Back.png")
 
 
+var bottle_type_to_res : Dictionary[BottleData.TYPE, BottleData] = {}
+
 func _ready() -> void:
 	change_room.connect(_on_room_change)
 

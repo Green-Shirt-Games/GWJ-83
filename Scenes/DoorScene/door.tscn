@@ -32,3 +32,4 @@ offset_bottom = 935.0
 [node name="VolumeControl" parent="." instance=ExtResource("4_h6ttj")]
 position = Vector2(269, 244)
 scale = Vector2(0.55, 0.55)
+tilt_delay = 0.4
