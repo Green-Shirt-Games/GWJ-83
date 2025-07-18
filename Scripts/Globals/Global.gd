@@ -1,5 +1,6 @@
 extends Node
 
+signal key_purchased
 enum ROOMS{BAR, TABLE, DOOR}
 @warning_ignore("unused_signal")
 signal change_room(to : ROOMS)

@@ -39,8 +39,10 @@ func _on_buy_pressed():
 	kaching_stream.play()
 	Global.money -= running_total
 	for bottle in bottles:
-		Global.add_bottle_to_table(bottle.bottle_resource)
-		#TODO queue bottle animation
+		if bottle.bottle_resource.type == BottleData.TYPE.KEY:
+			Global.key_purchased.emit()
+		else:
+			Global.add_bottle_to_table(bottle.bottle_resource)
 	
 	buy_pressed.emit(bottles, running_total)
 
