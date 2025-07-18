@@ -49,14 +49,12 @@ bus = &"sfx"
 
 [node name="music_rhythm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_r2ikn")
-volume_db = -6.0
 autoplay = true
 bus = &"music"
 parameters/looping = true
 
 [node name="music_melody" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_oi88a")
-volume_db = -6.0
 autoplay = true
 bus = &"music"
 parameters/looping = true

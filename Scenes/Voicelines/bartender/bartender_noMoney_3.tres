@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://b7g5qs7vme4uv"]
+
+[ext_resource type="AudioStream" uid="uid://ctqbjqq1nbf1" path="res://Assets/audio/voice_lines/bartender_theDevilDeals.mp3" id="1_eq27n"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_usf4n"]
+
+[resource]
+script = ExtResource("1_usf4n")
+text = "The devil deals in souls, not tabs."
+audio_stream = ExtResource("1_eq27n")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

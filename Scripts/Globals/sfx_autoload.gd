@@ -25,8 +25,8 @@ func set_volume_scale(value : float):
 	rhythm.volume_db = _new_max_volume
 	melody.volume_db = _new_max_volume - melody_fade_db if faded else _new_max_volume
 
-@export var melody_fade_time : float = 3
-@export var melody_fade_db : float = -6
+@export var melody_fade_time : float = 2
+@export var melody_fade_db : float = -12
 const min_volume : float = -80.0
 
 @onready var _melody_starting_db : float = melody.volume_db
