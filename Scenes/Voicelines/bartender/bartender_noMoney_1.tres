@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://bjqn1tba6b8ld"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_8k2vt"]
+[ext_resource type="AudioStream" uid="uid://wd8gcugiqlm6" path="res://Assets/audio/voice_lines/bartender_niceTry.mp3" id="1_madui"]
+
+[resource]
+script = ExtResource("1_8k2vt")
+text = "Nice try, high roller. Your chips say otherwise."
+audio_stream = ExtResource("1_madui")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

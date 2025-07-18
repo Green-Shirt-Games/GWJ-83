@@ -23,8 +23,8 @@ func set_volume_scale(value : float):
 	volume_scale = clampf(value, 0, 1)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), _linear_to_db(volume_scale, 0))
 
-@export var melody_fade_time : float = 3
-@export var melody_fade_db : float = -6
+@export var melody_fade_time : float = 2
+@export var melody_fade_db : float = -12
 const min_volume : float = -80.0
 
 @onready var _melody_starting_db : float = melody.volume_db
