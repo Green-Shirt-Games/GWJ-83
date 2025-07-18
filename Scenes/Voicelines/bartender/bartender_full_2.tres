@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://bwmfxtuy45hby"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_fb7k8"]
+[ext_resource type="AudioStream" uid="uid://cn5l5ni1n7cja" path="res://Assets/audio/voice_lines/bartender_youCanOnly.mp3" id="1_nujdb"]
+
+[resource]
+script = ExtResource("1_fb7k8")
+text = "You can only hold so much magic, friend. Drink or ditch."
+audio_stream = ExtResource("1_nujdb")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"
