@@ -205,10 +205,10 @@ freeze = true
 script = ExtResource("3_7xow3")
 
 [node name="Button" type="Button" parent="Register"]
-offset_left = 88.0
-offset_top = 570.0
-offset_right = 249.0
-offset_bottom = 625.0
+offset_left = 328.0
+offset_top = 503.0
+offset_right = 489.0
+offset_bottom = 558.0
 text = "BUY"
 script = ExtResource("7_4b3yy")
 
