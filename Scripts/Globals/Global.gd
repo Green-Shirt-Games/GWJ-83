@@ -38,8 +38,8 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 
 var table : TableScene
 
-func table_can_fit_another_bottle() -> bool:
-	return table.bottles_manager.check_for_room_for_bottle()
+func table_can_fit_bottles(amount : int) -> bool:
+	return table.bottles_manager.check_for_room_for_bottle(amount)
 
 func add_bottle_to_table(bottle_data : BottleData) -> void:
 	table.bottles_manager.add_bottle(bottle_data)
