@@ -37,7 +37,7 @@ var faded : bool = false
 
 func fade_down_melody():
 	faded = true
-	_set_melody(_melody_starting_db - melody_fade_db)
+	_set_melody(_melody_starting_db + melody_fade_db)
 
 func fade_up_melody():
 	faded = false
