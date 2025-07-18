@@ -82,3 +82,17 @@ offset_right = 451.0
 offset_bottom = 140.0
 text = "Dialog"
 label_settings = ExtResource("5_i5fjo")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 1537.0
+offset_top = 919.0
+offset_right = 1574.0
+offset_bottom = 950.0
+text = "Exit"
+
+[node name="FullscreenToggle" type="Button" parent="."]
+offset_left = 234.0
+offset_top = 804.0
+offset_right = 242.0
+offset_bottom = 812.0
+text = "toggle fullscreen"
