@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
 [ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
-[ext_resource type="Script" uid="uid://s08pio8docya" path="res://Scripts/TableScene/bet_manager.gd" id="4_ikeqq"]
+[ext_resource type="PackedScene" uid="uid://dwuji6cv1kqcf" path="res://Scenes/TableScene/bet_manager.tscn" id="4_ikeqq"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="5_5mnm2"]
+[ext_resource type="Script" uid="uid://bgn28b8ql60eb" path="res://Scripts/TableScene/bottles_manager.gd" id="5_5mnm2"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
@@ -64,79 +64,18 @@ offset_bottom = 108.0
 theme_override_font_sizes/font_size = 64
 text = "10000"
 
-[node name="BetManager" type="Control" parent="." node_paths=PackedStringArray("table", "confirm_bet", "min_bet_button", "lower_bet_button", "increase_bet_button", "max_bet_button")]
+[node name="BetManager" parent="." node_paths=PackedStringArray("table") instance=ExtResource("4_ikeqq")]
+layout_mode = 1
+table = NodePath("..")
+
+[node name="BottlesManager" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("4_ikeqq")
-table = NodePath("..")
-confirm_bet = NodePath("BetButton")
-min_bet_button = NodePath("MinBetButton")
-lower_bet_button = NodePath("DecreaseBetButton")
-increase_bet_button = NodePath("IncreaseBetButton")
-max_bet_button = NodePath("MaxBetButton")
-metadata/_edit_lock_ = true
-
-[node name="BetButton" type="Button" parent="BetManager"]
-layout_mode = 0
-offset_left = 830.0
-offset_top = 961.0
-offset_right = 1036.0
-offset_bottom = 1030.0
-theme_override_font_sizes/font_size = 24
-text = "10"
 script = ExtResource("5_5mnm2")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
-
-[node name="IncreaseBetButton" type="Button" parent="BetManager"]
-layout_mode = 0
-offset_left = 1058.0
-offset_top = 961.0
-offset_right = 1096.0
-offset_bottom = 1030.0
-theme_override_font_sizes/font_size = 24
-text = ">"
-script = ExtResource("5_5mnm2")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
-
-[node name="DecreaseBetButton" type="Button" parent="BetManager"]
-layout_mode = 0
-offset_left = 774.0
-offset_top = 964.0
-offset_right = 812.0
-offset_bottom = 1033.0
-theme_override_font_sizes/font_size = 24
-text = "<
-"
-script = ExtResource("5_5mnm2")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
-
-[node name="MaxBetButton" type="Button" parent="BetManager"]
-layout_mode = 0
-offset_left = 1112.0
-offset_top = 961.0
-offset_right = 1150.0
-offset_bottom = 1030.0
-theme_override_font_sizes/font_size = 24
-text = ">>"
-script = ExtResource("5_5mnm2")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
-
-[node name="MinBetButton" type="Button" parent="BetManager"]
-layout_mode = 0
-offset_left = 720.0
-offset_top = 964.0
-offset_right = 758.0
-offset_bottom = 1033.0
-theme_override_font_sizes/font_size = 24
-text = "<<
-"
-script = ExtResource("5_5mnm2")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
 
 [node name="PlayButtons" type="Control" parent="."]
 visible = false
@@ -267,11 +206,6 @@ script = ExtResource("4_kdndq")
 room_to_change_to = 2
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
-[connection signal="pressed" from="BetManager/BetButton" to="BetManager" method="_on_bet_button_pressed"]
-[connection signal="pressed" from="BetManager/IncreaseBetButton" to="BetManager" method="_on_increase_bet_button_pressed"]
-[connection signal="pressed" from="BetManager/DecreaseBetButton" to="BetManager" method="_on_decrease_bet_button_pressed"]
-[connection signal="pressed" from="BetManager/MaxBetButton" to="BetManager" method="_on_max_bet_button_pressed"]
-[connection signal="pressed" from="BetManager/MinBetButton" to="BetManager" method="_on_min_bet_button_pressed"]
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]

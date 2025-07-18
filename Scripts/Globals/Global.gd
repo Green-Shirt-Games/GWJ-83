@@ -28,6 +28,21 @@ const CARD_TEXTURE_SIZE : Vector2 = Vector2(303.5, 439.0)
 const CARD_FRONT_ATLAS : Texture2D = preload("res://Assets/BlackJack_Cards_Front.png")
 const CARD_BACK_TEXTURE : Texture2D = preload("res://Assets/BlackJack_Cards_Back.png")
 
+# Bottles shared data
+const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
+	"default" : {
+		"texture" : "res://Assets/Bottles/default_bottle.png" ,
+		"mask" : "res://Assets/Bottles/default_bottle.png"
+	}
+}
+
+var table : TableScene
+
+func table_can_fit_another_bottle() -> bool:
+	return table.bottles_manager.check_for_room_for_bottle()
+
+func add_bottle_to_table(bottle_data : BottleData) -> void:
+	table.bottles_manager.add_bottle(bottle_data)
 
 func _ready() -> void:
 	change_room.connect(_on_room_change)

@@ -3,6 +3,7 @@ extends Control
 
 @export_group("Internal connections")
 @export var bet_manager : BetManager
+@export var bottles_manager : BottlesOnTableManager
 @export_subgroup("UI elements")
 @export var cards_table : CardsTable
 @export var play_buttons_container : Control

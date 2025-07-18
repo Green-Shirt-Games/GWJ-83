@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dt4hrv2pqdtbg"
+path="res://.godot/imported/default_bottle_mask.png-5e9f1962a5c34ffdfd528ee52cf44c67.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/default_bottle_mask.png"
+dest_files=["res://.godot/imported/default_bottle_mask.png-5e9f1962a5c34ffdfd528ee52cf44c67.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
