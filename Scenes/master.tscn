@@ -73,3 +73,4 @@ scale = Vector2(0.272, 0.681)
 texture = ExtResource("8_ofqse")
 
 [node name="EndSplash" type="Node2D" parent="."]
+visible = false
