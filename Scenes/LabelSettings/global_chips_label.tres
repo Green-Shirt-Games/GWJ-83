@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b54ohoij3c5xg"]
+
+[ext_resource type="FontFile" uid="uid://djiqej0poy5tf" path="res://Assets/Fonts/Merriweather-VariableFont.ttf" id="1_pwuix"]
+
+[resource]
+font = ExtResource("1_pwuix")
+font_size = 52
+outline_size = 4
+outline_color = Color(0.404511, 0.404511, 0.404511, 1)

@@ -20,8 +20,7 @@ var on_cooldown : bool = false
 
 func _ready() -> void:
 	visible = false
-	on_free_drink()
-	#TODO bindings to events
+	stream_player.finished.connect(_on_greetings_finished)
 
 func on_dealer_blackjack():
 	_play(dealer_blackjack.pick_random())
@@ -37,6 +36,11 @@ func on_player_win():
 
 func on_greetings():
 	_play(greetings.pick_random())
+	
+
+func _on_greetings_finished():
+	Global.welcome_line_finished.emit()
+	stream_player.finished.disconnect(_on_greetings_finished)
 
 func on_push():
 	_play(pushes.pick_random())

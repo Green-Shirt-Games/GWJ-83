@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=43 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -21,12 +21,20 @@
 [ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
 [ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/sfx_objects/pickup_stream.tscn" id="11_bii46"]
 [ext_resource type="PackedScene" uid="uid://4bivqmq8y1yo" path="res://Scenes/BarScene/drinks/swap_shoe.tscn" id="11_bq1mk"]
-[ext_resource type="Resource" uid="uid://w4fu03yfg1ml" path="res://Scenes/Voicelines/bartender/bartender_key.tres" id="11_dvsn3"]
 [ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="15_bq1mk"]
+[ext_resource type="AudioStream" uid="uid://d3lnceouftdaf" path="res://Assets/audio/sfx/sfx_registerKaching.wav" id="16_l6nsw"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="20_1gf8g"]
+[ext_resource type="Resource" uid="uid://bjqn1tba6b8ld" path="res://Scenes/Voicelines/bartender/bartender_noMoney_1.tres" id="20_fviv3"]
+[ext_resource type="Resource" uid="uid://cirx64h2ot0rg" path="res://Scenes/Voicelines/bartender/bartender_noMoney_2.tres" id="21_lv4k3"]
+[ext_resource type="Resource" uid="uid://b7g5qs7vme4uv" path="res://Scenes/Voicelines/bartender/bartender_noMoney_3.tres" id="22_q1qnd"]
+[ext_resource type="Resource" uid="uid://40pu7uk20ar4" path="res://Scenes/Voicelines/bartender/bartender_noMoney_4.tres" id="23_gvgwj"]
+[ext_resource type="Resource" uid="uid://bncsi24k2bkwb" path="res://Scenes/Voicelines/bartender/bartender_full_1.tres" id="24_ieg7i"]
 [ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="25_1gf8g"]
+[ext_resource type="Resource" uid="uid://bwmfxtuy45hby" path="res://Scenes/Voicelines/bartender/bartender_full_2.tres" id="25_ysudv"]
 [ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="26_iif6y"]
+[ext_resource type="Resource" uid="uid://cdaj10ugn55kh" path="res://Scenes/Voicelines/bartender/bartender_full_3.tres" id="26_vemb2"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="27_6pcw6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
@@ -94,102 +102,102 @@ shape = SubResource("WorldBoundaryShape2D_xkl5v")
 
 [node name="Bottles" type="Node2D" parent="."]
 
-[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1185, 411)
-scale = Vector2(0.495, 0.495)
-
-[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1237, 411)
-scale = Vector2(0.495, 0.495)
-
-[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
-position = Vector2(1289, 412)
-scale = Vector2(0.495, 0.495)
-
-[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1390, 398)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1425, 396)
-scale = Vector2(0.565, 0.565)
-
-[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
-position = Vector2(1459, 396)
-scale = Vector2(0.565, 0.565)
-
 [node name="PeekShoe" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(709, 321)
+position = Vector2(709, 268)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekShoe2" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(750, 317)
+position = Vector2(781, 264)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekShoe3" parent="Bottles" instance=ExtResource("7_8ec30")]
-position = Vector2(791, 319)
+position = Vector2(852, 265)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(689, 395)
+position = Vector2(704, 330)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer2" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(729, 393)
+position = Vector2(744, 328)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="PeekDealer3" parent="Bottles" instance=ExtResource("8_1gf8g")]
-position = Vector2(769, 392)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(905, 397)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill2" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(945, 395)
-scale = Vector2(0.495, 0.495)
-freeze = true
-
-[node name="Spill3" parent="Bottles" instance=ExtResource("9_iif6y")]
-position = Vector2(986, 394)
+position = Vector2(784, 327)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1052, 320)
+position = Vector2(1000, 249)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer2" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1091, 320)
+position = Vector2(1094, 251)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapDealer3" parent="Bottles" instance=ExtResource("10_6pcw6")]
-position = Vector2(1133, 320)
+position = Vector2(1186, 250)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1527, 322)
+position = Vector2(1365, 268)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe2" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1570, 321)
+position = Vector2(1456, 266)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
 [node name="SwapShoe3" parent="Bottles" instance=ExtResource("11_bq1mk")]
-position = Vector2(1619, 323)
+position = Vector2(1558, 264)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="RotateRandy" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1408, 370)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy2" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1514, 369)
+scale = Vector2(0.565, 0.565)
+
+[node name="RotateRandy3" parent="Bottles" instance=ExtResource("6_dvsn3")]
+position = Vector2(1620, 370)
+scale = Vector2(0.565, 0.565)
+
+[node name="BluffBack" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1172, 349)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack2" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1224, 349)
+scale = Vector2(0.495, 0.495)
+
+[node name="BluffBack3" parent="Bottles" instance=ExtResource("5_y8scv")]
+position = Vector2(1276, 350)
+scale = Vector2(0.495, 0.495)
+
+[node name="Spill" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(895, 332)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="Spill2" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(967, 330)
+scale = Vector2(0.495, 0.495)
+freeze = true
+
+[node name="Spill3" parent="Bottles" instance=ExtResource("9_iif6y")]
+position = Vector2(1044, 329)
 scale = Vector2(0.495, 0.495)
 freeze = true
 
@@ -197,10 +205,10 @@ freeze = true
 script = ExtResource("3_7xow3")
 
 [node name="Button" type="Button" parent="Register"]
-offset_left = 88.0
-offset_top = 570.0
-offset_right = 249.0
-offset_bottom = 625.0
+offset_left = 328.0
+offset_top = 503.0
+offset_right = 489.0
+offset_bottom = 558.0
 text = "BUY"
 script = ExtResource("7_4b3yy")
 
@@ -287,8 +295,13 @@ offset_bottom = 424.0
 text = "0"
 label_settings = ExtResource("10_jdxvu")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Register"]
+[node name="ValueTicks" type="AudioStreamPlayer2D" parent="Register"]
 stream = SubResource("AudioStreamRandomizer_l6nsw")
+max_polyphony = 18
+bus = &"sfx"
+
+[node name="KachingPlayer" type="AudioStreamPlayer2D" parent="Register"]
+stream = ExtResource("16_l6nsw")
 max_polyphony = 18
 bus = &"sfx"
 
@@ -306,7 +319,8 @@ metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="VoiceLines" parent="Bartender" node_paths=PackedStringArray("key", "register") instance=ExtResource("8_5usm7")]
 position = Vector2(389, 168)
-key_line = ExtResource("11_dvsn3")
+too_poor_lines = Array[ExtResource("20_1gf8g")]([ExtResource("20_fviv3"), ExtResource("21_lv4k3"), ExtResource("22_q1qnd"), ExtResource("23_gvgwj")])
+too_many_drink_lines = Array[ExtResource("20_1gf8g")]([ExtResource("24_ieg7i"), ExtResource("25_ysudv"), ExtResource("26_vemb2")])
 key = NodePath("../../Key")
 register = NodePath("../../Register")
 

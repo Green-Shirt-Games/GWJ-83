@@ -3,7 +3,7 @@ class_name Key
 
 signal key_touched_early
 
-var money_pickup_threshold : int = 100000
+var money_pickup_threshold : int = 10000
 
 func _ready() -> void:
 	super._ready()

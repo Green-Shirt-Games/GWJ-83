@@ -1,5 +1,8 @@
 extends Node
 
+signal key_purchased
+signal welcome_line_finished
+var bar_entered_yet : bool = false
 enum ROOMS{BAR, TABLE, DOOR}
 @warning_ignore("unused_signal")
 signal change_room(to : ROOMS)
@@ -16,9 +19,10 @@ const POINTS_LIMIT = 21
 # Player's data
 var money = 10000 :
 	set(value):
+		var old_value = money
 		money = value
-		money_changed.emit()
-signal money_changed
+		money_changed.emit(old_value)
+signal money_changed(old_value)
 signal not_enough_money
 
 var money_delta_since_bar : int = 0
