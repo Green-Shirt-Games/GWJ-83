@@ -136,3 +136,4 @@ func reset():
 	freeze = true
 	scale = orig_scale
 	global_position = orig_position
+	
