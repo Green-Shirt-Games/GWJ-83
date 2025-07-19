@@ -73,7 +73,6 @@ var padded_str : String
 func _update_price_ui():
 	padded_str = "%09d" % running_total
 	
-	var index : int = 0
 	var shuffled_indexes : Array = range(padded_str.length())
 	shuffled_indexes.shuffle()
 	for i in shuffled_indexes:

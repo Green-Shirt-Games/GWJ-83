@@ -1,7 +1,7 @@
 extends Node2D
 class_name Door
 
-signal on_door_opened
+signal door_opened
 signal to_table_pressed
 signal exit_pressed
 
@@ -19,9 +19,6 @@ func _ready() -> void:
 	
 	toggle_fullscreen_button.pressed.connect(toggle_fullscreen)
 	exit_game.pressed.connect(on_exit)
-	
-	door_open_count += 1
-	get_tree().create_timer(3).timeout.connect(func(): on_door_opened.emit())
 
 
 var is_fullscreen := true
@@ -39,3 +36,8 @@ func on_exit():
 	exit_pressed.emit()
 	toggle_fullscreen()
 	get_tree().quit()
+
+
+func _on_door_opened():
+	door_open_count += 1
+	door_opened.emit()

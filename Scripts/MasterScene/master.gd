@@ -7,12 +7,15 @@ extends Control
 @onready var end_sprite : Sprite2D = $endTransition
 
 
-var current_room : Global.ROOMS = -1
+var current_room : Global.ROOMS = Global.ROOMS.BAR
 
 func _ready() -> void:
+	
 	Global.change_room.connect(_change_room)
+	door.door_opened.connect(on_door_opened)
+	
 	_change_room(Global.ROOMS.DOOR)
-	door.on_door_opened.connect(on_door_opened)
+	
 
 func _change_room(to : Global.ROOMS) -> void:
 	if to == current_room:
