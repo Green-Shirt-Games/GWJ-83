@@ -105,9 +105,11 @@ func split_full_list_of_chips_between_piles(full_list_of_chips : Dictionary[CHIP
 
 func reset_chips_in_pile(pile : PileOfChips, list_of_chips : Dictionary[CHIP_COLORS, int]) -> void:
 	pile.clear()
-	for chip_type in list_of_chips.keys():
-		for i in list_of_chips[chip_type]:
-			spawn_chip(chip_type, pile)
+	if !list_of_chips.is_empty():
+		SfxAutoload.place_chips()
+		for chip_type in list_of_chips.keys():
+			for i in list_of_chips[chip_type]:
+				spawn_chip(chip_type, pile)
 
 
 

@@ -6,7 +6,7 @@ extends Control
 @onready var door := $Door
 
 
-var current_room : Global.ROOMS = Global.ROOMS.DOOR
+var current_room : Global.ROOMS = -1
 
 func _ready() -> void:
 	Global.change_room.connect(_change_room)
