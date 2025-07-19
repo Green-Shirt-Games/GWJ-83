@@ -2,17 +2,24 @@ class_name TableScene
 extends Control
 
 @export_group("Internal connections")
-@export_subgroup("Position markers")
-@export var shoe : Marker2D
-@export var discard: Marker2D
+@export var bet_manager : BetManager
+@export var bottles_manager : BottlesOnTableManager
 @export_subgroup("UI elements")
 @export var cards_table : CardsTable
-@export var bet_buttons_container : Control
 @export var play_buttons_container : Control
 @export var split_button : Button
 @export var double_down_button : Button
 @export var player_money_label : Label
+@export var change_room_buttons : Array[RoomChangeButton]
+@export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
+@export var bet_visual_manager_single_hand : BetVisualManager
+@export var place_for_chips_to_fly_away : Marker2D
 
+signal player_blackjack
+signal dealer_blackjack
+signal player_win
+signal dealer_win
+signal tie
 
 # temp code, to be moved to separate GamaManager, to keep data about table between scene changes
 
@@ -23,34 +30,55 @@ var active_player_hand : int = 0
 var current_state : Global.GAME_STATES 
 var draw_deck : Array[CardData] = []
 var discard_deck : Array[CardData] = []
-var bet : int = 0 
-signal state_changed
+var hands_played : int = 0
+var bet : int = 0 :
+	set(new_value):
+		if bet != new_value:
+			bet = new_value
+			bet_changed()
+var second_hand_bet : int = 0 :
+	set(new_value):
+		if second_hand_bet != new_value:
+			second_hand_bet = new_value
+			bet_changed()
+		
+signal state_changed(to_stage)
 
 var default_card_fly_time : float = 0.3
+var default_timer_timeout : float = 0.3
 var skip_dealing : bool = false
 
 func _ready() -> void:
+	Global.table = self
 	player_hands = cards_table.player_hands
 	dealer_hand = cards_table.dealers_hand
 	player_hands[1].is_active = false
-	_game_start()
-	_change_state(Global.GAME_STATES.BETTING)
 	Global.money_changed.connect(_update_money_label)
-	_update_money_label()
-
+	visibility_changed.connect(update_bet_manager)
+	state_changed.connect(bottles_manager.disable_bottles_if_needed)
+	_game_start()
+	_change_state(Global.GAME_STATES.INTRO)
+	_update_money_label(0)
 
 func _change_state(new_state : Global.GAME_STATES) -> void:
 	current_state = new_state
-	state_changed.emit()
+	state_changed.emit(new_state)
 	match current_state:
-		Global.GAME_STATES.BETTING:
-			bet_buttons_container.visible = true
+		Global.GAME_STATES.INTRO:
 			play_buttons_container.visible = false
+			bet_manager.visible = false
+			#await animation and dialog finished
+			toggle_other_room_buttons_visible(false)
+			_change_state(Global.GAME_STATES.BETTING)
+		Global.GAME_STATES.BETTING:
+			
+			play_buttons_container.visible = false
+			bet_manager.visible = true
 		Global.GAME_STATES.DEALING:
 			if skip_dealing:
 				skip_dealing = false
 			else:
-				bet_buttons_container.visible = false
+				bet_manager.visible = false
 				play_buttons_container.visible = false
 				while player_hands[0].get_cards_amount() < 2:
 					#await _give_player_two_same_cards()
@@ -62,15 +90,22 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			_change_state(Global.GAME_STATES.PLAYER_TURN)
 		Global.GAME_STATES.PLAYER_TURN:
 			play_buttons_container.visible = true
-			bet_buttons_container.visible = false
+			bet_manager.visible = false
 			split_button.visible = _check_if_split_possible()
 		Global.GAME_STATES.DEALER_TURN:
-			split_button.visible = false
 			play_buttons_container.visible = false
-			bet_buttons_container.visible = false
+			bet_manager.visible = false
 			for hand in player_hands:
 				for card in hand.get_children():
 					await (card as CardVisual).reveal()
+			
+			var player_full_bust : bool = true
+			for hand in player_hands:
+				if hand.is_active and not hand.bust:
+					player_full_bust = false
+			if player_full_bust:
+				_change_state(Global.GAME_STATES.RESULT)
+			
 			for card in dealer_hand.get_children():
 				await (card as CardVisual).reveal()
 			while dealer_hand.best_score < 17:
@@ -78,26 +113,31 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			_change_state(Global.GAME_STATES.RESULT)
 		Global.GAME_STATES.RESULT:
 			play_buttons_container.visible = false
-			bet_buttons_container.visible = false
-			for hand in player_hands:
-				if dealer_hand.bust:
-					_player_won()
-				else:
-					if hand.is_active:
+			bet_manager.visible = false
+			for i in player_hands.size():
+				var hand = player_hands[i]
+				if hand.is_active:
+					if dealer_hand.bust:
 						if hand.bust:
-							_player_lost()
+							await _player_tied(i)
+						else:
+							await _player_won(i)
+					else:
+						if hand.bust:
+							await _player_lost(i)
 						else:
 							if hand.best_score > dealer_hand.best_score:
-								_player_won(hand.best_score == Global.POINTS_LIMIT)
+								await _player_won(i)
 							elif hand.best_score < dealer_hand.best_score:
-								_player_lost()
+								await _player_lost(i)
 							else:
-								_player_tied()
+								await _player_tied(i)
 			await get_tree().create_timer(2).timeout #TODO move this await to voiceline trigger
 			_change_state(Global.GAME_STATES.RESET)
 		Global.GAME_STATES.RESET:
 			play_buttons_container.visible = false
-			bet_buttons_container.visible = false
+			bet_manager.visible = false
+			
 			for card in dealer_hand.get_children():
 				if !(card as CardVisual).is_frozen:
 					move_card_to_discard(card)
@@ -110,19 +150,23 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			if player_hands[1].is_active:
 				for card in player_hands[1].get_children():
 					move_card_to_hand(card, player_hands[0])
-				player_hands[1].is_active = false
+			player_hands[1].is_active = false
 			active_player_hand = 0
 			cards_table.second_players_hand(false)
 			# reset deck, if cards left is less than 15 (overkill?)
 			if draw_deck.size() < 15:
 				_reset_deck()
 			# wait for animation to finish
-			await get_tree().create_timer(0.1).timeout # TODO Connect to all card fly speed
+			hands_played += 1
+			await get_tree().create_timer(default_timer_timeout).timeout # TODO Connect to all card fly speed
+			SfxAutoload.shuffle_cards()
+			print("new game")
 			_change_state(Global.GAME_STATES.BETTING)
 
 func _check_if_split_possible() -> bool:
 	return (player_hands[0].get_child(0) as CardVisual).card_data.value == \
-			(player_hands[0].get_child(1) as CardVisual).card_data.value
+			(player_hands[0].get_child(1) as CardVisual).card_data.value and \
+			Global.money >= bet
 
 func _game_start() -> void:
 	_prepare_deck()
@@ -171,7 +215,10 @@ func _add_card_to_dealer_hand(face_up : bool) -> void:
 func _draw_card() -> CardVisual:
 	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
 	card.get_data(draw_deck.pop_front())
+	if cards_table.shoe_card:
+		cards_table.remove_peeked_shoe()
 	cards_table.add_child(card)
+	SfxAutoload.draw_card()
 	card.position = cards_table.shoe_marker.position
 	return card
 #endregion
@@ -194,44 +241,103 @@ func move_card_to_discard(card_to_move : CardVisual):
 
 #region Game results
 
-func _player_won(is_blackjack : bool = false) -> void:
-	if is_blackjack:
-		Global.money += bet * 3
-		print("Player won with blackjack " ,  bet * 3)
-	else:
-		Global.money += bet * 2
-		print("Player won ", bet * 2)
+func _player_won(hand_id : int):
+	print("Player won with hand " , hand_id)
+	match hand_id:
+		0:
+			if player_hands[1].is_active:
+				if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
+					bet_visual_managers_multiple_hands[hand_id].update_bet(bet * 3)
+				else:
+					bet_visual_managers_multiple_hands[hand_id].update_bet(bet * 2)
+				await get_tree().create_timer(0.3).timeout
+				await move_chips_towards_player(bet_visual_managers_multiple_hands[hand_id])
+			else:
+				if player_hands[hand_id].best_score == Global.POINTS_LIMIT: # BlackJack
+					bet_visual_manager_single_hand.update_bet(bet * 3)
+				else:
+					bet_visual_manager_single_hand.update_bet(bet * 2)
+				await get_tree().create_timer(default_timer_timeout).timeout
+				await move_chips_towards_player(bet_visual_manager_single_hand)
+			if player_hands[hand_id].best_score == Global.POINTS_LIMIT: # BlackJack
+				Global.money += bet * 3
+			else:
+				Global.money += bet * 2
+		1:
+			if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
+				bet_visual_managers_multiple_hands[1].update_bet(bet * 3)
+			else:
+				bet_visual_managers_multiple_hands[1].update_bet(bet * 2)
+			await get_tree().create_timer(default_timer_timeout).timeout
+			await move_chips_towards_player(bet_visual_managers_multiple_hands[hand_id])
+			if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
+				Global.money += second_hand_bet * 3
+			else:
+				Global.money += second_hand_bet * 2
+		
 
-func _player_lost() -> void:
-	pass
+func move_chips_towards_player(bet_manager_of_those_chips : BetVisualManager):
+	var tween : Tween = get_tree().create_tween()
+	tween.tween_property(bet_manager_of_those_chips, "position", place_for_chips_to_fly_away.position, 0.3)
+	await tween.finished
+	bet_manager_of_those_chips.update_bet(0)
+	bet_manager_of_those_chips.reset_position()
 
-func _player_tied() -> void:
-	Global.money += bet
+func _player_lost(_hand_id : int):
+	toggle_other_room_buttons_visible(true)
+	# chips fire animation goes here
+	match _hand_id:
+		0:
+			if player_hands[1].is_active:
+				bet_visual_managers_multiple_hands[0].update_bet(0)
+			else:
+				bet_visual_manager_single_hand.update_bet(0)
+		1:
+			bet_visual_managers_multiple_hands[1].update_bet(0)
+		
+
+func _player_tied(hand_id : int):
+	match hand_id:
+		0:
+			Global.money += bet
+			if player_hands[1].is_active:
+				await move_chips_towards_player(bet_visual_managers_multiple_hands[0])
+			else:
+				await move_chips_towards_player(bet_visual_manager_single_hand)
+		1:
+			await move_chips_towards_player(bet_visual_managers_multiple_hands[1])
+			Global.money += second_hand_bet
 #endregion
+
+func _update_money_label(_old_money_value : int) -> void:
+	player_money_label.text = "money: " + str(Global.money)
 
 #region UI buttons
 func _on_draw_cards_button_pressed() -> void:
 	_change_state(Global.GAME_STATES.DEALING)
 
-func _on_temp_place_100_bet_pressed() -> void:
-	bet = 100
-	Global.money -= bet
-	_change_state(Global.GAME_STATES.DEALING)
-
-func _update_money_label() -> void:
-	player_money_label.text = "money: " + str(Global.money)
-
 func _on_hit_button_pressed() -> void:
-	_add_card_to_player_hand()
+	play_buttons_container.visible = false
+	await _add_card_to_player_hand()
+	play_buttons_container.visible = true
 
 func _on_split_button_pressed() -> void:
-	player_hands[1].is_active = true
-	cards_table.second_players_hand(true)
-	player_hands[0].get_child(1).reparent(player_hands[1], true)
-	active_player_hand = 1
-	_add_card_to_player_hand()
-	active_player_hand = 0
-	_add_card_to_player_hand()
+	if Global.money >= bet:
+		split_button.visible = false
+		Global.money -= bet
+		second_hand_bet = bet
+		player_hands[1].is_active = true
+		cards_table.second_players_hand(true)
+		player_hands[0].get_child(1).reparent(player_hands[1], true)
+		active_player_hand = 1
+		_add_card_to_player_hand()
+		active_player_hand = 0
+		_add_card_to_player_hand()
+		bet_visual_manager_single_hand.update_bet(0)
+		bet_visual_managers_multiple_hands[0].update_bet(bet)
+		bet_visual_managers_multiple_hands[1].update_bet(second_hand_bet)
+	else:
+		Global.not_enough_money.emit()
 
 func _on_stand_button_pressed() -> void:
 	if active_player_hand == 0 and player_hands[1].is_active:
@@ -240,21 +346,42 @@ func _on_stand_button_pressed() -> void:
 		_change_state(Global.GAME_STATES.DEALER_TURN)
 
 func _on_double_down_button_pressed() -> void:
+	double_down_button.visible = false
 	if _double_bet():
 		await _add_card_to_player_hand()
-		_change_state(Global.GAME_STATES.DEALER_TURN)
+		if player_hands[active_player_hand].bust:
+			if active_player_hand == 0 and player_hands[1].is_active:
+				active_player_hand = 1
+			else:
+				_change_state(Global.GAME_STATES.RESULT)
+		else:
+			if active_player_hand == 0 and player_hands[1].is_active:
+				active_player_hand = 1
+			else:
+				_change_state(Global.GAME_STATES.DEALER_TURN)
 	else:
 		Global.not_enough_money.emit()
+	double_down_button.visible = true
 
 #endregion
 
 func _double_bet() -> bool:
-	if Global.money >= bet:
-		Global.money -= bet
-		bet *= 2
-		return true
+	if active_player_hand == 0:
+		if Global.money >= bet:
+			Global.money -= bet
+			bet *= 2
+		else:
+			return false
 	else:
-		return false
+		if Global.money >= second_hand_bet:
+			Global.money -= second_hand_bet
+			second_hand_bet *= 2
+		else:
+			return false
+	return true
+
+func update_bet_manager() -> void:
+	bet_manager._prepare_for_bets()
 
 # Bottle Effect handling
 func bottle_pressed(bottle_type : BottleData.TYPE) -> bool: 
@@ -267,12 +394,11 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			else:
 				return false
 		BottleData.TYPE.PEEK_SHOE:
-			pass # TODO
-			# Plan:
-			# create a copy of top shoe card, flip it. On draw - q_free that card
+			if cards_table.can_peek_shoe():
+				cards_table.peek_shoe()
+			else:
+				return false
 		BottleData.TYPE.SWAP_DEALER:
-			pass
-			# pick random card in both active hands
 			if player_hands[active_player_hand].get_cards_amount() > 0 and dealer_hand.get_cards_amount() > 0:
 				var player_card_to_swap : CardVisual = player_hands[active_player_hand].get_children().pick_random()
 				var dealer_card_to_swap : CardVisual = dealer_hand.get_children().pick_random()
@@ -316,9 +442,9 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			player_hands[0]._update_card_positions(null)
 			player_hands[1]._update_card_positions(null)
 			dealer_hand._update_card_positions(null)
-		BottleData.TYPE.DOUBLE:
-			skip_dealing = true
-			_change_state(Global.GAME_STATES.BETTING)
+		#BottleData.TYPE.SNEAK_BET:
+			#skip_dealing = true
+			#_change_state(Global.GAME_STATES.BETTING)
 		BottleData.TYPE.DOUBLE:
 			if !_double_bet():
 				return false
@@ -327,6 +453,20 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			return false
 	return true
 
+func toggle_other_room_buttons_visible(to : bool) -> void:
+	for button in change_room_buttons:
+		button.visible = to
 
-func _on_button_pressed() -> void:
-	bottle_pressed(BottleData.TYPE.ROTATE)
+
+func _on_debug_dupe_top_card_pressed() -> void:
+	draw_deck.insert(0, draw_deck[0])
+
+func bet_changed() -> void:
+	if player_hands[1].is_active:
+		bet_visual_managers_multiple_hands[0].update_bet(bet)
+		bet_visual_managers_multiple_hands[1].update_bet(second_hand_bet)
+		bet_visual_manager_single_hand.update_bet(0)
+	else:
+		bet_visual_managers_multiple_hands[0].update_bet(0)
+		bet_visual_managers_multiple_hands[1].update_bet(0)
+		bet_visual_manager_single_hand.update_bet(bet)

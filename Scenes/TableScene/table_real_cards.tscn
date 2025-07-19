@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://778cx47lq7g5"]
 
-[ext_resource type="Script" uid="uid://b0cqsr81gl500" path="res://Scenes/TableScene/table_real_cards.gd" id="1_kdkp6"]
+[ext_resource type="Script" uid="uid://b0cqsr81gl500" path="res://Scripts/TableScene/table_real_cards.gd" id="1_kdkp6"]
 [ext_resource type="Texture2D" uid="uid://qwavtq5xvuac" path="res://icon.svg" id="2_kdkp6"]
 [ext_resource type="Script" uid="uid://cc0j6473b8qdl" path="res://Scripts/Classes/card_hand.gd" id="3_gs6tb"]
 

@@ -39,13 +39,13 @@ func add_bottles_to_shelf(_bottles, spawn_points : Array[Node], layer : int, bot
 		bottle.scale = Vector2.ONE * bottle_scale
 		i += 1
 
-func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
+func _on_buy_pressed(_bottles : Array[Bottle], _total_price : int):
 	
 	#TODO
 	
 	register.clear()
 	
-	for bottle in bottles:
+	for bottle in _bottles:
 		bottle.queue_free() #TODO
 		var drink_poof = drink_poof_scene.instantiate()
 		drink_poof.global_position = bottle.global_position
@@ -69,9 +69,12 @@ func _on_bottle_mouse_enter(bottle : Bottle):
 	else:
 		hovered_bottles.append(bottle)
 	
-	bottle_of_interest = bottle
-	hover_ui.set_text(bottle.bottle_resource)
-	await hover_ui.fade_in()
+	if bottle_of_interest == null:
+		bottle_of_interest = bottle
+	if bottle.z_index >= bottle_of_interest.z_index:
+		bottle_of_interest = bottle
+		hover_ui.set_text(bottle.bottle_resource)
+		await hover_ui.fade_in()
 
 
 func _on_bottle_mouse_exit(bottle : Bottle):	
@@ -81,4 +84,5 @@ func _on_bottle_mouse_exit(bottle : Bottle):
 	if hovered_bottles.size() > 0:
 		hover_ui.set_text(hovered_bottles[0].bottle_resource)
 	else:
+		bottle_of_interest = null
 		await hover_ui.fade_out()

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdnnc236wpjht"]
+
+[ext_resource type="Script" uid="uid://5au7atlqa23e" path="res://Scripts/TableScene/bet_visual_manager.gd" id="1_53bja"]
+[ext_resource type="Script" uid="uid://b7vdsvvfl7npr" path="res://Scripts/Classes/chip_pile.gd" id="2_qga8h"]
+
+[node name="BetVisualManager" type="Node2D" node_paths=PackedStringArray("piles")]
+script = ExtResource("1_53bja")
+piles = [NodePath("PileOfChips"), NodePath("PileOfChips2"), NodePath("PileOfChips3")]
+
+[node name="PileOfChips" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("2_qga8h")
+metadata/_custom_type_script = "uid://b7vdsvvfl7npr"
+
+[node name="PileOfChips2" type="Node2D" parent="."]
+position = Vector2(125, -85)
+script = ExtResource("2_qga8h")
+metadata/_custom_type_script = "uid://b7vdsvvfl7npr"
+
+[node name="PileOfChips3" type="Node2D" parent="."]
+position = Vector2(-125, -85)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_qga8h")
+metadata/_custom_type_script = "uid://b7vdsvvfl7npr"

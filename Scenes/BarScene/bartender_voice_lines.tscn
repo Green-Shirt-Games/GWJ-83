@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt2ut2wibke82"]
+[gd_scene load_steps=18 format=3 uid="uid://dt2ut2wibke82"]
 
 [ext_resource type="Script" uid="uid://cjk2j4n22jqk3" path="res://Scripts/BarScene/bartender_voice_lines.gd" id="1_ih56v"]
 [ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="2_xs6v1"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://lnfhcwhpuo31" path="res://Scenes/Voicelines/bartender/bartender_buyBluffDrink.tres" id="8_x70bo"]
 [ext_resource type="Resource" uid="uid://dgdtboby6uo2" path="res://Scenes/Voicelines/bartender/bartender_buyPeekDrink.tres" id="9_jm2mn"]
 [ext_resource type="Resource" uid="uid://dgvm40mngvbun" path="res://Scenes/Voicelines/bartender/bartender_buyDrinkRotate.tres" id="10_oj4p6"]
+[ext_resource type="Resource" uid="uid://w4fu03yfg1ml" path="res://Scenes/Voicelines/bartender/bartender_key.tres" id="11_l1mf2"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/bartender_welcome.tres" id="12_afcii"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oluxr"]
 font_size = 25
@@ -132,6 +134,8 @@ win_lines = Array[ExtResource("2_xs6v1")]([ExtResource("6_qdy4a"), ExtResource("
 buy_bluff = ExtResource("8_x70bo")
 buy_peek = ExtResource("9_jm2mn")
 buy_rotate = ExtResource("10_oj4p6")
+key_line = ExtResource("11_l1mf2")
+welcome_line = ExtResource("12_afcii")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"dialogue"

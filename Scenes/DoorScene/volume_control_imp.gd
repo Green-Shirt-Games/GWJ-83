@@ -19,12 +19,20 @@ var dragging : bool = false
 
 @onready var eyes : Node2D = $VolumeImp/eyes
 
+@onready var sample_stream : AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+@export var bus_name : String = "Master"
+@export var tick_interval : float = 0.1
+var bus_default_db : float = 0.0
+
 
 func _ready() -> void:
 	create_glow_sprite()
 	tail_area.mouse_entered.connect(_on_mouse_enter)
 	tail_area.mouse_exited.connect(_on_mouse_exit)
 	tail_area.input_event.connect(_input_event)
+	
+	tilt_delay = randf_range(0.3, 1)
 	
 	timer = Timer.new()
 	timer.one_shot = false
@@ -35,6 +43,11 @@ func _ready() -> void:
 	
 	tail_sprite.position.y += max_length
 	set_tail_pos(max_length)
+	
+	bus_default_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name))
+	sample_stream.bus = bus_name
+	
+	
 
 
 func _tilt():
@@ -60,15 +73,27 @@ func set_tail_pos(length_delta):
 	set_eyes_scale(1+value)
 	tail_rect.size.y = starting_tail_len + length_delta
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !dragging:
 		return
 	
 	tail_sprite.global_position.y = get_global_mouse_position().y
 	var length_delta = tail_sprite.position.y - tail_start
 	set_tail_pos(length_delta)
+	set_volume(value)
 
-func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
+
+var old_vol : float = 1
+func set_volume(_value : float):
+	_value = clampf(_value, 0 , 1)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), SfxAutoload.linear_to_db(_value, bus_default_db))
+	
+	var vol_delta : float = abs(old_vol - _value)
+	if vol_delta > tick_interval:
+		sample_stream.play()
+		old_vol = _value
+
+func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		dragging = true
 

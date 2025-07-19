@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciynnnmdh5kys" path="res://Scenes/BarScene/drinks/sfx_objects/collision_stream.tscn" id="2_6w0m7"]
 [ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/sfx_objects/pickup_stream.tscn" id="3_xytuy"]
 [ext_resource type="Resource" uid="uid://drwab4steuc0j" path="res://Scenes/BarScene/bottle_data/rotate.tres" id="4_j8xih"]
-[ext_resource type="Texture2D" uid="uid://c3xaak1l1cih0" path="res://Assets/Placeholders/Rotating_Randy.png" id="5_j8xih"]
+[ext_resource type="Texture2D" uid="uid://ci1mxlbk1he7" path="res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy.png" id="5_j8xih"]
 
 [node name="bottle" type="RigidBody2D"]
 contact_monitor = true
@@ -17,11 +17,11 @@ pickup_stream_scene = ExtResource("3_xytuy")
 bottle_resource = ExtResource("4_j8xih")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.999985, 38)
+position = Vector2(41, 44)
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("5_j8xih")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-0.999985, 38)
 scale = Vector2(0.35, 0.35)
-polygon = PackedVector2Array(-17.1429, -260, -28.5715, -100, -60, -77.1428, -65.7143, 225.714, 65.7142, 225.714, 71.4285, -60, 34.2857, -102.857, 31.4285, -260)
+polygon = PackedVector2Array(-160, -245.714, -68.5715, -65.7143, -157.143, 62.8571, -148.571, 242.857, -8.57147, 360, 214.286, 360, 334.286, 262.857, 374.286, 97.1429, 288.571, -60, 71.4285, -120, -28.5715, -328.571)

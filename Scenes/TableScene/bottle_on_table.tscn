@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b71srrbmadufy"]
+[gd_scene load_steps=4 format=3 uid="uid://b71srrbmadufy"]
 
 [ext_resource type="Script" uid="uid://rrptotrsk588" path="res://Scripts/TableScene/bottle_on_table.gd" id="1_02d8i"]
+[ext_resource type="Texture2D" uid="uid://byu8js1mnwo0o" path="res://Assets/Bottles/default_bottle.png" id="1_iujo8"]
+[ext_resource type="BitMap" uid="uid://dt4hrv2pqdtbg" path="res://Assets/Bottles/default_bottle_mask.png" id="2_8wlhl"]
 
 [node name="BottleOnTable" type="TextureButton"]
+texture_normal = ExtResource("1_iujo8")
+texture_click_mask = ExtResource("2_8wlhl")
 script = ExtResource("1_02d8i")
-
-[connection signal="pressed" from="." to="." method="_on_pressed"]
