@@ -359,8 +359,6 @@ func _on_double_down_button_pressed() -> void:
 				active_player_hand = 1
 			else:
 				_change_state(Global.GAME_STATES.DEALER_TURN)
-	else:
-		Global.not_enough_money.emit()
 	double_down_button.visible = true
 
 #endregion
