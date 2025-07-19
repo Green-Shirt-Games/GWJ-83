@@ -5,6 +5,7 @@ extends Control
 @export var bet_increase_per_round : float = 1.2
 @export var max_bet_multiplier : int = 10
 @export var table : TableScene
+@export var visual_bet_manager_one_hand : BetVisualManager
 @export_group("Internal connections")
 @export var confirm_bet : ButtonWithSFX
 @export var min_bet_button : ButtonWithSFX
@@ -36,6 +37,7 @@ func _ready() -> void:
 
 func _update_bet() -> void:
 	current_bet = min_bet * current_bet_multiplier
+	visual_bet_manager_one_hand.update_bet(current_bet)
 	_update_buttons()
 
 func _update_buttons() -> void:

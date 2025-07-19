@@ -41,7 +41,6 @@ func count_bottles() -> int:
 	return amount
 
 func bottle_pressed(bottle : BottleOnTable) -> void:
-	print(bottle, " is pressed")
 	if bottle.bottle_data:
 		var bottle_had_effect = await Global.table.bottle_pressed(bottle.bottle_data.type)
 		if bottle_had_effect:

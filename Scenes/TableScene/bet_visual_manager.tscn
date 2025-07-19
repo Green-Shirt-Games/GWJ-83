@@ -13,22 +13,12 @@ script = ExtResource("2_qga8h")
 metadata/_custom_type_script = "uid://b7vdsvvfl7npr"
 
 [node name="PileOfChips2" type="Node2D" parent="."]
-position = Vector2(126, -83)
+position = Vector2(125, -85)
 script = ExtResource("2_qga8h")
 metadata/_custom_type_script = "uid://b7vdsvvfl7npr"
 
 [node name="PileOfChips3" type="Node2D" parent="."]
-position = Vector2(-127, -83)
+position = Vector2(-125, -85)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("2_qga8h")
 metadata/_custom_type_script = "uid://b7vdsvvfl7npr"
-
-[node name="debugCamera" type="Camera2D" parent="."]
-
-[node name="Button" type="Button" parent="."]
-offset_left = 91.0
-offset_top = 93.0
-offset_right = 211.0
-offset_bottom = 174.0
-text = "Count chips"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
