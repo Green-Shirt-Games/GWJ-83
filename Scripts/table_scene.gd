@@ -40,7 +40,7 @@ func _ready() -> void:
 	state_changed.connect(bottles_manager.disable_bottles_if_needed)
 	_game_start()
 	_change_state(Global.GAME_STATES.BETTING)
-	_update_money_label()
+	_update_money_label(0)
 
 func _change_state(new_state : Global.GAME_STATES) -> void:
 	current_state = new_state
@@ -235,7 +235,7 @@ func _player_tied(hand_id : int) -> void:
 			Global.money += second_hand_bet
 #endregion
 
-func _update_money_label() -> void:
+func _update_money_label(_old_value) -> void:
 	player_money_label.text = "money: " + str(Global.money)
 
 #region UI buttons

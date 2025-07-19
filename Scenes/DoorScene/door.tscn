@@ -25,61 +25,61 @@ room_to_change_to = 1
 metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="MasterVolumeControl" parent="." instance=ExtResource("4_h6ttj")]
-position = Vector2(169, 180)
+position = Vector2(191, 303)
 scale = Vector2(0.3, 0.3)
 max_length = 500.0
 tilt_delay = 0.4
 
 [node name="MusicVolumeControl" parent="." instance=ExtResource("4_h6ttj")]
-position = Vector2(1564, 212)
+position = Vector2(1586, 335)
 scale = Vector2(0.3, 0.3)
 max_length = 500.0
 tilt_delay = 0.4
 bus_name = "music"
 
 [node name="SfxVolumeControl" parent="." instance=ExtResource("4_h6ttj")]
-position = Vector2(1801, 166)
+position = Vector2(1823, 289)
 scale = Vector2(0.3, 0.3)
 max_length = 500.0
 tilt_delay = 0.4
 bus_name = "sfx"
 
 [node name="DialogVolumeControl" parent="." instance=ExtResource("4_h6ttj")]
-position = Vector2(359, 240)
+position = Vector2(381, 363)
 scale = Vector2(0.3, 0.3)
 max_length = 500.0
 tilt_delay = 0.4
 bus_name = "dialogue"
 
 [node name="Label" type="Label" parent="."]
-offset_left = 35.0
-offset_top = 27.0
-offset_right = 222.0
-offset_bottom = 100.0
+offset_left = 57.0
+offset_top = 150.0
+offset_right = 244.0
+offset_bottom = 223.0
 text = "Master"
 label_settings = ExtResource("5_i5fjo")
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 1468.0
-offset_top = 47.0
-offset_right = 1655.0
-offset_bottom = 120.0
+offset_left = 1490.0
+offset_top = 170.0
+offset_right = 1677.0
+offset_bottom = 243.0
 text = "Music"
 label_settings = ExtResource("5_i5fjo")
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 1752.0
-offset_top = 10.0
-offset_right = 1939.0
-offset_bottom = 83.0
+offset_left = 1774.0
+offset_top = 133.0
+offset_right = 1961.0
+offset_bottom = 206.0
 text = "Sfx"
 label_settings = ExtResource("5_i5fjo")
 
 [node name="Label4" type="Label" parent="."]
-offset_left = 264.0
-offset_top = 67.0
-offset_right = 451.0
-offset_bottom = 140.0
+offset_left = 286.0
+offset_top = 190.0
+offset_right = 473.0
+offset_bottom = 263.0
 text = "Dialog"
 label_settings = ExtResource("5_i5fjo")
 
