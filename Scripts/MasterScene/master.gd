@@ -24,6 +24,7 @@ func _change_room(to : Global.ROOMS) -> void:
 	match current_room:
 		Global.ROOMS.BAR:
 			bar.visible = false
+			bar._reset()
 			set_physics_process(false)
 		Global.ROOMS.TABLE:
 			table.visible = false

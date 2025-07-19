@@ -21,7 +21,7 @@ func _ready() -> void:
 	exit_game.pressed.connect(on_exit)
 
 
-var is_fullscreen := true
+var is_fullscreen := false
 func toggle_fullscreen():
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)

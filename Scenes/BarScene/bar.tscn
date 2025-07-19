@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=52 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dglc8ib8f514v" path="res://Scenes/BarScene/drinks/double_bet_drink.tscn" id="5_y8scv"]
 [ext_resource type="PackedScene" uid="uid://d04kdpyuuofhl" path="res://Scenes/BarScene/drink_poof.tscn" id="6_4b3yy"]
 [ext_resource type="PackedScene" uid="uid://dftcc1l2sbp0" path="res://Scenes/BarScene/drinks/rotate_randy.tscn" id="6_dvsn3"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="7_4b3yy"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="7_6oyxg"]
 [ext_resource type="PackedScene" uid="uid://ccrdulcdxj1cx" path="res://Scenes/BarScene/drinks/peek_shoe.tscn" id="7_8ec30"]
 [ext_resource type="PackedScene" uid="uid://bftown635rtwe" path="res://Scenes/BarScene/drinks/peek_dealer.tscn" id="8_1gf8g"]
@@ -21,11 +20,14 @@
 [ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="10_xi3jk"]
 [ext_resource type="PackedScene" uid="uid://duj1u7756n076" path="res://Scenes/BarScene/drinks/sfx_objects/pickup_stream.tscn" id="11_bii46"]
 [ext_resource type="PackedScene" uid="uid://4bivqmq8y1yo" path="res://Scenes/BarScene/drinks/swap_shoe.tscn" id="11_bq1mk"]
-[ext_resource type="Texture2D" uid="uid://bumieqx7xvnga" path="res://Assets/Placeholders/bottle_desc.png" id="12_xi3jk"]
 [ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="13_xkl5v"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="15_bq1mk"]
 [ext_resource type="AudioStream" uid="uid://d3lnceouftdaf" path="res://Assets/audio/sfx/sfx_registerKaching.wav" id="16_l6nsw"]
+[ext_resource type="Texture2D" uid="uid://cpcnjomf1trnj" path="res://Assets/Placeholders/Black_Jack_Table_Cash_Register_Button.png" id="17_ieg7i"]
+[ext_resource type="Texture2D" uid="uid://bri85n0q5nlu1" path="res://Assets/Placeholders/Black_Jack_Table_Cash_Register_Button_Press.png" id="18_ysudv"]
+[ext_resource type="Texture2D" uid="uid://da40c5xj4yeb7" path="res://Assets/Placeholders/Black_Jack_Table_Cash_Register_Button_Highlight.png" id="19_vemb2"]
 [ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="20_1gf8g"]
+[ext_resource type="LabelSettings" uid="uid://cwy0m2d3v2uhe" path="res://Scenes/LabelSettings/Register_buy_button.tres" id="20_fta1c"]
 [ext_resource type="Resource" uid="uid://bjqn1tba6b8ld" path="res://Scenes/Voicelines/bartender/bartender_noMoney_1.tres" id="20_fviv3"]
 [ext_resource type="Resource" uid="uid://cirx64h2ot0rg" path="res://Scenes/Voicelines/bartender/bartender_noMoney_2.tres" id="21_lv4k3"]
 [ext_resource type="Resource" uid="uid://b7g5qs7vme4uv" path="res://Scenes/Voicelines/bartender/bartender_noMoney_3.tres" id="22_q1qnd"]
@@ -36,6 +38,13 @@
 [ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="26_iif6y"]
 [ext_resource type="Resource" uid="uid://cdaj10ugn55kh" path="res://Scenes/Voicelines/bartender/bartender_full_3.tres" id="26_vemb2"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="27_6pcw6"]
+[ext_resource type="Texture2D" uid="uid://cwysa365f11u4" path="res://Assets/Placeholders/Black_Jack_Table_Information_Box.png" id="35_ieg7i"]
+[ext_resource type="Texture2D" uid="uid://ccfpphfa2i61b" path="res://Assets/Chips/Black_Jack_Chips_Red.png" id="40_ysudv"]
+[ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="41_3biuj"]
+[ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="42_hr7x7"]
+[ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="43_nubj8"]
+[ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="44_hr7x7"]
+[ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="44_w168g"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
 
@@ -204,14 +213,6 @@ freeze = true
 [node name="Register" type="Node2D" parent="."]
 script = ExtResource("3_7xow3")
 
-[node name="Button" type="Button" parent="Register"]
-offset_left = 328.0
-offset_top = 503.0
-offset_right = 489.0
-offset_bottom = 558.0
-text = "BUY"
-script = ExtResource("7_4b3yy")
-
 [node name="BuyArea" type="Node2D" parent="Register"]
 position = Vector2(688, 575)
 
@@ -305,6 +306,27 @@ stream = ExtResource("16_l6nsw")
 max_polyphony = 18
 bus = &"sfx"
 
+[node name="BuyButton" type="Node2D" parent="Register"]
+scale = Vector2(0.51, 0.51)
+
+[node name="TextureButton" type="TextureButton" parent="Register/BuyButton"]
+offset_left = 556.863
+offset_top = 901.961
+offset_right = 1039.86
+offset_bottom = 1092.96
+texture_normal = ExtResource("17_ieg7i")
+texture_pressed = ExtResource("18_ysudv")
+texture_hover = ExtResource("19_vemb2")
+
+[node name="Label" type="Label" parent="Register/BuyButton/TextureButton"]
+layout_mode = 0
+offset_left = 188.235
+offset_top = 64.7058
+offset_right = 279.235
+offset_bottom = 128.706
+text = "Buy"
+label_settings = ExtResource("20_fta1c")
+
 [node name="RoomChangeButton" type="Button" parent="."]
 offset_left = 1809.0
 offset_top = 389.0
@@ -347,17 +369,17 @@ polygon = PackedVector2Array(-14.5459, -189.091, -80, -181.818, -98.1821, -141.8
 
 [node name="HoverUI" type="Sprite2D" parent="."]
 z_index = 3
-position = Vector2(-101, 60)
-scale = Vector2(0.85125, 0.901667)
-texture = ExtResource("12_xi3jk")
-offset = Vector2(-116.274, 205.248)
+position = Vector2(-93, 0)
+scale = Vector2(0.481, 0.51)
+texture = ExtResource("35_ieg7i")
+offset = Vector2(-361.596, 317.013)
 script = ExtResource("13_xkl5v")
 
 [node name="DrinkName" type="Label" parent="HoverUI"]
-offset_left = -269.016
-offset_top = 8.87244
-offset_right = -31.0165
-offset_bottom = 122.872
+offset_left = -544.902
+offset_top = 35.2941
+offset_right = -141.902
+offset_bottom = 192.294
 text = "Double or Die"
 label_settings = ExtResource("25_1gf8g")
 horizontal_alignment = 1
@@ -365,18 +387,45 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Description" type="Label" parent="HoverUI"]
-offset_left = -267.021
-offset_top = 113.047
-offset_right = -29.0217
-offset_bottom = 227.047
+offset_left = -539.121
+offset_top = 227.471
+offset_right = -142.121
+offset_bottom = 502.471
 text = "This is a description of the drink!"
 label_settings = ExtResource("26_iif6y")
 autowrap_mode = 2
 
 [node name="Price" type="Label" parent="HoverUI"]
-offset_left = -170.338
-offset_top = 312.754
-offset_right = -24.3377
-offset_bottom = 389.754
-text = "100"
+offset_left = -379.037
+offset_top = 647.078
+offset_right = -142.037
+offset_bottom = 748.078
+text = "10000"
 label_settings = ExtResource("27_6pcw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="HoverUI"]
+position = Vector2(-493.383, 698.059)
+scale = Vector2(0.862617, 0.883632)
+texture = ExtResource("40_ysudv")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 1751.0
+offset_top = 342.0
+offset_right = 1922.0
+offset_bottom = 489.0
+texture_normal = ExtResource("41_3biuj")
+texture_pressed = ExtResource("42_hr7x7")
+texture_hover = ExtResource("43_nubj8")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("44_hr7x7")
+room_to_change_to = 1
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 51.0
+offset_right = 134.0
+offset_bottom = 90.0
+text = "Table"
+label_settings = ExtResource("44_w168g")
