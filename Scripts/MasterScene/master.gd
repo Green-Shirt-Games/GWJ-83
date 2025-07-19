@@ -10,7 +10,7 @@ var current_room : Global.ROOMS = Global.ROOMS.DOOR
 
 func _ready() -> void:
 	Global.change_room.connect(_change_room)
-	_change_room(Global.ROOMS.TABLE)
+	_change_room(Global.ROOMS.DOOR)
 
 func _change_room(to : Global.ROOMS) -> void:
 	if to == current_room:

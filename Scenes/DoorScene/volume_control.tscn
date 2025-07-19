@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctyw6bsroijy"]
+[gd_scene load_steps=6 format=3 uid="uid://ctyw6bsroijy"]
 
 [ext_resource type="Script" uid="uid://bxgu2sfb477ol" path="res://Scenes/DoorScene/volume_control_imp.gd" id="1_4vnwd"]
 [ext_resource type="Texture2D" uid="uid://b47i36d5ovwnx" path="res://Assets/Placeholders/imp_tail.png" id="1_dyu7i"]
 [ext_resource type="Texture2D" uid="uid://jri8vumbkcgv" path="res://Assets/Placeholders/volume_imp.png" id="2_4vnwd"]
 [ext_resource type="Texture2D" uid="uid://b112o0awrw4os" path="res://Assets/Placeholders/imp_eye.png" id="4_s2w5v"]
+[ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="5_ec5fk"]
 
 [node name="VolumeControl" type="Node2D"]
 script = ExtResource("1_4vnwd")
@@ -45,3 +46,7 @@ scale = Vector2(0.139063, 0.160417)
 texture = ExtResource("4_s2w5v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ec5fk")
+max_polyphony = 10

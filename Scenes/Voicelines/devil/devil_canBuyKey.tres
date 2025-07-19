@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://bvv3mv1aa8w74"]
+
+[ext_resource type="AudioStream" uid="uid://bm1coxl2gubto" path="res://Assets/audio/voice_lines/dealer_canBuyKey.mp3" id="1_afja0"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_q2ces"]
+
+[resource]
+script = ExtResource("1_q2ces")
+text = "Looks like you just won enough to get that key..."
+audio_stream = ExtResource("1_afja0")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"

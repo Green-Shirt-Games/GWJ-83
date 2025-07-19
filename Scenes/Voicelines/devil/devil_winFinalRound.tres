@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VoiceLine" load_steps=3 format=3 uid="uid://na33v6l55jku"]
+
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="1_klifx"]
+[ext_resource type="AudioStream" uid="uid://d46voogtmcl" path="res://Assets/audio/voice_lines/dealer_winFinalRound.mp3" id="1_tab3j"]
+
+[resource]
+script = ExtResource("1_klifx")
+text = "A deal's a deal, mortal. Leave now before I change my mind."
+audio_stream = ExtResource("1_tab3j")
+metadata/_custom_type_script = "uid://b3xr6xsonyukf"
