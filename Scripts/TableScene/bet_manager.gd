@@ -22,6 +22,7 @@ func _prepare_for_bets():
 	if visible:
 		min_bet = roundi(starting_min_bet * (1 + (0.2 * (table.hands_played))))
 		if Global.money > min_bet:
+			@warning_ignore("integer_division")
 			current_max_bet_multiplier = clampi(Global.money / min_bet, 1, 10)
 			current_bet_multiplier = clampi(current_bet_multiplier, 1 , current_max_bet_multiplier)
 		else: # all in
