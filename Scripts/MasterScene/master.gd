@@ -43,12 +43,15 @@ func on_door_opened():
 
 
 func start_final_encounter():
+	end_sprite.visible = true
 	tween = create_tween()
 	tween.tween_property(end_sprite, "scale", end_sprite.scale * 10, 4)
 	await tween.finished
 	_change_room(Global.ROOMS.TABLE)
 	tween = create_tween()
 	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
+	await  tween.finished
+	end_sprite.visible = false
 
 
 func show_win_splash():

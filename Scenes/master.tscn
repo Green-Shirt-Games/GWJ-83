@@ -65,6 +65,7 @@ text = "200"
 label_settings = ExtResource("6_tdhcf")
 
 [node name="endTransition" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.000693898, 0.000693898, 0.000693898, 1)
 z_index = 25
 position = Vector2(929, 543)
