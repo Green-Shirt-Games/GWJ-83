@@ -15,6 +15,11 @@ extends Control
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
 
+signal player_blackjack
+signal dealer_blackjack
+signal player_win
+signal dealer_win
+signal tie
 
 # temp code, to be moved to separate GamaManager, to keep data about table between scene changes
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=16 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 [ext_resource type="PackedScene" uid="uid://cdnnc236wpjht" path="res://Scenes/TableScene/bet_visual_manager.tscn" id="11_6mqhf"]
+[ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="13_remoh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -259,6 +260,10 @@ text = "dupe top card
 
 [node name="ChipsFlyAwayTo" type="Marker2D" parent="."]
 position = Vector2(2083, 1150)
+
+[node name="VoiceLines" parent="." node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
+position = Vector2(1183, 267)
+table_parent = NodePath("..")
 
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
