@@ -25,6 +25,7 @@ func _ready() -> void:
 
 func update_chips_amount() -> void:
 	chips_amount_in_pile.clear()
+	SfxAutoload.place_chips()
 	for i in get_child_count():
 		if get_child(i) is Chip and not get_child(i).is_queued_for_deletion():
 			chips_amount_in_pile[(get_child(i) as Chip).type] = chips_amount_in_pile.get((get_child(i) as Chip).type, 0) + 1

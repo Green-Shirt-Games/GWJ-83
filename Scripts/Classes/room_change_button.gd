@@ -7,3 +7,4 @@ extends ButtonWithSFX
 
 func _pressed() -> void:
 	Global.change_room.emit(room_to_change_to)
+	SfxAutoload.player_rotate()

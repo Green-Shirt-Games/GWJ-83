@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=15 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
 [ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="PackedScene" uid="uid://dwuji6cv1kqcf" path="res://Scenes/TableScene/bet_manager.tscn" id="4_ikeqq"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
+[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="5_gauwj"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
@@ -96,6 +97,8 @@ offset_top = 898.0
 offset_right = 794.0
 offset_bottom = 978.0
 text = "Stand"
+script = ExtResource("5_gauwj")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
 
 [node name="HitButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
@@ -104,6 +107,8 @@ offset_top = 998.0
 offset_right = 766.0
 offset_bottom = 1067.0
 text = "Hit"
+script = ExtResource("5_gauwj")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
 
 [node name="DoubleDownButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
@@ -112,6 +117,8 @@ offset_top = 900.0
 offset_right = 1232.0
 offset_bottom = 976.0
 text = "DoubleDown"
+script = ExtResource("5_gauwj")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
 
 [node name="SplitButton" type="Button" parent="PlayButtons"]
 layout_mode = 0
@@ -120,6 +127,8 @@ offset_top = 1002.0
 offset_right = 1246.0
 offset_bottom = 1059.0
 text = "Split"
+script = ExtResource("5_gauwj")
+metadata/_custom_type_script = "uid://ck87c6ecbimix"
 
 [node name="ScenePlan" type="TextureRect" parent="."]
 visible = false

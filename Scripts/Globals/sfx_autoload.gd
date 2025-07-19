@@ -57,7 +57,7 @@ func player_rotate():
 func draw_card():
 	$draw_card.play()
 
-func place_card():
+func place_card(): # card flip
 	$place_card.play()
 	
 func shuffle_cards():

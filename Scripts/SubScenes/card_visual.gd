@@ -43,6 +43,7 @@ func flip(to_face_up : bool):
 	if to_face_up == face_up:
 		return
 	
+	SfxAutoload.place_card()
 	var tween_1 := get_tree().create_tween()
 	await tween_1.tween_property(self, "scale", Vector2(0.01, 1), DEFAULT_FLIP_TIME).finished
 	face_up = to_face_up

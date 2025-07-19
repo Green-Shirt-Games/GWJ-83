@@ -132,6 +132,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 		Global.GAME_STATES.RESET:
 			play_buttons_container.visible = false
 			bet_manager.visible = false
+			
 			for card in dealer_hand.get_children():
 				if !(card as CardVisual).is_frozen:
 					move_card_to_discard(card)
@@ -153,6 +154,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			# wait for animation to finish
 			hands_played += 1
 			await get_tree().create_timer(default_timer_timeout).timeout # TODO Connect to all card fly speed
+			SfxAutoload.shuffle_cards()
 			print("new game")
 			_change_state(Global.GAME_STATES.BETTING)
 
@@ -211,6 +213,7 @@ func _draw_card() -> CardVisual:
 	if cards_table.shoe_card:
 		cards_table.remove_peeked_shoe()
 	cards_table.add_child(card)
+	SfxAutoload.draw_card()
 	card.position = cards_table.shoe_marker.position
 	return card
 #endregion

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://s08pio8docya" path="res://Scripts/TableScene/bet_manager.gd" id="1_4spt8"]
 [ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="2_l2x8t"]
 
-[node name="BetManager" type="Control" node_paths=PackedStringArray("table", "confirm_bet", "min_bet_button", "lower_bet_button", "increase_bet_button", "max_bet_button")]
+[node name="BetManager" type="Control" node_paths=PackedStringArray("confirm_bet", "min_bet_button", "lower_bet_button", "increase_bet_button", "max_bet_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4spt8")
-table = NodePath("")
 confirm_bet = NodePath("BetButton")
 min_bet_button = NodePath("MinBetButton")
 lower_bet_button = NodePath("DecreaseBetButton")

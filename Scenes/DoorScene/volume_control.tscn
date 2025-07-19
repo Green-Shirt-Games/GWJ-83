@@ -15,6 +15,7 @@ offset_top = 133.0
 offset_right = 24.0
 offset_bottom = 209.0
 pivot_offset = Vector2(24, 0)
+mouse_filter = 2
 color = Color(0.709804, 0, 0.0705882, 1)
 
 [node name="ImpTail" type="Sprite2D" parent="."]
