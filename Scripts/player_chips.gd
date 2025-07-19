@@ -6,6 +6,7 @@ extends Node2D
 @export var fade_time : float = 0.5
 @onready var value_label : Label = $value
 @onready var delta_label : Label = $delta
+@onready var stream_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
 	Global.money_changed.connect(_on_money_change)
@@ -28,6 +29,7 @@ func _on_money_change(old_value):
 func _on_money_gained(gained_amount : int):
 	delta_label.modulate = gained_color
 	delta_label.text = "+" + str(gained_amount)
+	stream_player.play()
 	fade_in_and_out()
 
 
