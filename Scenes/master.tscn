@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://d28q5hciylyr6"]
+[gd_scene load_steps=10 format=3 uid="uid://d28q5hciylyr6"]
 
 [ext_resource type="Script" uid="uid://cj8m3c8gns0dc" path="res://Scripts/MasterScene/master.gd" id="1_tdhcf"]
 [ext_resource type="PackedScene" uid="uid://csmtb1unug2lj" path="res://Scenes/BarScene/bar.tscn" id="2_ofqse"]
 [ext_resource type="PackedScene" uid="uid://c3fhimy2ae3ts" path="res://Scenes/table_scene.tscn" id="3_ofqse"]
 [ext_resource type="PackedScene" uid="uid://dt5odtoulb7f" path="res://Scenes/DoorScene/door.tscn" id="4_2xxif"]
-[ext_resource type="Script" path="res://Scripts/player_chips.gd" id="5_selfg"]
+[ext_resource type="Script" uid="uid://c4smxcwr3feuk" path="res://Scripts/player_chips.gd" id="5_selfg"]
 [ext_resource type="AudioStream" uid="uid://d3lnceouftdaf" path="res://Assets/audio/sfx/sfx_registerKaching.wav" id="6_ofqse"]
 [ext_resource type="LabelSettings" uid="uid://b54ohoij3c5xg" path="res://Scenes/LabelSettings/global_chips_label.tres" id="6_tdhcf"]
+[ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://Assets/Placeholders/door.png" id="8_ofqse"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_selfg"]
 
@@ -62,3 +63,14 @@ offset_right = 193.0
 offset_bottom = 111.0
 text = "200"
 label_settings = ExtResource("6_tdhcf")
+
+[node name="endTransition" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.000693898, 0.000693898, 0.000693898, 1)
+z_index = 25
+position = Vector2(929, 543)
+scale = Vector2(0.272, 0.681)
+texture = ExtResource("8_ofqse")
+
+[node name="EndSplash" type="Node2D" parent="."]
+visible = false

@@ -9,7 +9,7 @@ func _ready() -> void:
 	door_area.mouse_entered.connect(_on_mouse_enter)
 	door_area.mouse_exited.connect(_on_mouse_exit)
 
-func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
 		_on_select()
 

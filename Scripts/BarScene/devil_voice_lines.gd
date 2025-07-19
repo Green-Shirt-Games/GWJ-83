@@ -12,15 +12,29 @@ class_name DevilVoiceLines
 @export var free_drink : VoiceLine
 
 @export var cooldown : float = 3.0
+@export var table_parent : TableScene
 var on_cooldown : bool = false
 
 @onready var stream_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var voiceline_text_area : Label = $Sprite2D/Label
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
+var greetings_said : bool = false
+
 func _ready() -> void:
 	visible = false
 	stream_player.finished.connect(_on_greetings_finished)
+	table_parent.tie.connect(on_push)
+	table_parent.player_blackjack.connect(on_player_blackjack)
+	table_parent.dealer_blackjack.connect(on_dealer_blackjack)
+	table_parent.player_win.connect(on_player_win)
+	table_parent.dealer_win.connect(on_dealer_win)
+	Global.change_room.connect(_on_room_change)
+
+func _on_room_change(room : Global.ROOMS):
+	if !greetings_said and room == Global.ROOMS.TABLE:
+		greetings_said = true
+		on_greetings()
 
 func on_dealer_blackjack():
 	_play(dealer_blackjack.pick_random())

@@ -3,14 +3,19 @@ extends Control
 
 @onready var bar := $Bar
 @onready var table := $TableScene
-@onready var door := $Door
+@onready var door : Door = $Door
+@onready var end_sprite : Sprite2D = $endTransition
 
 
-var current_room : Global.ROOMS = -1
+var current_room : Global.ROOMS = Global.ROOMS.BAR
 
 func _ready() -> void:
+	
 	Global.change_room.connect(_change_room)
+	door.door_opened.connect(on_door_opened)
+	
 	_change_room(Global.ROOMS.DOOR)
+	
 
 func _change_room(to : Global.ROOMS) -> void:
 	if to == current_room:
@@ -33,3 +38,28 @@ func _change_room(to : Global.ROOMS) -> void:
 		Global.ROOMS.DOOR:
 			door.visible = true
 	current_room = to
+
+var tween : Tween
+func on_door_opened():
+	if door.door_open_count == 1: start_final_encounter()
+	if door.door_open_count > 1: show_win_splash()
+
+
+func start_final_encounter():
+	end_sprite.visible = true
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", end_sprite.scale * 10, 4)
+	await tween.finished
+	_change_room(Global.ROOMS.TABLE)
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
+	await  tween.finished
+	end_sprite.visible = false
+
+
+func show_win_splash():
+	pass
+
+
+func show_you_lose_splash():
+	pass
