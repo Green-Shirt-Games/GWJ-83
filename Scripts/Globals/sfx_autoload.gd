@@ -48,3 +48,35 @@ func linear_to_db(volume : float, max_db : float) -> float:
 	if volume <= 0.0:
 		return min_volume
 	return lerp(min_volume, max_db, pow(volume, 0.5))
+
+##when player rotates to different scene:
+func player_rotate():
+	$player_rotate.play()
+
+##sfx functions for table scene:
+func draw_card():
+	$draw_card.play()
+
+func place_card():
+	$place_card.play()
+	
+func shuffle_cards():
+	$shuffle_cards.play()
+	
+func place_chips():
+	$place_chips.play()
+
+func clear_chips():
+	$clear_chips.play()
+
+func consume_drink():
+	$consume_drink.play()
+
+func dealer_cigar():
+	$dealer_cigar.play()
+	
+func dealer_laugh():
+	$dealer_laugh.play()
+
+func table_button():
+	$table_button.play()
