@@ -46,6 +46,7 @@ func _on_buy_pressed(_bottles : Array[Bottle], _total_price : int):
 	register.clear()
 	
 	for bottle in _bottles:
+		bottles.erase(bottle)
 		bottle.queue_free() #TODO
 		var drink_poof = drink_poof_scene.instantiate()
 		drink_poof.global_position = bottle.global_position
