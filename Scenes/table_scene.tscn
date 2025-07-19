@@ -65,6 +65,7 @@ render_target_update_mode = 4
 [node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
 
 [node name="PlayerMoneyLabel" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 326.0
 offset_bottom = 108.0
