@@ -208,6 +208,8 @@ func _add_card_to_dealer_hand(face_up : bool) -> void:
 func _draw_card() -> CardVisual:
 	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
 	card.get_data(draw_deck.pop_front())
+	if cards_table.shoe_card:
+		cards_table.remove_peeked_shoe()
 	cards_table.add_child(card)
 	card.position = cards_table.shoe_marker.position
 	return card
@@ -307,10 +309,13 @@ func _on_draw_cards_button_pressed() -> void:
 	_change_state(Global.GAME_STATES.DEALING)
 
 func _on_hit_button_pressed() -> void:
-	_add_card_to_player_hand()
+	play_buttons_container.visible = false
+	await _add_card_to_player_hand()
+	play_buttons_container.visible = true
 
 func _on_split_button_pressed() -> void:
 	if Global.money >= bet:
+		split_button.visible = false
 		Global.money -= bet
 		second_hand_bet = bet
 		player_hands[1].is_active = true
@@ -333,6 +338,7 @@ func _on_stand_button_pressed() -> void:
 		_change_state(Global.GAME_STATES.DEALER_TURN)
 
 func _on_double_down_button_pressed() -> void:
+	double_down_button.visible = false
 	if _double_bet():
 		await _add_card_to_player_hand()
 		if player_hands[active_player_hand].bust:
@@ -347,19 +353,23 @@ func _on_double_down_button_pressed() -> void:
 				_change_state(Global.GAME_STATES.DEALER_TURN)
 	else:
 		Global.not_enough_money.emit()
+	double_down_button.visible = true
 
 #endregion
 
 func _double_bet() -> bool:
-	if Global.money >= bet:
-		Global.money -= bet
-		if active_player_hand == 0:
-			bet *= 2
+	if active_player_hand == 0:
+		if Global.money >= bet:
+			Global.money -= bet
 		else:
-			second_hand_bet *= 2
-		return true
+			return false
 	else:
-		return false
+		if Global.money >= second_hand_bet:
+			Global.money -= second_hand_bet
+			second_hand_bet *= 2
+		else:
+			return false
+	return true
 
 func update_bet_manager() -> void:
 	bet_manager._prepare_for_bets()
@@ -375,12 +385,11 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			else:
 				return false
 		BottleData.TYPE.PEEK_SHOE:
-			pass # TODO
-			# Plan:
-			# create a copy of top shoe card, flip it. On draw - q_free that card
+			if cards_table.can_peek_shoe():
+				cards_table.peek_shoe()
+			else:
+				return false
 		BottleData.TYPE.SWAP_DEALER:
-			pass
-			# pick random card in both active hands
 			if player_hands[active_player_hand].get_cards_amount() > 0 and dealer_hand.get_cards_amount() > 0:
 				var player_card_to_swap : CardVisual = player_hands[active_player_hand].get_children().pick_random()
 				var dealer_card_to_swap : CardVisual = dealer_hand.get_children().pick_random()

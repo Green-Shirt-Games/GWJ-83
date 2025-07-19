@@ -8,6 +8,8 @@ extends Node2D
 @export var discard_marker : Marker2D
 @export var table_size : ColorRect
 
+var shoe_card : CardVisual = null
+
 func _ready() -> void:
 	adjust_hands_positions()
 
@@ -50,14 +52,19 @@ func move_card_to_shoe(card_to_move : CardVisual):
 	tween.tween_property(card_to_move, "position", shoe_marker.position, 0.2) # TODO attach to global fly timer
 	await tween.finished
 
+func can_peek_shoe() -> bool:
+	return shoe_card == null and Global.table.draw_deck.size() > 0
 
-func _on_button_pressed() -> void:
-	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
-	card.get_data(CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.CLUB))
-	player_hands[0].add_child(card)
+func peek_shoe():
+	if shoe_card:
+		return false
+	#var shoe_card = CardVisual.new()
+	shoe_card.card_data = Global.table.draw_deck[0].duplicate()
+	add_child(shoe_card)
+	shoe_card.position = shoe_marker.position
+	await shoe_card.reveal()
 
-
-func _on_button_2_pressed() -> void:
-	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
-	card.get_data(CardData.new(Global.CARD_VALUES.VA, Global.CARD_SUITS.CLUB))
-	player_hands[1].add_child(card)
+func remove_peeked_shoe() -> void:
+	if shoe_card:
+		shoe_card.queue_free()
+		shoe_card = null
