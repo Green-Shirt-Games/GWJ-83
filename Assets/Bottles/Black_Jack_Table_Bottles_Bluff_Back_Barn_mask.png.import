@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dsbw7hyt4orav"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Bluff_Back_Barn_mask.png-fbb4d7ff0d0e6a18105ff52edcd42c75.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Bluff_Back_Barn_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Bluff_Back_Barn_mask.png-fbb4d7ff0d0e6a18105ff52edcd42c75.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

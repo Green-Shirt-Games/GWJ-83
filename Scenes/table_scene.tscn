@@ -1,20 +1,36 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=34 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
-[ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="PackedScene" uid="uid://dwuji6cv1kqcf" path="res://Scenes/TableScene/bet_manager.tscn" id="4_ikeqq"]
 [ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="5_gauwj"]
+[ext_resource type="Texture2D" uid="uid://4as7h0yo7j4y" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_normal.png" id="6_3yf7e"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
+[ext_resource type="Texture2D" uid="uid://c3brbwqrde6bm" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_pressed.png" id="7_3hac6"]
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
+[ext_resource type="Texture2D" uid="uid://dm10lmhkdoew" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_hover.png" id="8_jv1fb"]
+[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
+[ext_resource type="BitMap" uid="uid://3b1w51dr1vvq" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png" id="9_wyg6t"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
+[ext_resource type="Texture2D" uid="uid://qycr6t4senaq" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_normal.png" id="10_yrntg"]
 [ext_resource type="PackedScene" uid="uid://cdnnc236wpjht" path="res://Scenes/TableScene/bet_visual_manager.tscn" id="11_6mqhf"]
+[ext_resource type="Texture2D" uid="uid://boja6q5vhx2u8" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_pressed.png" id="11_jv1fb"]
+[ext_resource type="BitMap" uid="uid://hhekyhpma243" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_mask.png" id="11_p3h0j"]
+[ext_resource type="Texture2D" uid="uid://beam2bqdu0bdj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_normal.png" id="12_rkxeq"]
+[ext_resource type="Texture2D" uid="uid://dm5dg4dwx2sui" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_hover.png" id="12_wyg6t"]
+[ext_resource type="BitMap" uid="uid://c685x1dijr7qj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_mask.png" id="13_d8idy"]
 [ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="13_remoh"]
 [ext_resource type="Texture2D" uid="uid://8e3bxteo0s0m" path="res://Assets/BlackJackTable/Black_Jack_Table_Shoe.png" id="14_p5xy4"]
+[ext_resource type="Texture2D" uid="uid://ynmi16j04t5s" path="res://Assets/BlackJackTable/TableSpecificButtons/split_normal.png" id="14_v8qop"]
+[ext_resource type="BitMap" uid="uid://b21ig7hqs3bcs" path="res://Assets/BlackJackTable/TableSpecificButtons/split_mask.png" id="15_odtw8"]
 [ext_resource type="Texture2D" uid="uid://n1d1pv8tutur" path="res://Assets/BlackJackTable/Black_Jack_Table_Discard.png" id="15_pxcaq"]
+[ext_resource type="Texture2D" uid="uid://4vroj44mqqtj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_pressed.png" id="15_yrntg"]
+[ext_resource type="Texture2D" uid="uid://dyobldncyt57m" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_hover.png" id="16_p3h0j"]
+[ext_resource type="Texture2D" uid="uid://cp3c385nnkvrj" path="res://Assets/ScenePlans/Black_Jack_Table_Button_Placements.png" id="16_ymulg"]
+[ext_resource type="Texture2D" uid="uid://d2ekd3q43altd" path="res://Assets/BlackJackTable/TableSpecificButtons/split_pressed.png" id="19_rkxeq"]
+[ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -40,16 +56,16 @@ bet_manager = NodePath("BetManager")
 bottles_manager = NodePath("BottlesOnTableManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 play_buttons_container = NodePath("PlayButtons")
-stand_button = NodePath("PlayButtons/StandButton")
-hit_button = NodePath("PlayButtons/HitButton")
-split_button = NodePath("PlayButtons/SplitButton")
-double_down_button = NodePath("PlayButtons/DoubleDownButton")
+stand_button = NodePath("PlayButtons/StandTextureButton")
+hit_button = NodePath("PlayButtons/HitTextureButton")
+split_button = NodePath("PlayButtons/SplitTextureButton")
+double_down_button = NodePath("PlayButtons/DoubeDownTextureButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 change_room_to_bar_button = NodePath("ChangeRoomToBar")
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")
-discard_pile_visual = NodePath("Discard")
+discard_pile_visual = NodePath("TableVisualElements/Discard")
 metadata/_edit_lock_ = true
 
 [node name="CardsOnTable" type="TextureRect" parent="."]
@@ -60,6 +76,7 @@ offset_right = 13127.0
 offset_bottom = 2462.0
 scale = Vector2(0.146261, 0.151635)
 texture = SubResource("ViewportTexture_mqeqr")
+metadata/_edit_lock_ = true
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]
 disable_3d = true
@@ -86,7 +103,6 @@ table = NodePath("..")
 visual_bet_manager_one_hand = NodePath("../OnlyPlayerHandBetVisual")
 
 [node name="PlayButtons" type="Control" parent="."]
-visible = false
 z_index = 99
 layout_mode = 1
 anchors_preset = 15
@@ -97,49 +113,78 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="StandButton" type="Button" parent="PlayButtons"]
+[node name="HitTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 638.0
-offset_top = 898.0
-offset_right = 794.0
-offset_bottom = 978.0
-text = "Stand"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.369792
+anchor_top = 0.851852
+anchor_right = 0.452083
+anchor_bottom = 0.899074
+offset_top = -6.10352e-05
+texture_normal = ExtResource("7_3hac6")
+texture_pressed = ExtResource("6_3yf7e")
+texture_hover = ExtResource("8_jv1fb")
+texture_click_mask = ExtResource("9_wyg6t")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_custom_type_script = "uid://b137uwxn5h5uc"
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="HitButton" type="Button" parent="PlayButtons"]
+[node name="StandTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 629.0
-offset_top = 998.0
-offset_right = 766.0
-offset_bottom = 1067.0
-text = "Hit"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.522917
+anchor_top = 0.852778
+anchor_right = 0.602604
+anchor_bottom = 0.898148
+offset_bottom = 6.10352e-05
+texture_normal = ExtResource("11_jv1fb")
+texture_pressed = ExtResource("10_yrntg")
+texture_hover = ExtResource("12_wyg6t")
+texture_click_mask = ExtResource("11_p3h0j")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_custom_type_script = "uid://b137uwxn5h5uc"
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="DoubleDownButton" type="Button" parent="PlayButtons"]
+[node name="DoubeDownTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 1069.0
-offset_top = 900.0
-offset_right = 1232.0
-offset_bottom = 976.0
-text = "DoubleDown"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.348437
+anchor_top = 0.92963
+anchor_right = 0.446354
+anchor_bottom = 0.992593
+texture_normal = ExtResource("15_yrntg")
+texture_pressed = ExtResource("12_rkxeq")
+texture_hover = ExtResource("16_p3h0j")
+texture_click_mask = ExtResource("13_d8idy")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_custom_type_script = "uid://b137uwxn5h5uc"
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="SplitButton" type="Button" parent="PlayButtons"]
+[node name="SplitTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 1097.0
-offset_top = 1002.0
-offset_right = 1246.0
-offset_bottom = 1059.0
-text = "Split"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.523958
+anchor_top = 0.928704
+anchor_right = 0.620833
+anchor_bottom = 0.991667
+texture_normal = ExtResource("19_rkxeq")
+texture_pressed = ExtResource("14_v8qop")
+texture_hover = ExtResource("20_d8idy")
+texture_click_mask = ExtResource("15_odtw8")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_custom_type_script = "uid://b137uwxn5h5uc"
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
 [node name="ScenePlan" type="TextureRect" parent="."]
 visible = false
-z_index = -10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -147,9 +192,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_14o7i")
-expand_mode = 1
+texture = ExtResource("16_ymulg")
+expand_mode = 5
 metadata/_edit_lock_ = true
+
+[node name="TableVisualElements" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Shoe" type="TextureRect" parent="TableVisualElements"]
+layout_mode = 0
+anchor_left = 0.721875
+anchor_top = 0.362037
+anchor_right = 1.05156
+anchor_bottom = 0.808333
+mouse_filter = 2
+texture = ExtResource("14_p5xy4")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Discard" type="TextureRect" parent="TableVisualElements"]
+z_index = 1
+layout_mode = 0
+anchor_left = 0.149479
+anchor_top = 0.57963
+anchor_right = 0.266146
+anchor_bottom = 0.710185
+offset_right = -3.05176e-05
+mouse_filter = 2
+texture = ExtResource("15_pxcaq")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="SceneBackground" type="Control" parent="."]
 layout_mode = 1
@@ -162,7 +242,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Curtain" type="TextureRect" parent="SceneBackground"]
-z_index = -10
+z_index = -99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,7 +270,7 @@ stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="Decorations" type="TextureRect" parent="SceneBackground"]
-z_index = 5
+z_index = 99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,6 +309,7 @@ bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), Node
 stages_where_player_can_drink = Array[int]([3])
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
+position = Vector2(45, -40)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
 position = Vector2(196, 948)
@@ -247,12 +328,15 @@ position = Vector2(487, 948)
 
 [node name="OnlyPlayerHandBetVisual" parent="." instance=ExtResource("11_6mqhf")]
 position = Vector2(936, 978)
+scale = Vector2(0.75, 0.75)
 
 [node name="PlayerHandBetVisual_0" parent="." instance=ExtResource("11_6mqhf")]
-position = Vector2(736, 978)
+position = Vector2(601, 1000)
+scale = Vector2(0.75, 0.75)
 
 [node name="PlayerHandBetVisual_1" parent="." instance=ExtResource("11_6mqhf")]
-position = Vector2(1136, 978)
+position = Vector2(1308, 1000)
+scale = Vector2(0.75, 0.75)
 
 [node name="debug_dupe_top_card" type="Button" parent="."]
 layout_mode = 0
@@ -270,35 +354,8 @@ position = Vector2(2083, 1150)
 position = Vector2(1183, 267)
 table_parent = NodePath("..")
 
-[node name="Shoe" type="TextureRect" parent="."]
-layout_mode = 0
-anchor_left = 0.721875
-anchor_top = 0.362037
-anchor_right = 1.05156
-anchor_bottom = 0.808333
-offset_right = -0.00012207
-mouse_filter = 2
-texture = ExtResource("14_p5xy4")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="Discard" type="TextureRect" parent="."]
-z_index = 1
-layout_mode = 0
-anchor_left = 0.149479
-anchor_top = 0.57963
-anchor_right = 0.266146
-anchor_bottom = 0.710185
-offset_top = 6.10352e-05
-mouse_filter = 2
-texture = ExtResource("15_pxcaq")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
-[connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
-[connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
-[connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
+[connection signal="pressed" from="PlayButtons/HitTextureButton" to="." method="_on_hit_button_pressed"]
+[connection signal="pressed" from="PlayButtons/StandTextureButton" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="PlayButtons/DoubeDownTextureButton" to="." method="_on_double_down_button_pressed"]
+[connection signal="pressed" from="PlayButtons/SplitTextureButton" to="." method="_on_split_button_pressed"]
 [connection signal="pressed" from="debug_dupe_top_card" to="." method="_on_debug_dupe_top_card_pressed"]

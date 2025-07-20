@@ -37,6 +37,36 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 		"texture" : "res://Assets/Bottles/default_bottle.png" ,
 		"mask" : "res://Assets/Bottles/default_bottle.png",
 		"pressed" : "res://Assets/Bottles/default_bottle_pressed.png" ,
+	} ,
+	"peek_deeler" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin_highlight.png" ,
+	} ,
+	"peek_shoe" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray_highlight.png" ,
+	} ,
+	"swap_dealer" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
+	} ,
+	"shoe_swap" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail_highlight.png" ,
+	},
+	"rotate" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy_mask.png",
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy_highlight.png"
+	} ,
+	"double" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty_highlight.png"
 	}
 }
 

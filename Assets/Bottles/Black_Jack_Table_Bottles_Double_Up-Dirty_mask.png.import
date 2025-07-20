@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dangnnsk6stlt"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Double_Up-Dirty_mask.png-c5fd81b276ade4d88e57be57b1fb48ba.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Double_Up-Dirty_mask.png-c5fd81b276ade4d88e57be57b1fb48ba.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

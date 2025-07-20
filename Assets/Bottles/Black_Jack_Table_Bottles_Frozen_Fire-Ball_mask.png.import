@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ckq3nm68ms8nn"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Frozen_Fire-Ball_mask.png-5163d703e94863c79d7043b0f2b2780f.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Frozen_Fire-Ball_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Frozen_Fire-Ball_mask.png-5163d703e94863c79d7043b0f2b2780f.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

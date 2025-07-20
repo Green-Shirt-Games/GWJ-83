@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://hhekyhpma243"
+path="res://.godot/imported/stand_mask.png-bdca251e6512687e2188d4aa2cc775e7.res"
+
+[deps]
+
+source_file="res://Assets/BlackJackTable/TableSpecificButtons/stand_mask.png"
+dest_files=["res://.godot/imported/stand_mask.png-bdca251e6512687e2188d4aa2cc775e7.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
