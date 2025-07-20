@@ -53,7 +53,7 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 	"swap_dealer" : {
 		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop.png" ,
 		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
-		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_highlight.png" ,
 	} ,
 	"shoe_swap" : {
 		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail.png" ,

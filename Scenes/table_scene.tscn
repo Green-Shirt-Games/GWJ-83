@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
 [ext_resource type="Texture2D" uid="uid://dm10lmhkdoew" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_hover.png" id="8_jv1fb"]
-[ext_resource type="Script" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
+[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
 [ext_resource type="BitMap" uid="uid://3b1w51dr1vvq" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png" id="9_wyg6t"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://qycr6t4senaq" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_normal.png" id="10_yrntg"]
@@ -60,7 +60,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +83,7 @@ bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePat
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")
 discard_pile_visual = NodePath("TableVisualElements/Discard")
+shoe_visual_position = NodePath("ShoeVisualLocation")
 metadata/_edit_lock_ = true
 
 [node name="CardsOnTable" type="TextureRect" parent="."]
@@ -305,19 +306,19 @@ hover_ui = NodePath("../HoverUI")
 position = Vector2(45, -40)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(196, 948)
+position = Vector2(1, 882)
 
 [node name="MarkerForBottle1" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(265, 948)
+position = Vector2(79, 930)
 
 [node name="MarkerForBottle2" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(338, 948)
+position = Vector2(175, 974)
 
 [node name="MarkerForBottle3" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(408, 948)
+position = Vector2(266, 1019)
 
 [node name="MarkerForBottle4" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(487, 948)
+position = Vector2(368, 1065)
 
 [node name="OnlyPlayerHandBetVisual" parent="." instance=ExtResource("11_6mqhf")]
 position = Vector2(936, 978)
@@ -340,8 +341,19 @@ offset_bottom = 577.0
 text = "dupe top card
 (split check)"
 
+[node name="debug_test_shuffle" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1430.0
+offset_top = 530.0
+offset_right = 1593.0
+offset_bottom = 561.0
+text = "Test discard moving"
+
 [node name="ChipsFlyAwayTo" type="Marker2D" parent="."]
 position = Vector2(2083, 1150)
+
+[node name="ShoeVisualLocation" type="Marker2D" parent="."]
+position = Vector2(1430, 740)
 
 [node name="Devil" type="Node2D" parent="."]
 script = ExtResource("31_odtw8")
@@ -457,3 +469,4 @@ texture = ExtResource("44_gdkb8")
 [connection signal="pressed" from="PlayButtons/DoubeDownTextureButton" to="." method="_on_double_down_button_pressed"]
 [connection signal="pressed" from="PlayButtons/SplitTextureButton" to="." method="_on_split_button_pressed"]
 [connection signal="pressed" from="debug_dupe_top_card" to="." method="_on_debug_dupe_top_card_pressed"]
+[connection signal="pressed" from="debug_test_shuffle" to="." method="_on_debug_test_shuffle_pressed"]

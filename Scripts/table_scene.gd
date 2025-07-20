@@ -19,6 +19,7 @@ extends Control
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
 @export var discard_pile_visual : TextureRect
+@export var shoe_visual_position : Marker2D
 
 signal player_blackjack
 signal dealer_blackjack
@@ -70,6 +71,7 @@ func _ready() -> void:
 func _game_start() -> void:
 	_prepare_deck()
 	_reset_deck()
+	discard_pile_visual.visible = false
 
 func _prepare_deck() -> void:
 	for suit in Global.CARD_SUITS.size():
@@ -82,9 +84,9 @@ func _prepare_deck() -> void:
 
 func _reset_deck() -> void:
 	if !discard_deck.is_empty():
+		await move_discard_to_shoe_and_hide()
 		draw_deck.append_array(discard_deck)
 		discard_deck.clear()
-	discard_pile_visual.visible = false
 	if visible:
 		SfxAutoload.shuffle_cards()
 	draw_deck.shuffle()
@@ -228,7 +230,6 @@ func _reveal_dealers_hand(full : bool = false) -> void:
 
 func _draw_card() -> CardVisual:
 	var card : CardVisual
-	print(cards_table.shoe_card)
 	if cards_table.shoe_card:
 		SfxAutoload.draw_card()
 		return cards_table.pass_shoe_revealed_card()
@@ -341,6 +342,16 @@ func move_chips_towards_player(bet_manager_of_those_chips : BetVisualManager):
 	await tween.finished
 	bet_manager_of_those_chips.update_bet(0)
 	bet_manager_of_those_chips.reset_position()
+
+func move_discard_to_shoe_and_hide():
+	var tween : Tween = get_tree().create_tween()
+	var discard_position = discard_pile_visual.position
+	await tween.tween_property(discard_pile_visual,
+			"position",
+			shoe_visual_position.position - (discard_pile_visual.get_rect().size / 2),
+			default_card_fly_time).finished
+	discard_pile_visual.visible = false
+	discard_pile_visual.position = discard_position
 #endregion
 
 #region UI buttons
@@ -572,3 +583,7 @@ func _update_active_hand_visibility() -> void:
 	else:
 		for hand in player_hands:
 			hand.update_visibility(true)
+
+
+func _on_debug_test_shuffle_pressed() -> void:
+	_reset_deck()
