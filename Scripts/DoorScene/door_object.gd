@@ -3,6 +3,8 @@ extends Sprite2D
 
 @onready var door_area : Area2D = $Area2D
 @onready var locked_audio : AudioStreamPlayer2D = $AudioStreamPlayer2D
+@export var unlockedBackground : Texture2D
+@export var backgroundSprite : Sprite2D
 var locked : bool = true
 var door_open_count : int = 0
 
@@ -26,6 +28,7 @@ func _on_select():
 
 
 func _unlock():
+	backgroundSprite.texture = unlockedBackground
 	locked = false
 
 
