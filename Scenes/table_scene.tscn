@@ -303,7 +303,7 @@ stages_where_player_can_drink = Array[int]([3])
 hover_ui = NodePath("../HoverUI")
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
-position = Vector2(45, -40)
+position = Vector2(96, -52)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
 position = Vector2(1, 882)
