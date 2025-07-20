@@ -13,6 +13,8 @@ signal finished
 @export var player_double_down : VoiceLine
 @export var end_game : VoiceLine
 @export var free_drink : VoiceLine
+@export var player_wins_final_hand : VoiceLine
+@export var player_loses_final_hand : Array[VoiceLine]
 
 @export var cooldown : float = 3.0
 @export var table_parent : TableScene
@@ -33,6 +35,7 @@ func _ready() -> void:
 	table_parent.player_win.connect(on_player_win)
 	table_parent.dealer_win.connect(on_dealer_win)
 	Global.change_room.connect(_on_room_change)
+	Global.final_hand_started.connect(on_final_hand_start)
 	stream_player.finished.connect(finished.emit)
 
 func _on_room_change(room : Global.ROOMS):
@@ -54,7 +57,11 @@ func on_player_win():
 
 func on_greetings():
 	_play(greetings.pick_random())
-	
+
+
+func on_final_hand_start():
+	_play(end_game)
+
 
 func _on_greetings_finished():
 	Global.welcome_line_finished.emit()
@@ -72,6 +79,13 @@ func on_end_game():
 func on_free_drink():
 	_play(free_drink)
 
+
+func _on_player_wins_final_hand():
+	_play(player_wins_final_hand)
+
+
+func _on_player_lose_final_hand():
+	_play(player_loses_final_hand.pick_random())
 
 func _play(voice_line : VoiceLine) -> void:
 	if on_cooldown:

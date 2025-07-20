@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=51 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -32,12 +32,22 @@
 [ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
 [ext_resource type="Script" uid="uid://dm40oxs6gpihi" path="res://Scenes/BarScene/bartender.gd" id="31_odtw8"]
 [ext_resource type="Texture2D" uid="uid://05ti5qpdjlir" path="res://Assets/Placeholders/Black_Jack_Table_Devil.png" id="33_ymulg"]
+[ext_resource type="Resource" uid="uid://na33v6l55jku" path="res://Scenes/Voicelines/devil/devil_winFinalRound.tres" id="34_prgo8"]
+[ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="34_sph80"]
 [ext_resource type="Texture2D" uid="uid://3fck3py7mw2t" path="res://Assets/Placeholders/Black_Jack_Table_Devil_Speaking.png" id="34_x45kk"]
 [ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="35_fv2cx"]
+[ext_resource type="Resource" uid="uid://cekcfmdqy1rwd" path="res://Scenes/Voicelines/devil_gameOver_1.tres" id="35_prgo8"]
 [ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="36_0urld"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/devil_gameover_2.tres" id="36_gdkb8"]
 [ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="37_cbl5d"]
 [ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="38_y1gsl"]
 [ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="39_7fc6n"]
+[ext_resource type="Texture2D" uid="uid://cwysa365f11u4" path="res://Assets/Placeholders/Black_Jack_Table_Information_Box.png" id="39_inh2p"]
+[ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="40_sn8pc"]
+[ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="41_umwha"]
+[ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="42_sph80"]
+[ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="43_prgo8"]
+[ext_resource type="Texture2D" uid="uid://ccfpphfa2i61b" path="res://Assets/Chips/Black_Jack_Chips_Red.png" id="44_gdkb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -287,9 +297,10 @@ expand_mode = 3
 stretch_mode = 6
 metadata/_edit_lock_ = true
 
-[node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations") instance=ExtResource("10_5mnm2")]
+[node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations", "hover_ui") instance=ExtResource("10_5mnm2")]
 bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), NodePath("../BottlePositionMarkers/MarkerForBottle1"), NodePath("../BottlePositionMarkers/MarkerForBottle2"), NodePath("../BottlePositionMarkers/MarkerForBottle3"), NodePath("../BottlePositionMarkers/MarkerForBottle4")]
 stages_where_player_can_drink = Array[int]([3])
+hover_ui = NodePath("../HoverUI")
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
 position = Vector2(45, -40)
@@ -360,6 +371,8 @@ texture = ExtResource("34_x45kk")
 
 [node name="VoiceLines" parent="Devil" node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
 position = Vector2(1321, 188)
+player_wins_final_hand = ExtResource("34_prgo8")
+player_loses_final_hand = Array[ExtResource("34_sph80")]([ExtResource("35_prgo8"), ExtResource("36_gdkb8")])
 table_parent = NodePath("../..")
 
 [node name="DoorButton" type="TextureButton" parent="."]
@@ -407,6 +420,49 @@ offset_right = 126.0
 offset_bottom = 90.0
 text = "Bar"
 label_settings = ExtResource("39_7fc6n")
+
+[node name="HoverUI" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-257, 466)
+scale = Vector2(0.481, 0.51)
+texture = ExtResource("39_inh2p")
+offset = Vector2(-20.6399, -596.713)
+script = ExtResource("40_sn8pc")
+
+[node name="DrinkName" type="Label" parent="HoverUI"]
+offset_left = -207.9
+offset_top = -886.274
+offset_right = 195.1
+offset_bottom = -729.274
+text = "Double or Die"
+label_settings = ExtResource("41_umwha")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="HoverUI"]
+offset_left = -202.118
+offset_top = -694.098
+offset_right = 194.882
+offset_bottom = -419.098
+text = "This is a description of the drink!"
+label_settings = ExtResource("42_sph80")
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="HoverUI"]
+visible = false
+offset_left = -379.037
+offset_top = 647.078
+offset_right = -142.037
+offset_bottom = 748.078
+text = "10000"
+label_settings = ExtResource("43_prgo8")
+
+[node name="Sprite2D" type="Sprite2D" parent="HoverUI"]
+visible = false
+position = Vector2(-493.383, 698.059)
+scale = Vector2(0.862617, 0.883632)
+texture = ExtResource("44_gdkb8")
 
 [connection signal="pressed" from="PlayButtons/HitTextureButton" to="." method="_on_hit_button_pressed"]
 [connection signal="pressed" from="PlayButtons/StandTextureButton" to="." method="_on_stand_button_pressed"]
