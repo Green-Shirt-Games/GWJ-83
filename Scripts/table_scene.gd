@@ -16,7 +16,11 @@ extends Control
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
 
-
+signal player_blackjack
+signal dealer_blackjack
+signal player_win
+signal dealer_win
+signal tie
 # temp code, to be moved to separate GamaManager, to keep data about table between scene changes
 
 var player_hands : Array[CardHand]
@@ -221,15 +225,19 @@ func _player_won(hand_id : int):
 			if player_hands[1].is_active:
 				if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
 					bet_visual_managers_multiple_hands[hand_id].update_bet(bet * 3)
+					player_blackjack.emit()
 				else:
 					bet_visual_managers_multiple_hands[hand_id].update_bet(bet * 2)
+					player_win.emit()
 				await get_tree().create_timer(0.3).timeout
 				await move_chips_towards_player(bet_visual_managers_multiple_hands[hand_id])
 			else:
 				if player_hands[hand_id].best_score == Global.POINTS_LIMIT: # BlackJack
 					bet_visual_manager_single_hand.update_bet(bet * 3)
+					player_blackjack.emit()
 				else:
 					bet_visual_manager_single_hand.update_bet(bet * 2)
+					player_win.emit()
 				await get_tree().create_timer(default_timer_timeout).timeout
 				await move_chips_towards_player(bet_visual_manager_single_hand)
 			if player_hands[hand_id].best_score == Global.POINTS_LIMIT: # BlackJack
@@ -239,8 +247,10 @@ func _player_won(hand_id : int):
 		1:
 			if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
 				bet_visual_managers_multiple_hands[1].update_bet(bet * 3)
+				player_blackjack.emit()
 			else:
 				bet_visual_managers_multiple_hands[1].update_bet(bet * 2)
+				player_win.emit()
 			await get_tree().create_timer(default_timer_timeout).timeout
 			await move_chips_towards_player(bet_visual_managers_multiple_hands[hand_id])
 			if player_hands[hand_id].best_score == Global.POINTS_LIMIT:
@@ -249,6 +259,10 @@ func _player_won(hand_id : int):
 				Global.money += second_hand_bet * 2
 
 func _player_lost(_hand_id : int):
+	if dealer_hand.best_score == Global.POINTS_LIMIT:
+		dealer_blackjack.emit()
+	else:
+		dealer_win.emit()
 	match _hand_id:
 		0:
 			if player_hands[1].is_active:
@@ -261,6 +275,7 @@ func _player_lost(_hand_id : int):
 		change_room_to_bar_button.visible = true
 
 func _player_tied(hand_id : int):
+	tie.emit()
 	match hand_id:
 		0:
 			Global.money += bet
@@ -493,6 +508,8 @@ func _check_if_double_down_allowed() -> bool:
 			if Global.money < second_hand_bet:
 				return false
 	if not player_hands[active_player_hand].waiting_for_first_action:
+		return false
+	if player_hands[active_player_hand].best_score >= Global.POINTS_LIMIT:
 		return false
 	
 	return true
