@@ -34,13 +34,6 @@ func reset() -> void:
 func get_cards_amount() -> int:
 	return get_child_count()
 
-# use reparent(*, true)
-#func pre_parenting_card_position_adjustment(card : CardVisual) -> void:
-	#card.position -= self.position
-#
-#func unparenting_card_position_adjustment(card : CardVisual) -> void:
-	#card.position += self.position
-
 func _update_card_positions(_child : Node):
 	var offset : float = 0.0
 	for card in get_children():
@@ -105,3 +98,12 @@ func update_visibility(full : bool) -> void:
 		modulate.a = 1
 	else:
 		modulate.a = 0.5
+
+func reveal_all_cards():
+	for i in get_cards_amount():
+		await (get_child(i) as CardVisual).reveal()
+	_update_best_score(null)
+
+func hide_all_cards():
+	for i in get_cards_amount():
+		(get_child(i) as CardVisual).flip(false)

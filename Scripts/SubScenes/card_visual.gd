@@ -42,7 +42,9 @@ func select_atlas_area() -> void:
 func flip(to_face_up : bool):
 	if to_face_up == face_up:
 		return
-	
+	if is_frozen:
+		return
+	print(card_data.get_card_name(), " is trying to flip")
 	SfxAutoload.place_card()
 	var tween_1 := get_tree().create_tween()
 	await tween_1.tween_property(self, "scale", Vector2(0.01, 1), DEFAULT_FLIP_TIME).finished
@@ -53,4 +55,6 @@ func flip(to_face_up : bool):
 
 func reveal():
 	await flip(true)
-	(get_parent() as CardHand)._update_best_score(null)
+	face_up = true
+	if get_parent() is CardHand:
+		(get_parent() as CardHand)._update_best_score(null)
