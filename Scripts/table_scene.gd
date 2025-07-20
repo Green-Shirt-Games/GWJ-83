@@ -8,10 +8,10 @@ extends Control
 @export var cards_table : CardsTable
 @export var play_buttons_container : Control
 @export_subgroup("Play buttons")
-@export var stand_button : Button
-@export var hit_button : Button
-@export var split_button : Button
-@export var double_down_button : Button
+@export var stand_button : TextureButtonWithSFX
+@export var hit_button : TextureButtonWithSFX
+@export var split_button : TextureButtonWithSFX
+@export var double_down_button : TextureButtonWithSFX
 @export_subgroup("Other")
 @export var player_money_label : Label
 @export var change_room_to_bar_button : RoomChangeButton
@@ -456,6 +456,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 				var dealer_card_to_swap : CardVisual = dealer_hand.get_children().pick_random()
 				move_card_to_hand(player_card_to_swap, dealer_hand)
 				await move_card_to_hand(dealer_card_to_swap, player_hands[active_player_hand])
+				dealer_hand._update_card_positions(null)
 			else:
 				return false
 		BottleData.TYPE.SPILL:
@@ -464,6 +465,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			if player_hands[active_player_hand].get_child_count() > 0:
 				_add_card_to_player_hand()
 				await move_card_to_shoe(player_hands[active_player_hand].get_children().pick_random())
+				player_hands[active_player_hand]._update_card_positions(null)
 				await _reveal_players_hand()
 			else:
 				return false

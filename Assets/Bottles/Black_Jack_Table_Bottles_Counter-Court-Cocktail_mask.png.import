@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://c8m2es454visn"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Counter-Court-Cocktail_mask.png-68e4f1363c8ff7d3e46a784bf9aefa98.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Counter-Court-Cocktail_mask.png-68e4f1363c8ff7d3e46a784bf9aefa98.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

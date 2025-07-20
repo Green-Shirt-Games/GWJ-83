@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://cdjpucn6l1xm8"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Show-Ray_mask.png-a860c149f6de0d11e46c5be1ee532417.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Show-Ray_mask.png-a860c149f6de0d11e46c5be1ee532417.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

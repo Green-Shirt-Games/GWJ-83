@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ddvg0m4ejghnc"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Rotation-Randy_mask.png-0cea92a348d2998b80bf22a517b44e06.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Rotation-Randy_mask.png-0cea92a348d2998b80bf22a517b44e06.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

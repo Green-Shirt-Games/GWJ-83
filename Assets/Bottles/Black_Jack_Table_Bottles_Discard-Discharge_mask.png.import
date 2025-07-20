@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ojqqmm42f8oa"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Discard-Discharge_mask.png-7f88e72a0f24bbbbe9bb3ef83e038121.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Discard-Discharge_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Discard-Discharge_mask.png-7f88e72a0f24bbbbe9bb3ef83e038121.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

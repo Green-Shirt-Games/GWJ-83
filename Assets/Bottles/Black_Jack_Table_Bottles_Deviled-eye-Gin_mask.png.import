@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://ddumg7i83v3xe"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Deviled-eye-Gin_mask.png-4133b9d7b17cddc3f6731238f2d226d6.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Deviled-eye-Gin_mask.png-4133b9d7b17cddc3f6731238f2d226d6.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

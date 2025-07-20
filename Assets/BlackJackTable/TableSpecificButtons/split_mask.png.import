@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://b21ig7hqs3bcs"
+path="res://.godot/imported/split_mask.png-8bb6dd00870bd457b90861a29dc290cd.res"
+
+[deps]
+
+source_file="res://Assets/BlackJackTable/TableSpecificButtons/split_mask.png"
+dest_files=["res://.godot/imported/split_mask.png-8bb6dd00870bd457b90861a29dc290cd.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

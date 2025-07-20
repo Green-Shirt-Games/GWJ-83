@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://3b1w51dr1vvq"
+path="res://.godot/imported/hit_mask.png-636bdc1e1515031c238db3c71980b4e2.res"
+
+[deps]
+
+source_file="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png"
+dest_files=["res://.godot/imported/hit_mask.png-636bdc1e1515031c238db3c71980b4e2.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
