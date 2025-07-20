@@ -11,9 +11,9 @@ func _ready() -> void:
 
 func update_win_lose_label(player_won : bool = false) -> void:
 	if player_won:
-		game_result_label.text = "Game over"
-	else:
 		game_result_label.text = "Congratulations!"
+	else:
+		game_result_label.text = "Game over"
 
 
 func _on_exit_pressed() -> void:
