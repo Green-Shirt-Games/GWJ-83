@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=47 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -27,7 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://n1d1pv8tutur" path="res://Assets/BlackJackTable/Black_Jack_Table_Discard.png" id="15_pxcaq"]
 [ext_resource type="Texture2D" uid="uid://4vroj44mqqtj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_pressed.png" id="15_yrntg"]
 [ext_resource type="Texture2D" uid="uid://dyobldncyt57m" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_hover.png" id="16_p3h0j"]
-[ext_resource type="Texture2D" uid="uid://cp3c385nnkvrj" path="res://Assets/ScenePlans/Black_Jack_Table_Button_Placements.png" id="16_ymulg"]
 [ext_resource type="Texture2D" uid="uid://d2ekd3q43altd" path="res://Assets/BlackJackTable/TableSpecificButtons/split_pressed.png" id="19_rkxeq"]
 [ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
 [ext_resource type="Script" uid="uid://dm40oxs6gpihi" path="res://Scenes/BarScene/bartender.gd" id="31_odtw8"]
@@ -57,7 +56,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "change_room_to_door_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "change_room_to_bar_button", "change_room_to_door_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,7 +73,6 @@ stand_button = NodePath("PlayButtons/StandTextureButton")
 hit_button = NodePath("PlayButtons/HitTextureButton")
 split_button = NodePath("PlayButtons/SplitTextureButton")
 double_down_button = NodePath("PlayButtons/DoubeDownTextureButton")
-player_money_label = NodePath("PlayerMoneyLabel")
 change_room_to_bar_button = NodePath("BarButton")
 change_room_to_door_button = NodePath("DoorButton")
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
@@ -102,14 +100,6 @@ size = Vector2i(3945, 1009)
 render_target_update_mode = 4
 
 [node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
-
-[node name="PlayerMoneyLabel" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 326.0
-offset_bottom = 108.0
-theme_override_font_sizes/font_size = 64
-text = "10000"
 
 [node name="BetManager" parent="." node_paths=PackedStringArray("table", "visual_bet_manager_one_hand") instance=ExtResource("4_ikeqq")]
 visible = false
@@ -193,19 +183,6 @@ stretch_mode = 5
 script = ExtResource("9_rkxeq")
 metadata/_edit_lock_ = true
 metadata/_edit_use_anchors_ = true
-
-[node name="ScenePlan" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("16_ymulg")
-expand_mode = 5
-metadata/_edit_lock_ = true
 
 [node name="TableVisualElements" type="Control" parent="."]
 layout_mode = 1
@@ -331,6 +308,7 @@ position = Vector2(1308, 1000)
 scale = Vector2(0.4, 0.4)
 
 [node name="debug_dupe_top_card" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1454.0
 offset_top = 569.0
@@ -340,6 +318,7 @@ text = "dupe top card
 (split check)"
 
 [node name="debug_test_shuffle" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1430.0
 offset_top = 530.0

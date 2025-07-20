@@ -13,7 +13,6 @@ extends Control
 @export var split_button : TextureButtonWithSFX
 @export var double_down_button : TextureButtonWithSFX
 @export_subgroup("Other")
-@export var player_money_label : Label
 @export var change_room_to_bar_button : TextureButton
 @export var change_room_to_door_button : TextureButton
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
