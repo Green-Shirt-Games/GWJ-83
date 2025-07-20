@@ -5,7 +5,7 @@ signal buy_pressed(bottles : Array[Bottle], total_price : int)
 signal too_poor()
 signal too_many()
 
-@onready var buy_button : Button = $Button
+@onready var buy_button : TextureButton = $BuyButton/TextureButton
 @onready var buy_area : Area2D = $BuyArea/Area2D
 @onready var values_parent : Node2D = $Values
 @onready var value_tick_stream : AudioStreamPlayer2D = $ValueTicks
@@ -73,7 +73,6 @@ var padded_str : String
 func _update_price_ui():
 	padded_str = "%09d" % running_total
 	
-	var index : int = 0
 	var shuffled_indexes : Array = range(padded_str.length())
 	shuffled_indexes.shuffle()
 	for i in shuffled_indexes:

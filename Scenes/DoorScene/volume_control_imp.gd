@@ -73,7 +73,7 @@ func set_tail_pos(length_delta):
 	set_eyes_scale(1+value)
 	tail_rect.size.y = starting_tail_len + length_delta
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !dragging:
 		return
 	
@@ -84,16 +84,16 @@ func _process(delta: float) -> void:
 
 
 var old_vol : float = 1
-func set_volume(value : float):
-	value = clampf(value, 0 , 1)
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), SfxAutoload.linear_to_db(value, bus_default_db))
+func set_volume(_value : float):
+	_value = clampf(_value, 0 , 1)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), SfxAutoload.linear_to_db(_value, bus_default_db))
 	
-	var vol_delta : float = abs(old_vol - value)
+	var vol_delta : float = abs(old_vol - _value)
 	if vol_delta > tick_interval:
 		sample_stream.play()
-		old_vol = value
+		old_vol = _value
 
-func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
+func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		dragging = true
 

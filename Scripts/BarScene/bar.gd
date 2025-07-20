@@ -39,13 +39,14 @@ func add_bottles_to_shelf(_bottles, spawn_points : Array[Node], layer : int, bot
 		bottle.scale = Vector2.ONE * bottle_scale
 		i += 1
 
-func _on_buy_pressed(bottles : Array[Bottle], total_price : int):
+func _on_buy_pressed(_bottles : Array[Bottle], _total_price : int):
 	
 	#TODO
 	
 	register.clear()
 	
-	for bottle in bottles:
+	for bottle in _bottles:
+		bottles.erase(bottle)
 		bottle.queue_free() #TODO
 		var drink_poof = drink_poof_scene.instantiate()
 		drink_poof.global_position = bottle.global_position

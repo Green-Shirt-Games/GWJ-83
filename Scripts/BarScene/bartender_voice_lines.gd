@@ -37,7 +37,7 @@ func _get_random_from(array : Array[VoiceLine]) -> VoiceLine:
 func _on_key_touched_early():
 	_play(key_line)
 
-func _on_purchase_made(bottles : Array[Bottle], total_price : int):
+func _on_purchase_made(bottles : Array[Bottle], _total_price : int):
 	for bottle in bottles:
 		on_drink_bought(bottle)
 

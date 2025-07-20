@@ -7,5 +7,5 @@ script = ExtResource("1_r4l6o")
 type = 1
 drink_name = "Peek Easy"
 description = "Reveals the top card of the shoe."
-price = 100
+price = 50
 metadata/_custom_type_script = "uid://b2l7btycw868p"

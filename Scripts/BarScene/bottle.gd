@@ -43,7 +43,7 @@ func _ready():
 	if bottle_resource != null and !Global.bottle_type_to_res.has(bottle_resource.type):
 		Global.bottle_type_to_res[bottle_resource.type] = bottle_resource
 
-func _on_area_input(viewport, event, shape_idx):
+func _on_area_input(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		dragging = true
 		mouse_offset = global_position - event.position
@@ -123,7 +123,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	for i in contact_count:
 		var impulse = state.get_contact_impulse(i)
 		if impulse.length_squared() > impact_threshold:
-			var collider = state.get_contact_collider_object(i)
+			var _collider = state.get_contact_collider_object(i)
 			if not collision_stream_player.playing:
 				collision_stream_player.play()
 				on_cooldown = true
@@ -136,3 +136,4 @@ func reset():
 	freeze = true
 	scale = orig_scale
 	global_position = orig_position
+	

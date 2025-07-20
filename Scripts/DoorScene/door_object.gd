@@ -8,9 +8,10 @@ extends Sprite2D
 func _ready() -> void:
 	door_area.mouse_entered.connect(_on_mouse_enter)
 	door_area.mouse_exited.connect(_on_mouse_exit)
+	door_area.input_event.connect(_input_event)
 
-func _input_event(viewport: Node, event: InputEvent, shape_idx: int):
-	if event is InputEventMouseButton and event.is_released() and event.button_index == MOUSE_BUTTON_LEFT:
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		_on_select()
 
 

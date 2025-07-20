@@ -23,7 +23,6 @@ var money = 1000 :
 		money = value
 		money_changed.emit(old_value)
 signal money_changed(old_value)
-signal not_enough_money
 
 var money_delta_since_bar : int = 0
 

@@ -23,10 +23,8 @@ func burning():
 const min_volume : float = -80.0
 
 @onready var _melody_starting_db : float = melody.volume_db
-@onready var _rhythm_starting_db : float = rhythm.volume_db
 
 var volume_scale : float = 1
-var _new_max_volume : float
 var melody_tween : Tween = null
 var faded : bool = false
 
