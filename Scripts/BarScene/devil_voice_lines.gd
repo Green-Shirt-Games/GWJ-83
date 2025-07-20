@@ -43,6 +43,7 @@ func _ready() -> void:
 	Global.final_hand_started.connect(on_final_hand_start)
 	stream_player.finished.connect(finished.emit)
 	Global.final_hand_over.connect(func(win):_on_player_wins_final_hand() if win else _on_player_lose_final_hand())
+	Global.player_lost_all_chips.connect(_on_player_lose_final_hand)
 
 func _on_room_change(room : Global.ROOMS):
 	if !greetings_said and room == Global.ROOMS.TABLE:
@@ -50,12 +51,14 @@ func _on_room_change(room : Global.ROOMS):
 		on_greetings()
 
 func on_dealer_blackjack():
+	if Global.money == 0: return
 	_play(dealer_blackjack.pick_random())
 
 func on_player_blackjack():
 	_play(player_blackjack.pick_random())
 
 func on_dealer_win():
+	if Global.money == 0: return
 	_play(dealer_wins.pick_random())
 
 func on_player_win():
@@ -91,16 +94,14 @@ func on_free_drink():
 
 
 func _on_player_wins_final_hand():
-	_play(player_wins_final_hand)
+	_play(player_wins_final_hand, true)
 
 
 func _on_player_lose_final_hand():
-	_play(player_loses_final_hand.pick_random())
+	_play(player_loses_final_hand.pick_random(), true)
 
-func _play(voice_line : VoiceLine) -> void:
-	if on_cooldown:
-		return
-	if stream_player.playing:
+func _play(voice_line : VoiceLine, override = false) -> void:
+	if stream_player.playing or on_cooldown and !override:
 		return
 	started.emit()
 	stream_player.stream = voice_line.audio_stream
