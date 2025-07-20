@@ -2,7 +2,7 @@
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_nvyeh"]
 resource_name = "Amplify"
-volume_db = 4.0
+volume_db = 2.0
 
 [resource]
 bus/1/name = &"music"
