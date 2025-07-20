@@ -4,6 +4,8 @@ extends TextureButton
 @export var bottle_data : BottleData
 signal bottle_pressed(BottleOnTable)
 
+var waiting_for_effect : bool = false
+
 func _init(data : BottleData) -> void:
 	bottle_data = data
 
@@ -41,12 +43,12 @@ func _get_textures() -> void:
 		return
 	texture_normal = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS[key].texture)
 	texture_click_mask = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS[key].mask)
-	texture_pressed = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS[key].pressed)
+	texture_hover = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS[key].pressed)
 
 func get_placeholder_textures() -> void:
 	texture_normal = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS.default.texture)
 	texture_click_mask = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS.default.mask)
-	texture_pressed = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS.default.pressed)
+	texture_hover = load(Global.BOTTLE_ON_TABLE_TEXTURES_AND_MASKS.default.pressed)
 
 
 func _pressed() -> void:

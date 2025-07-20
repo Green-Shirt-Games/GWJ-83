@@ -24,8 +24,14 @@ func add_bottle(bottle_data : BottleData) -> void:
 		return
 	bottles_at_locations[new_bottle_place_id] = new_bottle
 	new_bottle.bottle_pressed.connect(bottle_pressed)
-	new_bottle.position = bottles_locations[new_bottle_place_id].position - (new_bottle.get_rect().size / 2)
-	new_bottle.z_index = new_bottle_place_id
+	update_all_bottles()
+
+func update_all_bottles() -> void:
+	for i in bottles_at_locations.size():
+		if bottles_at_locations[i]:
+			bottles_at_locations[i].global_position = bottles_locations[i].global_position
+			bottles_at_locations[i].global_position -= bottles_at_locations[i].get_rect().size / 2
+			bottles_locations[i].z_index = i
 	disable_bottles_if_needed(Global.table.current_state)
 
 func find_free_space_for_bottle() -> int:
@@ -43,21 +49,27 @@ func count_bottles() -> int:
 
 func bottle_pressed(bottle : BottleOnTable) -> void:
 	if bottle.bottle_data:
+		for b in bottles_at_locations:
+			if b is BottleOnTable:
+				if b.waiting_for_effect:
+					return
+		
+		bottle.waiting_for_effect = true
 		var bottle_had_effect = await Global.table.bottle_pressed(bottle.bottle_data.type)
 		if bottle_had_effect:
 			remove_bottle(bottle)
 		else:
 			print(bottle, " had no effect, so not used")
+			bottle.waiting_for_effect = false
 	else:
 		print("Pressed bottle don't have data")
-	#remove_bottle(bottle)
+
 
 func remove_bottle(bottle_to_remove : BottleOnTable) -> void:
 	bottles_at_locations[bottles_at_locations.find(bottle_to_remove)] = null
 	bottle_to_remove.queue_free()
 
 func disable_bottles_if_needed(table_stage : Global.GAME_STATES) -> void:
-	print(table_stage, stages_where_player_can_drink.has(table_stage))
 	var enable_bottles : bool = stages_where_player_can_drink.has(table_stage)
 	for bottle in bottles_at_locations:
 		if bottle and bottle is BottleOnTable:

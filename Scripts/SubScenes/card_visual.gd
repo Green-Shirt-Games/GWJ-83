@@ -44,7 +44,6 @@ func flip(to_face_up : bool):
 		return
 	if is_frozen:
 		return
-	print(card_data.get_card_name(), " is trying to flip")
 	SfxAutoload.place_card()
 	var tween_1 := get_tree().create_tween()
 	await tween_1.tween_property(self, "scale", Vector2(0.01, 1), DEFAULT_FLIP_TIME).finished
