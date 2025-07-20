@@ -7,7 +7,7 @@
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="5_i5fjo"]
 [ext_resource type="Texture2D" uid="uid://ch05vgqs4yaku" path="res://Assets/BlackJack_Cards_Back.png" id="6_ubay0"]
 [ext_resource type="Script" uid="uid://goa6p2wfr153" path="res://Scripts/DoorScene/door_object.gd" id="7_ymaf3"]
-[ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="8_ymaf3"]
+[ext_resource type="AudioStream" uid="uid://dinn4dbc571qu" path="res://Assets/audio/sfx/sfx_chain.wav" id="8_ymaf3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5ej"]
 size = Vector2(285.289, 422.741)

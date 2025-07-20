@@ -1,6 +1,9 @@
 extends Node2D
 class_name BartenderVoiceLines
 
+signal started
+signal finished
+
 @export var loss_lines : Array[VoiceLine]
 @export var win_lines : Array[VoiceLine]
 @export var too_poor_lines : Array[VoiceLine]
@@ -18,6 +21,7 @@ class_name BartenderVoiceLines
 
 func _ready() -> void:
 	visible = false
+	stream_player.finished.connect(finished.emit)
 	key.key_touched_early.connect(_on_key_touched_early)
 	register.buy_pressed.connect(_on_purchase_made)
 	register.too_poor.connect(_not_enough_chips)
@@ -51,6 +55,7 @@ func _too_many():
 func _play(voice_line : VoiceLine) -> void:
 	if stream_player.playing:
 		return
+	started.emit()
 	stream_player.stream = voice_line.audio_stream
 	stream_player.play()
 	voiceline_text_area.text = voice_line.text
