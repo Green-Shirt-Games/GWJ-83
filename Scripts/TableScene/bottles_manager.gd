@@ -4,6 +4,7 @@ extends Node2D
 @export var bottles_locations : Array[Marker2D]
 var bottles_at_locations : Array[BottleOnTable]
 @export var stages_where_player_can_drink : Array[Global.GAME_STATES]
+@export var hover_ui : DrinkHoverUI
 
 func _ready() -> void:
 	for i in bottles_locations.size():
@@ -24,9 +25,17 @@ func add_bottle(bottle_data : BottleData) -> void:
 		return
 	bottles_at_locations[new_bottle_place_id] = new_bottle
 	new_bottle.bottle_pressed.connect(bottle_pressed)
+	new_bottle.mouse_entered.connect(func(): _on_drink_hovered(bottle_data))
+	new_bottle.mouse_exited.connect(func():hover_ui.visible = false)
 	new_bottle.position = bottles_locations[new_bottle_place_id].position - (new_bottle.get_rect().size / 2)
 	new_bottle.z_index = new_bottle_place_id
 	disable_bottles_if_needed(Global.table.current_state)
+
+
+func _on_drink_hovered(bottle_data : BottleData):
+	hover_ui.visible = true
+	hover_ui.description_label.text = bottle_data.description
+	hover_ui.drink_name_label.text = bottle_data.drink_name
 
 func find_free_space_for_bottle() -> int:
 	for i in bottles_at_locations.size():

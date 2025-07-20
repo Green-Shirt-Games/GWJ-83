@@ -13,6 +13,8 @@ signal finished
 @export var player_double_down : VoiceLine
 @export var end_game : VoiceLine
 @export var free_drink : VoiceLine
+@export var player_wins_final_hand : VoiceLine
+@export var player_loses_final_hand : VoiceLine
 
 @export var cooldown : float = 3.0
 @export var table_parent : TableScene
@@ -72,6 +74,13 @@ func on_end_game():
 func on_free_drink():
 	_play(free_drink)
 
+
+func _on_player_wins_final_hand():
+	_play(player_wins_final_hand)
+
+
+func _on_player_lose_final_hand():
+	_play(player_loses_final_hand)
 
 func _play(voice_line : VoiceLine) -> void:
 	if on_cooldown:
