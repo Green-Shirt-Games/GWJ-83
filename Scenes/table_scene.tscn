@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=34 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -23,11 +23,13 @@
 [ext_resource type="BitMap" uid="uid://c685x1dijr7qj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_mask.png" id="13_d8idy"]
 [ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="13_remoh"]
 [ext_resource type="Texture2D" uid="uid://8e3bxteo0s0m" path="res://Assets/BlackJackTable/Black_Jack_Table_Shoe.png" id="14_p5xy4"]
+[ext_resource type="Texture2D" uid="uid://ynmi16j04t5s" path="res://Assets/BlackJackTable/TableSpecificButtons/split_normal.png" id="14_v8qop"]
 [ext_resource type="BitMap" uid="uid://b21ig7hqs3bcs" path="res://Assets/BlackJackTable/TableSpecificButtons/split_mask.png" id="15_odtw8"]
 [ext_resource type="Texture2D" uid="uid://n1d1pv8tutur" path="res://Assets/BlackJackTable/Black_Jack_Table_Discard.png" id="15_pxcaq"]
 [ext_resource type="Texture2D" uid="uid://4vroj44mqqtj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_pressed.png" id="15_yrntg"]
 [ext_resource type="Texture2D" uid="uid://dyobldncyt57m" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_hover.png" id="16_p3h0j"]
 [ext_resource type="Texture2D" uid="uid://cp3c385nnkvrj" path="res://Assets/ScenePlans/Black_Jack_Table_Button_Placements.png" id="16_ymulg"]
+[ext_resource type="Texture2D" uid="uid://d2ekd3q43altd" path="res://Assets/BlackJackTable/TableSpecificButtons/split_pressed.png" id="19_rkxeq"]
 [ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
@@ -170,8 +172,8 @@ anchor_left = 0.523958
 anchor_top = 0.928704
 anchor_right = 0.620833
 anchor_bottom = 0.991667
-texture_normal = ExtResource("11_jv1fb")
-texture_pressed = ExtResource("10_yrntg")
+texture_normal = ExtResource("19_rkxeq")
+texture_pressed = ExtResource("14_v8qop")
 texture_hover = ExtResource("20_d8idy")
 texture_click_mask = ExtResource("15_odtw8")
 ignore_texture_size = true
@@ -307,6 +309,7 @@ bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), Node
 stages_where_player_can_drink = Array[int]([3])
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
+position = Vector2(45, -40)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
 position = Vector2(196, 948)

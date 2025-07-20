@@ -456,6 +456,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 				var dealer_card_to_swap : CardVisual = dealer_hand.get_children().pick_random()
 				move_card_to_hand(player_card_to_swap, dealer_hand)
 				await move_card_to_hand(dealer_card_to_swap, player_hands[active_player_hand])
+				dealer_hand._update_card_positions(null)
 			else:
 				return false
 		BottleData.TYPE.SPILL:
@@ -464,6 +465,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			if player_hands[active_player_hand].get_child_count() > 0:
 				_add_card_to_player_hand()
 				await move_card_to_shoe(player_hands[active_player_hand].get_children().pick_random())
+				player_hands[active_player_hand]._update_card_positions(null)
 				await _reveal_players_hand()
 			else:
 				return false

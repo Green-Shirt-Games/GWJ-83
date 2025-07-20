@@ -26,6 +26,7 @@ func add_bottle(bottle_data : BottleData) -> void:
 	new_bottle.bottle_pressed.connect(bottle_pressed)
 	new_bottle.position = bottles_locations[new_bottle_place_id].position - (new_bottle.get_rect().size / 2)
 	new_bottle.z_index = new_bottle_place_id
+	disable_bottles_if_needed(Global.table.current_state)
 
 func find_free_space_for_bottle() -> int:
 	for i in bottles_at_locations.size():
@@ -55,11 +56,8 @@ func remove_bottle(bottle_to_remove : BottleOnTable) -> void:
 	bottles_at_locations[bottles_at_locations.find(bottle_to_remove)] = null
 	bottle_to_remove.queue_free()
 
-func _on_button_pressed() -> void: # Debug button
-	var empty_bottle_data = BottleData.new()
-	add_bottle(empty_bottle_data)
-
 func disable_bottles_if_needed(table_stage : Global.GAME_STATES) -> void:
+	print(table_stage, stages_where_player_can_drink.has(table_stage))
 	var enable_bottles : bool = stages_where_player_can_drink.has(table_stage)
 	for bottle in bottles_at_locations:
 		if bottle and bottle is BottleOnTable:
