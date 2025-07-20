@@ -57,6 +57,7 @@ var default_card_fly_time : float = 0.3
 var default_timer_timeout : float = 0.3
 var skip_dealing : bool = false
 var final_hand : bool = false
+var final_hand_over : bool = false
 
 func _ready() -> void:
 	Global.table = self
@@ -99,7 +100,17 @@ func _prepare_final_round() -> void:
 	change_room_to_door_button.visible = false
 	_change_state(Global.GAME_STATES.BETTING)
 
+func lock_table_unlock_rooms() -> void:
+	change_room_to_door_button.visible = true
+	change_room_to_bar_button.visible = true
+	discard_pile_visual.visible = false
+	play_buttons_container.visible = false
+	bet_manager.visible = false
+
 func _change_state(new_state : Global.GAME_STATES) -> void:
+	if final_hand_over:
+		lock_table_unlock_rooms()
+		return
 	current_state = new_state
 	state_changed.emit(new_state)
 	_update_button_folders_visibility()
@@ -261,6 +272,7 @@ func _on_debug_dupe_top_card_pressed() -> void:
 func _player_won(hand_id : int):
 	if final_hand:
 		Global.final_hand_over.emit(true)
+		final_hand_over = true
 		return
 	match hand_id:
 		0:
@@ -303,6 +315,7 @@ func _player_won(hand_id : int):
 func _player_lost(_hand_id : int):
 	if final_hand:
 		Global.final_hand_over.emit(false)
+		final_hand_over = true
 		return
 	
 	if dealer_hand.best_score == Global.POINTS_LIMIT:
