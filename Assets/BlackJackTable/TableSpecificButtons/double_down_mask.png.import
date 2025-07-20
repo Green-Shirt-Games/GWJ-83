@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://c685x1dijr7qj"
+path="res://.godot/imported/double_down_mask.png-37150ae8451869afbff149a845a7876c.res"
+
+[deps]
+
+source_file="res://Assets/BlackJackTable/TableSpecificButtons/double_down_mask.png"
+dest_files=["res://.godot/imported/double_down_mask.png-37150ae8451869afbff149a845a7876c.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
