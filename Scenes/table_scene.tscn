@@ -119,7 +119,6 @@ table = NodePath("..")
 visual_bet_manager_one_hand = NodePath("../OnlyPlayerHandBetVisual")
 
 [node name="PlayButtons" type="Control" parent="."]
-z_index = 99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -319,16 +318,17 @@ position = Vector2(266, 1019)
 position = Vector2(368, 1065)
 
 [node name="OnlyPlayerHandBetVisual" parent="." instance=ExtResource("11_6mqhf")]
+z_index = 1
 position = Vector2(936, 978)
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.4, 0.4)
 
 [node name="PlayerHandBetVisual_0" parent="." instance=ExtResource("11_6mqhf")]
 position = Vector2(601, 1000)
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.4, 0.4)
 
 [node name="PlayerHandBetVisual_1" parent="." instance=ExtResource("11_6mqhf")]
 position = Vector2(1308, 1000)
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.4, 0.4)
 
 [node name="debug_dupe_top_card" type="Button" parent="."]
 layout_mode = 0
