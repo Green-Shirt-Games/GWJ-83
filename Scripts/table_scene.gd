@@ -8,10 +8,10 @@ extends Control
 @export var cards_table : CardsTable
 @export var play_buttons_container : Control
 @export_subgroup("Play buttons")
-@export var stand_button : Button
-@export var hit_button : Button
-@export var split_button : Button
-@export var double_down_button : Button
+@export var stand_button : TextureButtonWithSFX
+@export var hit_button : TextureButtonWithSFX
+@export var split_button : TextureButtonWithSFX
+@export var double_down_button : TextureButtonWithSFX
 @export_subgroup("Other")
 @export var player_money_label : Label
 @export var change_room_to_bar_button : RoomChangeButton
