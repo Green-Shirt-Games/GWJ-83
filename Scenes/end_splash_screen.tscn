@@ -48,7 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_47761")
 game_result_label = NodePath("MarginContainer/CenterText/GameResultLabel")
-exit_button = NodePath("MarginContainer/CenterText/Label")
+exit_button = NodePath("MarginContainer/CenterText/Exit")
 
 [node name="BackGround" type="Control" parent="."]
 layout_mode = 1

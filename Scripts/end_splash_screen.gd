@@ -1,10 +1,11 @@
 extends Control
 
 @export var game_result_label : Label
-@export var exit_button : Label
+@export var exit_button : Button
 
 func _ready() -> void:
-	exit_button.visible = OS.has_feature("windows") or OS.has_feature("ios")
+	if OS.has_feature("web"):
+		exit_button.visible = false
 
 
 func update_win_lose_label(player_won : bool = false) -> void:
