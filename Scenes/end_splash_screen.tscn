@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkytewii15gd5"]
+[gd_scene load_steps=12 format=3 uid="uid://cx60y1pjm4gl3"]
 
 [ext_resource type="Script" uid="uid://bxdovq7pwbql3" path="res://Scripts/end_splash_screen.gd" id="1_47761"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="2_dl3hi"]
