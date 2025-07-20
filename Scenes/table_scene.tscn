@@ -27,7 +27,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,6 +49,7 @@ change_room_to_bar_button = NodePath("ChangeRoomToBar")
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")
+discard_pile_visual = NodePath("Discard")
 metadata/_edit_lock_ = true
 
 [node name="CardsOnTable" type="TextureRect" parent="."]
