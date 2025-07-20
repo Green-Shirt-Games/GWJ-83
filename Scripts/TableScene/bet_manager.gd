@@ -65,20 +65,24 @@ func _on_bet_button_pressed() -> void:
 func _on_increase_bet_button_pressed() -> void:
 	if current_bet_multiplier < current_max_bet_multiplier:
 		current_bet_multiplier += 1
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_decrease_bet_button_pressed() -> void:
 	if current_bet_multiplier > 1:
 		current_bet_multiplier -= 1
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_max_bet_button_pressed() -> void:
 	current_bet_multiplier = current_max_bet_multiplier
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_min_bet_button_pressed() -> void:
 	current_bet_multiplier = 1
+	SfxAutoload.place_chips()
 	_update_bet()

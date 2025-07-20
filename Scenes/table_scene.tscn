@@ -24,7 +24,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "split_button", "double_down_button", "player_money_label", "change_room_buttons", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "hit_button", "split_button", "double_down_button", "player_money_label", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,10 +37,10 @@ bet_manager = NodePath("BetManager")
 bottles_manager = NodePath("BottlesOnTableManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 play_buttons_container = NodePath("PlayButtons")
+hit_button = NodePath("PlayButtons/HitButton")
 split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
 player_money_label = NodePath("PlayerMoneyLabel")
-change_room_buttons = [NodePath("ChangeRoomToBar"), NodePath("ChangeRoomToExit")]
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")
@@ -220,7 +220,7 @@ metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations") instance=ExtResource("10_5mnm2")]
 bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), NodePath("../BottlePositionMarkers/MarkerForBottle1"), NodePath("../BottlePositionMarkers/MarkerForBottle2"), NodePath("../BottlePositionMarkers/MarkerForBottle3"), NodePath("../BottlePositionMarkers/MarkerForBottle4")]
-stages_where_player_can_drink = Array[int]([0])
+stages_where_player_can_drink = Array[int]([2])
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
 

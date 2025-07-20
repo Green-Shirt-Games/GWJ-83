@@ -8,7 +8,7 @@ enum ROOMS{BAR, TABLE, DOOR}
 signal change_room(to : ROOMS)
 enum CARD_SUITS{CLUB, DIAMOND , HEART, SPADE}
 enum CARD_VALUES{VA, V2, V3, V4, V5, V6, V7, V8, V9, V10, VJ, VQ, VK}
-enum GAME_STATES { BETTING, DEALING, PLAYER_TURN, DEALER_TURN, RESULT, RESET, INTRO} 
+enum GAME_STATES { BETTING, DEALING, HOLE_CARD , PLAYER_TURN, DEALER_TURN, RESULT, RESET, INTRO} 
 
 const SUBSCENE_PATHS : Dictionary[String, String] = {
 	"card_visual" : "res://Scenes/SubScenes/card_visual.tscn" ,
@@ -42,6 +42,7 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 }
 
 var table : TableScene
+var hole_rule_active : bool = true
 
 func table_can_fit_bottles(amount : int) -> bool:
 	return table.bottles_manager.check_for_room_for_bottle(amount)

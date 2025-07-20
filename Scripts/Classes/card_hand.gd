@@ -5,6 +5,7 @@ extends Node2D
 
 var bust : bool = false
 var best_score : int = 0
+var waiting_for_first_action : bool = true
 
 ## hand-specific modifiers
 @export var table_size_x : float = 3456.0
@@ -28,6 +29,7 @@ func reset() -> void:
 		else:
 			child.queue_free()
 	bust = false
+	waiting_for_first_action = true
 
 func get_cards_amount() -> int:
 	return get_child_count()
@@ -97,3 +99,9 @@ func _update_best_score(_child : Node):
 			if score > max_score and score <= Global.POINTS_LIMIT:
 				max_score = score
 		best_score = max_score
+
+func update_visibility(full : bool) -> void:
+	if full:
+		modulate.a = 1
+	else:
+		modulate.a = 0.5
