@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwuc7joieayh"]
+[gd_scene load_steps=31 format=3 uid="uid://bwuc7joieayh"]
 
 [ext_resource type="Script" uid="uid://68o4bg5b0uwg" path="res://Scripts/BarScene/devil_voice_lines.gd" id="1_qjari"]
 [ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="2_1lxpv"]
@@ -10,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://c5k46dfjn3sxs" path="res://Scenes/Voicelines/devil/devil_playerBlackjack_3.tres" id="8_xwosy"]
 [ext_resource type="Resource" uid="uid://dfm5gjpqcgk1d" path="res://Scenes/Voicelines/devil/devil_win2.tres" id="9_5kv5o"]
 [ext_resource type="Resource" uid="uid://dbdc2sk72w5m4" path="res://Scenes/Voicelines/devil/devil_win_1.tres" id="10_bqhjx"]
-[ext_resource type="Texture2D" uid="uid://dhfo25xlucod3" path="res://Assets/Placeholders/speech_bubble.png" id="11_dj2h6"]
 [ext_resource type="Resource" uid="uid://tfj5yj8rw0ee" path="res://Scenes/Voicelines/devil/devil_loss_1.tres" id="11_gb3uh"]
 [ext_resource type="Resource" uid="uid://ccj8ggasximvk" path="res://Scenes/Voicelines/devil/devil_loss_2.tres" id="12_e0tqu"]
 [ext_resource type="Resource" uid="uid://d1wod2njc1cl6" path="res://Scenes/Voicelines/devil/devil_loss_3.tres" id="13_42jo6"]
@@ -22,9 +21,14 @@
 [ext_resource type="Resource" uid="uid://bqaifwk80qc1c" path="res://Scenes/Voicelines/devil/devil_doubledown.tres" id="19_65i28"]
 [ext_resource type="Resource" uid="uid://bp6pi1nimcetg" path="res://Scenes/Voicelines/devil/devil_endgame.tres" id="20_8qvyv"]
 [ext_resource type="Resource" uid="uid://cvk4d13nrse07" path="res://Scenes/Voicelines/devil/devil_freeDrink.tres" id="21_0dqht"]
+[ext_resource type="Resource" uid="uid://cekcfmdqy1rwd" path="res://Scenes/Voicelines/devil_gameOver_1.tres" id="22_4dakb"]
+[ext_resource type="Texture2D" uid="uid://bnwb143obxmqv" path="res://Assets/Placeholders/Black_Jack_Table_Text_Box.png" id="22_ng161"]
+[ext_resource type="Resource" path="res://Scenes/Voicelines/devil_gameover_2.tres" id="23_q1wb1"]
+[ext_resource type="Resource" uid="uid://bvv3mv1aa8w74" path="res://Scenes/Voicelines/devil/devil_canBuyKey.tres" id="24_xwosy"]
+[ext_resource type="Resource" uid="uid://b0u48oyo6wsnm" path="res://Scenes/BarScene/bottle_data/key_bottle.tres" id="25_q1wb1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oluxr"]
-font_size = 25
+font_size = 45
 font_color = Color(0.241156, 0.241156, 0.241156, 1)
 
 [sub_resource type="Animation" id="Animation_ih56v"]
@@ -147,6 +151,9 @@ pushes = Array[ExtResource("2_1lxpv")]([ExtResource("16_8f8oh"), ExtResource("17
 player_double_down = ExtResource("19_65i28")
 end_game = ExtResource("20_8qvyv")
 free_drink = ExtResource("21_0dqht")
+player_loses_final_hand = Array[ExtResource("2_1lxpv")]([ExtResource("22_4dakb"), ExtResource("23_q1wb1")])
+player_can_afford = ExtResource("24_xwosy")
+key_data = ExtResource("25_q1wb1")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"dialogue"
@@ -154,13 +161,15 @@ bus = &"dialogue"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.00003, 29)
 scale = Vector2(0.43, 0.43)
-texture = ExtResource("11_dj2h6")
+texture = ExtResource("22_ng161")
+region_enabled = true
+region_rect = Rect2(478.05, 809.818, 1325.33, 581.018)
 
 [node name="Label" type="Label" parent="Sprite2D"]
-offset_left = -147.0
-offset_top = -149.0
-offset_right = 179.0
-offset_bottom = 27.0
+offset_left = -298.0
+offset_top = -230.0
+offset_right = 514.0
+offset_bottom = 177.0
 text = "Sorry Pal. Even the best brew can’t fix a cursed deck."
 label_settings = SubResource("LabelSettings_oluxr")
 horizontal_alignment = 1

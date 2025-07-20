@@ -13,12 +13,13 @@ extends Control
 @export var split_button : TextureButtonWithSFX
 @export var double_down_button : TextureButtonWithSFX
 @export_subgroup("Other")
-@export var player_money_label : Label
-@export var change_room_to_bar_button : RoomChangeButton
+@export var change_room_to_bar_button : TextureButton
+@export var change_room_to_door_button : TextureButton
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
 @export var discard_pile_visual : TextureRect
+@export var shoe_visual_position : Marker2D
 
 signal player_blackjack
 signal dealer_blackjack
@@ -55,6 +56,7 @@ var default_card_fly_time : float = 0.3
 var default_timer_timeout : float = 0.3
 var skip_dealing : bool = false
 var final_hand : bool = false
+var final_hand_over : bool = false
 
 func _ready() -> void:
 	Global.table = self
@@ -66,10 +68,12 @@ func _ready() -> void:
 	change_room_to_bar_button.visible = false
 	_game_start()
 	_change_state(Global.GAME_STATES.INTRO)
+	Global.final_hand_started.connect(_prepare_final_round)
 
 func _game_start() -> void:
 	_prepare_deck()
 	_reset_deck()
+	discard_pile_visual.visible = false
 
 func _prepare_deck() -> void:
 	for suit in Global.CARD_SUITS.size():
@@ -82,14 +86,30 @@ func _prepare_deck() -> void:
 
 func _reset_deck() -> void:
 	if !discard_deck.is_empty():
+		await move_discard_to_shoe_and_hide()
 		draw_deck.append_array(discard_deck)
 		discard_deck.clear()
-	discard_pile_visual.visible = false
 	if visible:
 		SfxAutoload.shuffle_cards()
 	draw_deck.shuffle()
 
+func _prepare_final_round() -> void:
+	final_hand = true
+	change_room_to_bar_button.visible = false
+	change_room_to_door_button.visible = false
+	_change_state(Global.GAME_STATES.BETTING)
+
+func lock_table_unlock_rooms() -> void:
+	change_room_to_door_button.visible = true
+	change_room_to_bar_button.visible = true
+	discard_pile_visual.visible = false
+	play_buttons_container.visible = false
+	bet_manager.visible = false
+
 func _change_state(new_state : Global.GAME_STATES) -> void:
+	if final_hand_over:
+		lock_table_unlock_rooms()
+		return
 	current_state = new_state
 	state_changed.emit(new_state)
 	_update_button_folders_visibility()
@@ -98,7 +118,8 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			# Logic, dialog and animations go here
 			_change_state(Global.GAME_STATES.BETTING)
 		Global.GAME_STATES.BETTING:
-			pass
+			if final_hand:
+				bet_manager.final_hand_bet()
 		Global.GAME_STATES.DEALING:
 			if skip_dealing:
 				skip_dealing = false
@@ -228,7 +249,6 @@ func _reveal_dealers_hand(full : bool = false) -> void:
 
 func _draw_card() -> CardVisual:
 	var card : CardVisual
-	print(cards_table.shoe_card)
 	if cards_table.shoe_card:
 		SfxAutoload.draw_card()
 		return cards_table.pass_shoe_revealed_card()
@@ -249,6 +269,10 @@ func _on_debug_dupe_top_card_pressed() -> void:
 #region Game results
 
 func _player_won(hand_id : int):
+	if final_hand:
+		Global.final_hand_over.emit(true)
+		final_hand_over = true
+		return
 	match hand_id:
 		0:
 			if player_hands[1].is_active:
@@ -288,6 +312,11 @@ func _player_won(hand_id : int):
 				Global.money += second_hand_bet * 2
 
 func _player_lost(_hand_id : int):
+	if final_hand:
+		Global.final_hand_over.emit(false)
+		final_hand_over = true
+		return
+	
 	if dealer_hand.best_score == Global.POINTS_LIMIT:
 		dealer_blackjack.emit()
 	else:
@@ -341,6 +370,16 @@ func move_chips_towards_player(bet_manager_of_those_chips : BetVisualManager):
 	await tween.finished
 	bet_manager_of_those_chips.update_bet(0)
 	bet_manager_of_those_chips.reset_position()
+
+func move_discard_to_shoe_and_hide():
+	var tween : Tween = get_tree().create_tween()
+	var discard_position = discard_pile_visual.position
+	await tween.tween_property(discard_pile_visual,
+			"position",
+			shoe_visual_position.position - (discard_pile_visual.get_rect().size / 2),
+			default_card_fly_time).finished
+	discard_pile_visual.visible = false
+	discard_pile_visual.position = discard_position
 #endregion
 
 #region UI buttons
@@ -572,3 +611,7 @@ func _update_active_hand_visibility() -> void:
 	else:
 		for hand in player_hands:
 			hand.update_visibility(true)
+
+
+func _on_debug_test_shuffle_pressed() -> void:
+	_reset_deck()

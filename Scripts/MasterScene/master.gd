@@ -10,10 +10,9 @@ extends Control
 var current_room : Global.ROOMS = Global.ROOMS.BAR
 
 func _ready() -> void:
-	
 	Global.change_room.connect(_change_room)
-	door.door_opened.connect(on_door_opened)
-	
+	Global.player_exited_door.connect(on_door_opened)
+	Global.final_hand_over.connect(end_final_hand)
 	_change_room(Global.ROOMS.DOOR)
 	
 
@@ -41,26 +40,40 @@ func _change_room(to : Global.ROOMS) -> void:
 	current_room = to
 
 var tween : Tween
-func on_door_opened():
-	if door.door_open_count == 1: start_final_encounter()
-	if door.door_open_count > 1: show_win_splash()
+func on_door_opened(count):
+	if count == 1: start_final_encounter()
+	if count == 2: show_win_splash()
 
 
 func start_final_encounter():
 	end_sprite.visible = true
 	tween = create_tween()
-	tween.tween_property(end_sprite, "scale", end_sprite.scale * 10, 4)
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
 	await tween.finished
 	_change_room(Global.ROOMS.TABLE)
 	tween = create_tween()
 	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
 	await  tween.finished
 	end_sprite.visible = false
+	Global.final_hand_started.emit()
 
+@onready var end_sprite_scale : Vector2 = $endTransition.scale
 
 func show_win_splash():
-	pass
+	end_sprite.visible = true
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
+	await tween.finished
+	$EndSplash.visible = true
+	SfxAutoload.player_wins()
+	get_tree().change_scene_to_file("res://Scenes/end_splash_screen.tscn")
 
-
-func show_you_lose_splash():
-	pass
+func end_final_hand(won):
+	if won: return
+	
+	end_sprite.visible = true
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
+	await tween.finished
+	$EndSplash.visible = true
+	get_tree().change_scene_to_file("res://Scenes/end_splash_screen.tscn")

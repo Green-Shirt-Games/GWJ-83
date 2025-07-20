@@ -2,6 +2,9 @@ extends Node
 
 signal key_purchased
 signal welcome_line_finished
+signal player_exited_door(count : int)
+signal final_hand_started
+signal final_hand_over(win : bool)
 var bar_entered_yet : bool = false
 enum ROOMS{BAR, TABLE, DOOR}
 @warning_ignore("unused_signal")
@@ -17,7 +20,7 @@ const SUBSCENE_PATHS : Dictionary[String, String] = {
 const POINTS_LIMIT = 21
 
 # Player's data
-var money = 1000 :
+var money = 10000 :
 	set(value):
 		var old_value = money
 		money = value
@@ -51,7 +54,7 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 	"swap_dealer" : {
 		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop.png" ,
 		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
-		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_highlight.png" ,
 	} ,
 	"shoe_swap" : {
 		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail.png" ,

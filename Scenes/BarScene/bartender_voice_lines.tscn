@@ -138,6 +138,7 @@ key_line = ExtResource("11_l1mf2")
 welcome_line = ExtResource("12_afcii")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 3.0
 bus = &"dialogue"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

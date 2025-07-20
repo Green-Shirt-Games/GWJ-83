@@ -7,6 +7,7 @@ var money_pickup_threshold : int = 10000
 
 func _ready() -> void:
 	super._ready()
+	money_pickup_threshold = bottle_resource.price
 	freeze = true
 
 func _on_area_input(viewport, event, shape_idx):
