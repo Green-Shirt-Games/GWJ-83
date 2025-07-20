@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="35_fv2cx"]
 [ext_resource type="Resource" uid="uid://cekcfmdqy1rwd" path="res://Scenes/Voicelines/devil_gameOver_1.tres" id="35_prgo8"]
 [ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="36_0urld"]
-[ext_resource type="Resource" path="res://Scenes/Voicelines/devil_gameover_2.tres" id="36_gdkb8"]
+[ext_resource type="Resource" uid="uid://cpjf8fhahdgum" path="res://Scenes/Voicelines/devil_gameover_2.tres" id="36_gdkb8"]
 [ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="37_cbl5d"]
 [ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="38_y1gsl"]
 [ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="39_7fc6n"]
@@ -303,7 +303,7 @@ stages_where_player_can_drink = Array[int]([3])
 hover_ui = NodePath("../HoverUI")
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
-position = Vector2(45, -40)
+position = Vector2(96, -52)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
 position = Vector2(1, 882)
