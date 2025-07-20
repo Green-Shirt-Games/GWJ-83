@@ -329,6 +329,9 @@ func _player_lost(_hand_id : int):
 			bet_visual_managers_multiple_hands[1].update_bet(0)
 	if !final_hand:
 		change_room_to_bar_button.visible = true
+	
+	if Global.money == 0:
+		Global.player_lost_all_chips.emit()
 
 func _player_tied(hand_id : int):
 	tie.emit()
@@ -411,6 +414,7 @@ func _on_split_button_pressed() -> void:
 		active_player_hand = 0
 		await _reveal_players_hand()
 		play_buttons_container.visible = true
+		_update_play_buttons_visibility()
 	else:
 		Global.not_enough_money.emit()
 
@@ -418,6 +422,7 @@ func _on_stand_button_pressed() -> void:
 	player_hands[active_player_hand].waiting_for_first_action = false
 	if active_player_hand == 0 and player_hands[1].is_active:
 		active_player_hand = 1
+		_update_play_buttons_visibility()
 	else:
 		_change_state(Global.GAME_STATES.DEALER_TURN)
 
@@ -430,11 +435,13 @@ func _on_double_down_button_pressed() -> void:
 		if player_hands[active_player_hand].bust:
 			if active_player_hand == 0 and player_hands[1].is_active:
 				active_player_hand = 1
+				_update_play_buttons_visibility()
 			else:
 				_change_state(Global.GAME_STATES.RESULT)
 		else:
 			if active_player_hand == 0 and player_hands[1].is_active:
 				active_player_hand = 1
+				_update_play_buttons_visibility()
 			else:
 				_change_state(Global.GAME_STATES.DEALER_TURN)
 	else:

@@ -14,6 +14,7 @@ func _ready() -> void:
 	Global.player_exited_door.connect(on_door_opened)
 	Global.final_hand_over.connect(end_final_hand)
 	_change_room(Global.ROOMS.DOOR)
+	Global.player_lost_all_chips.connect(func():end_final_hand(false))
 	
 
 func _change_room(to : Global.ROOMS) -> void:
