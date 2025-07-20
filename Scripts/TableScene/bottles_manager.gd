@@ -27,10 +27,15 @@ func add_bottle(bottle_data : BottleData) -> void:
 	new_bottle.bottle_pressed.connect(bottle_pressed)
 	new_bottle.mouse_entered.connect(func(): _on_drink_hovered(bottle_data))
 	new_bottle.mouse_exited.connect(func():hover_ui.visible = false)
-	new_bottle.position = bottles_locations[new_bottle_place_id].position - (new_bottle.get_rect().size / 2)
-	new_bottle.z_index = new_bottle_place_id
-	disable_bottles_if_needed(Global.table.current_state)
+	update_all_bottles()
 
+func update_all_bottles() -> void:
+	for i in bottles_at_locations.size():
+		if bottles_at_locations[i]:
+			bottles_at_locations[i].global_position = bottles_locations[i].global_position
+			bottles_at_locations[i].global_position -= bottles_at_locations[i].get_rect().size / 2
+			bottles_at_locations[i].z_index = i
+	disable_bottles_if_needed(Global.table.current_state)
 
 func _on_drink_hovered(bottle_data : BottleData):
 	hover_ui.visible = true
