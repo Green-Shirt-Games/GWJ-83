@@ -4,7 +4,7 @@ class_name Door
 signal exit_pressed
 
 @onready var toggle_fullscreen_button : Button = $FullscreenToggle
-@onready var exit_game : Button = $Exit
+@onready var exit_game : TextureButtonWithSFX = $Exit
 
 
 
