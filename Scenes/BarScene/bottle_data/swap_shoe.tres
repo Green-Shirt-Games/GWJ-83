@@ -7,5 +7,5 @@ script = ExtResource("1_06nco")
 type = 4
 drink_name = "Top Draw"
 description = "Swap a card for the shoes top card."
-price = 100
+price = 20
 metadata/_custom_type_script = "uid://b2l7btycw868p"

@@ -6,6 +6,6 @@
 script = ExtResource("1_x0762")
 type = 0
 drink_name = "Devil's Eye"
-description = "Reveals the dealers hidden card."
-price = 123456789
+description = "Reveals the dealers hidden cards"
+price = 50
 metadata/_custom_type_script = "uid://b2l7btycw868p"

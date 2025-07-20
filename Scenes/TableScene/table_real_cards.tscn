@@ -19,14 +19,14 @@ offset_bottom = 1009.7
 color = Color(1, 1, 1, 0.737255)
 
 [node name="shoe_position" type="Marker2D" parent="."]
-position = Vector2(2453, 759)
+position = Vector2(3360, 337)
 
 [node name="Sprite2D2" type="Sprite2D" parent="shoe_position"]
 visible = false
 texture = ExtResource("2_kdkp6")
 
 [node name="discard_position" type="Marker2D" parent="."]
-position = Vector2(487, 768)
+position = Vector2(111, 143)
 
 [node name="Sprite2D" type="Sprite2D" parent="discard_position"]
 visible = false

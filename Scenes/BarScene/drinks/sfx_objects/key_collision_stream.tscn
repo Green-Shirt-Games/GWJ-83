@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnjnkgwuh4jh5"]
+
+[ext_resource type="AudioStream" uid="uid://dxddwkydrgr53" path="res://Assets/audio/sfx/sfx_key.wav" id="1_k1c32"]
+
+[node name="CollisionStream" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_k1c32")

@@ -40,6 +40,12 @@ func _on_debug_pressed() -> void:
 	for hand in player_hands:
 		hand._update_card_positions(null)
 
+func pass_shoe_revealed_card() -> CardVisual:
+	var shoe_revealed_card = shoe_card
+	shoe_card = null
+	print("Trying to pass: " ,  shoe_revealed_card)
+	return shoe_revealed_card
+
 func move_card_to_discard(card_to_move : CardVisual):
 	card_to_move.reparent(self, true)
 	var tween : Tween = get_tree().create_tween()
@@ -56,15 +62,9 @@ func can_peek_shoe() -> bool:
 	return shoe_card == null and Global.table.draw_deck.size() > 0
 
 func peek_shoe():
-	if shoe_card:
+	if !can_peek_shoe():
 		return false
-	#var shoe_card = CardVisual.new()
-	shoe_card.card_data = Global.table.draw_deck[0].duplicate()
-	add_child(shoe_card)
+	shoe_card = Global.table._draw_card()
 	shoe_card.position = shoe_marker.position
 	await shoe_card.reveal()
-
-func remove_peeked_shoe() -> void:
-	if shoe_card:
-		shoe_card.queue_free()
-		shoe_card = null
+	print("New shoe card: " ,  shoe_card, " : " , shoe_card.card_data.get_card_name())

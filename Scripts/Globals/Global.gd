@@ -2,13 +2,16 @@ extends Node
 
 signal key_purchased
 signal welcome_line_finished
+signal player_exited_door(count : int)
+signal final_hand_started
+signal final_hand_over(win : bool)
 var bar_entered_yet : bool = false
 enum ROOMS{BAR, TABLE, DOOR}
 @warning_ignore("unused_signal")
 signal change_room(to : ROOMS)
 enum CARD_SUITS{CLUB, DIAMOND , HEART, SPADE}
 enum CARD_VALUES{VA, V2, V3, V4, V5, V6, V7, V8, V9, V10, VJ, VQ, VK}
-enum GAME_STATES { BETTING, DEALING, PLAYER_TURN, DEALER_TURN, RESULT, RESET, INTRO} 
+enum GAME_STATES { BETTING, DEALING, HOLE_CARD , PLAYER_TURN, DEALER_TURN, RESULT, RESET, INTRO} 
 
 const SUBSCENE_PATHS : Dictionary[String, String] = {
 	"card_visual" : "res://Scenes/SubScenes/card_visual.tscn" ,
@@ -17,7 +20,7 @@ const SUBSCENE_PATHS : Dictionary[String, String] = {
 const POINTS_LIMIT = 21
 
 # Player's data
-var money = 1000 :
+var money = 10000 :
 	set(value):
 		var old_value = money
 		money = value
@@ -37,10 +40,41 @@ const BOTTLE_ON_TABLE_TEXTURES_AND_MASKS : Dictionary[String, Dictionary] = {
 		"texture" : "res://Assets/Bottles/default_bottle.png" ,
 		"mask" : "res://Assets/Bottles/default_bottle.png",
 		"pressed" : "res://Assets/Bottles/default_bottle_pressed.png" ,
+	} ,
+	"peek_deeler" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Deviled-eye-Gin_highlight.png" ,
+	} ,
+	"peek_shoe" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Show-Ray_highlight.png" ,
+	} ,
+	"swap_dealer" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_highlight.png" ,
+	} ,
+	"shoe_swap" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Counter-Court-Cocktail_highlight.png" ,
+	},
+	"rotate" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy_mask.png",
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Rotation-Randy_highlight.png"
+	} ,
+	"double" : {
+		"texture" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty.png" ,
+		"mask" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty_mask.png" ,
+		"pressed" : "res://Assets/Bottles/Black_Jack_Table_Bottles_Double_Up-Dirty_highlight.png"
 	}
 }
 
 var table : TableScene
+var hole_rule_active : bool = true
 
 func table_can_fit_bottles(amount : int) -> bool:
 	return table.bottles_manager.check_for_room_for_bottle(amount)

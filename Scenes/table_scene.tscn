@@ -1,18 +1,49 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=47 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
-[ext_resource type="Texture2D" uid="uid://bllicxbh01c8y" path="res://Assets/ScenePlans/Black_Jack_Table_scene_Table_Ruler_Lines.png" id="4_14o7i"]
 [ext_resource type="PackedScene" uid="uid://dwuji6cv1kqcf" path="res://Scenes/TableScene/bet_manager.tscn" id="4_ikeqq"]
-[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="4_kdndq"]
-[ext_resource type="Script" uid="uid://ck87c6ecbimix" path="res://Scripts/Classes/button_with_sfx.gd" id="5_gauwj"]
+[ext_resource type="Texture2D" uid="uid://4as7h0yo7j4y" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_normal.png" id="6_3yf7e"]
 [ext_resource type="Shader" uid="uid://dkqqqg4ai1cty" path="res://Resources/Shaders/4-point-perspective-transformation.gdshader" id="6_4te6f"]
 [ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="6_5mnm2"]
+[ext_resource type="Texture2D" uid="uid://c3brbwqrde6bm" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_pressed.png" id="7_3hac6"]
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
+[ext_resource type="Texture2D" uid="uid://dm10lmhkdoew" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_hover.png" id="8_jv1fb"]
+[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
+[ext_resource type="BitMap" uid="uid://3b1w51dr1vvq" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png" id="9_wyg6t"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
+[ext_resource type="Texture2D" uid="uid://qycr6t4senaq" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_normal.png" id="10_yrntg"]
 [ext_resource type="PackedScene" uid="uid://cdnnc236wpjht" path="res://Scenes/TableScene/bet_visual_manager.tscn" id="11_6mqhf"]
+[ext_resource type="Texture2D" uid="uid://boja6q5vhx2u8" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_pressed.png" id="11_jv1fb"]
+[ext_resource type="BitMap" uid="uid://hhekyhpma243" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_mask.png" id="11_p3h0j"]
+[ext_resource type="Texture2D" uid="uid://beam2bqdu0bdj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_normal.png" id="12_rkxeq"]
+[ext_resource type="Texture2D" uid="uid://dm5dg4dwx2sui" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_hover.png" id="12_wyg6t"]
+[ext_resource type="BitMap" uid="uid://c685x1dijr7qj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_mask.png" id="13_d8idy"]
 [ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="13_remoh"]
+[ext_resource type="Texture2D" uid="uid://8e3bxteo0s0m" path="res://Assets/BlackJackTable/Black_Jack_Table_Shoe.png" id="14_p5xy4"]
+[ext_resource type="Texture2D" uid="uid://ynmi16j04t5s" path="res://Assets/BlackJackTable/TableSpecificButtons/split_normal.png" id="14_v8qop"]
+[ext_resource type="BitMap" uid="uid://b21ig7hqs3bcs" path="res://Assets/BlackJackTable/TableSpecificButtons/split_mask.png" id="15_odtw8"]
+[ext_resource type="Texture2D" uid="uid://n1d1pv8tutur" path="res://Assets/BlackJackTable/Black_Jack_Table_Discard.png" id="15_pxcaq"]
+[ext_resource type="Texture2D" uid="uid://4vroj44mqqtj" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_pressed.png" id="15_yrntg"]
+[ext_resource type="Texture2D" uid="uid://dyobldncyt57m" path="res://Assets/BlackJackTable/TableSpecificButtons/double_down_hover.png" id="16_p3h0j"]
+[ext_resource type="Texture2D" uid="uid://d2ekd3q43altd" path="res://Assets/BlackJackTable/TableSpecificButtons/split_pressed.png" id="19_rkxeq"]
+[ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
+[ext_resource type="Script" uid="uid://dm40oxs6gpihi" path="res://Scenes/BarScene/bartender.gd" id="31_odtw8"]
+[ext_resource type="Texture2D" uid="uid://05ti5qpdjlir" path="res://Assets/Placeholders/Black_Jack_Table_Devil.png" id="33_ymulg"]
+[ext_resource type="Resource" uid="uid://na33v6l55jku" path="res://Scenes/Voicelines/devil/devil_winFinalRound.tres" id="34_prgo8"]
+[ext_resource type="Texture2D" uid="uid://3fck3py7mw2t" path="res://Assets/Placeholders/Black_Jack_Table_Devil_Speaking.png" id="34_x45kk"]
+[ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="35_fv2cx"]
+[ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="36_0urld"]
+[ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="37_cbl5d"]
+[ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="38_y1gsl"]
+[ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="39_7fc6n"]
+[ext_resource type="Texture2D" uid="uid://cwysa365f11u4" path="res://Assets/Placeholders/Black_Jack_Table_Information_Box.png" id="39_inh2p"]
+[ext_resource type="Script" uid="uid://cd4blqfmsc722" path="res://Scenes/BarScene/hover_ui.gd" id="40_sn8pc"]
+[ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="41_umwha"]
+[ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="42_sph80"]
+[ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="43_prgo8"]
+[ext_resource type="Texture2D" uid="uid://ccfpphfa2i61b" path="res://Assets/Chips/Black_Jack_Chips_Red.png" id="44_gdkb8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -25,7 +56,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "split_button", "double_down_button", "player_money_label", "change_room_buttons", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "change_room_to_bar_button", "change_room_to_door_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,13 +69,17 @@ bet_manager = NodePath("BetManager")
 bottles_manager = NodePath("BottlesOnTableManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 play_buttons_container = NodePath("PlayButtons")
-split_button = NodePath("PlayButtons/SplitButton")
-double_down_button = NodePath("PlayButtons/DoubleDownButton")
-player_money_label = NodePath("PlayerMoneyLabel")
-change_room_buttons = [NodePath("ChangeRoomToBar"), NodePath("ChangeRoomToExit")]
+stand_button = NodePath("PlayButtons/StandTextureButton")
+hit_button = NodePath("PlayButtons/HitTextureButton")
+split_button = NodePath("PlayButtons/SplitTextureButton")
+double_down_button = NodePath("PlayButtons/DoubeDownTextureButton")
+change_room_to_bar_button = NodePath("BarButton")
+change_room_to_door_button = NodePath("DoorButton")
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")
+discard_pile_visual = NodePath("TableVisualElements/Discard")
+shoe_visual_position = NodePath("ShoeVisualLocation")
 metadata/_edit_lock_ = true
 
 [node name="CardsOnTable" type="TextureRect" parent="."]
@@ -55,6 +90,7 @@ offset_right = 13127.0
 offset_bottom = 2462.0
 scale = Vector2(0.146261, 0.151635)
 texture = SubResource("ViewportTexture_mqeqr")
+metadata/_edit_lock_ = true
 
 [node name="TableSubViewPort" type="SubViewport" parent="."]
 disable_3d = true
@@ -65,14 +101,6 @@ render_target_update_mode = 4
 
 [node name="TableRealCards" parent="TableSubViewPort" instance=ExtResource("3_14o7i")]
 
-[node name="PlayerMoneyLabel" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 326.0
-offset_bottom = 108.0
-theme_override_font_sizes/font_size = 64
-text = "10000"
-
 [node name="BetManager" parent="." node_paths=PackedStringArray("table", "visual_bet_manager_one_hand") instance=ExtResource("4_ikeqq")]
 visible = false
 z_index = 99
@@ -81,8 +109,6 @@ table = NodePath("..")
 visual_bet_manager_one_hand = NodePath("../OnlyPlayerHandBetVisual")
 
 [node name="PlayButtons" type="Control" parent="."]
-visible = false
-z_index = 99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,49 +118,73 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="StandButton" type="Button" parent="PlayButtons"]
+[node name="HitTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 638.0
-offset_top = 898.0
-offset_right = 794.0
-offset_bottom = 978.0
-text = "Stand"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.369792
+anchor_top = 0.851852
+anchor_right = 0.452083
+anchor_bottom = 0.899074
+offset_top = -6.10352e-05
+texture_normal = ExtResource("7_3hac6")
+texture_pressed = ExtResource("6_3yf7e")
+texture_hover = ExtResource("8_jv1fb")
+texture_click_mask = ExtResource("9_wyg6t")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="HitButton" type="Button" parent="PlayButtons"]
+[node name="StandTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 629.0
-offset_top = 998.0
-offset_right = 766.0
-offset_bottom = 1067.0
-text = "Hit"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.522917
+anchor_top = 0.852778
+anchor_right = 0.602604
+anchor_bottom = 0.898148
+offset_bottom = 6.10352e-05
+texture_normal = ExtResource("11_jv1fb")
+texture_pressed = ExtResource("10_yrntg")
+texture_hover = ExtResource("12_wyg6t")
+texture_click_mask = ExtResource("11_p3h0j")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="DoubleDownButton" type="Button" parent="PlayButtons"]
+[node name="DoubeDownTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 1069.0
-offset_top = 900.0
-offset_right = 1232.0
-offset_bottom = 976.0
-text = "DoubleDown"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.348437
+anchor_top = 0.92963
+anchor_right = 0.446354
+anchor_bottom = 0.992593
+texture_normal = ExtResource("15_yrntg")
+texture_pressed = ExtResource("12_rkxeq")
+texture_hover = ExtResource("16_p3h0j")
+texture_click_mask = ExtResource("13_d8idy")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="SplitButton" type="Button" parent="PlayButtons"]
+[node name="SplitTextureButton" type="TextureButton" parent="PlayButtons"]
 layout_mode = 0
-offset_left = 1097.0
-offset_top = 1002.0
-offset_right = 1246.0
-offset_bottom = 1059.0
-text = "Split"
-script = ExtResource("5_gauwj")
-metadata/_custom_type_script = "uid://ck87c6ecbimix"
+anchor_left = 0.523958
+anchor_top = 0.928704
+anchor_right = 0.620833
+anchor_bottom = 0.991667
+texture_normal = ExtResource("19_rkxeq")
+texture_pressed = ExtResource("14_v8qop")
+texture_hover = ExtResource("20_d8idy")
+texture_click_mask = ExtResource("15_odtw8")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("9_rkxeq")
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="ScenePlan" type="TextureRect" parent="."]
-visible = false
-z_index = -10
+[node name="TableVisualElements" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,9 +192,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("4_14o7i")
+
+[node name="Shoe" type="TextureRect" parent="TableVisualElements"]
+layout_mode = 0
+anchor_left = 0.721875
+anchor_top = 0.362037
+anchor_right = 1.05156
+anchor_bottom = 0.808333
+mouse_filter = 2
+texture = ExtResource("14_p5xy4")
 expand_mode = 1
-metadata/_edit_lock_ = true
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Discard" type="TextureRect" parent="TableVisualElements"]
+z_index = 1
+layout_mode = 0
+anchor_left = 0.149479
+anchor_top = 0.57963
+anchor_right = 0.266146
+anchor_bottom = 0.710185
+offset_right = -3.05176e-05
+mouse_filter = 2
+texture = ExtResource("15_pxcaq")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="SceneBackground" type="Control" parent="."]
 layout_mode = 1
@@ -157,7 +230,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Curtain" type="TextureRect" parent="SceneBackground"]
-z_index = -10
+z_index = -99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,7 +258,7 @@ stretch_mode = 6
 metadata/_edit_lock_ = true
 
 [node name="Decorations" type="TextureRect" parent="SceneBackground"]
-z_index = 5
+z_index = 99
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,58 +271,44 @@ expand_mode = 3
 stretch_mode = 6
 metadata/_edit_lock_ = true
 
-[node name="ChangeRoomToBar" type="Button" parent="."]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 445.0
-offset_right = 126.0
-offset_bottom = 660.0
-text = "Bar"
-script = ExtResource("4_kdndq")
-metadata/_custom_type_script = "uid://ctj7y128tfi67"
-
-[node name="ChangeRoomToExit" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1781.0
-offset_top = 445.0
-offset_right = 1921.0
-offset_bottom = 679.0
-text = "Exit"
-script = ExtResource("4_kdndq")
-room_to_change_to = 2
-metadata/_custom_type_script = "uid://ctj7y128tfi67"
-
-[node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations") instance=ExtResource("10_5mnm2")]
+[node name="BottlesOnTableManager" parent="." node_paths=PackedStringArray("bottles_locations", "hover_ui") instance=ExtResource("10_5mnm2")]
 bottles_locations = [NodePath("../BottlePositionMarkers/MarkerForBottle0"), NodePath("../BottlePositionMarkers/MarkerForBottle1"), NodePath("../BottlePositionMarkers/MarkerForBottle2"), NodePath("../BottlePositionMarkers/MarkerForBottle3"), NodePath("../BottlePositionMarkers/MarkerForBottle4")]
-stages_where_player_can_drink = Array[int]([0])
+stages_where_player_can_drink = Array[int]([3])
+hover_ui = NodePath("../HoverUI")
 
 [node name="BottlePositionMarkers" type="Node2D" parent="."]
+position = Vector2(96, -52)
 
 [node name="MarkerForBottle0" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(196, 948)
+position = Vector2(1, 882)
 
 [node name="MarkerForBottle1" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(265, 948)
+position = Vector2(79, 930)
 
 [node name="MarkerForBottle2" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(338, 948)
+position = Vector2(175, 974)
 
 [node name="MarkerForBottle3" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(408, 948)
+position = Vector2(266, 1019)
 
 [node name="MarkerForBottle4" type="Marker2D" parent="BottlePositionMarkers"]
-position = Vector2(487, 948)
+position = Vector2(368, 1065)
 
 [node name="OnlyPlayerHandBetVisual" parent="." instance=ExtResource("11_6mqhf")]
+z_index = 1
 position = Vector2(936, 978)
+scale = Vector2(0.4, 0.4)
 
 [node name="PlayerHandBetVisual_0" parent="." instance=ExtResource("11_6mqhf")]
-position = Vector2(736, 978)
+position = Vector2(601, 1000)
+scale = Vector2(0.4, 0.4)
 
 [node name="PlayerHandBetVisual_1" parent="." instance=ExtResource("11_6mqhf")]
-position = Vector2(1136, 978)
+position = Vector2(1308, 1000)
+scale = Vector2(0.4, 0.4)
 
 [node name="debug_dupe_top_card" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1454.0
 offset_top = 569.0
@@ -258,15 +317,132 @@ offset_bottom = 577.0
 text = "dupe top card
 (split check)"
 
+[node name="debug_test_shuffle" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1430.0
+offset_top = 530.0
+offset_right = 1593.0
+offset_bottom = 561.0
+text = "Test discard moving"
+
 [node name="ChipsFlyAwayTo" type="Marker2D" parent="."]
 position = Vector2(2083, 1150)
 
-[node name="VoiceLines" parent="." node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
-position = Vector2(1183, 267)
-table_parent = NodePath("..")
+[node name="ShoeVisualLocation" type="Marker2D" parent="."]
+position = Vector2(1430, 740)
 
-[connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
-[connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]
-[connection signal="pressed" from="PlayButtons/DoubleDownButton" to="." method="_on_double_down_button_pressed"]
-[connection signal="pressed" from="PlayButtons/SplitButton" to="." method="_on_split_button_pressed"]
+[node name="Devil" type="Node2D" parent="."]
+script = ExtResource("31_odtw8")
+
+[node name="Idle" type="Sprite2D" parent="Devil"]
+position = Vector2(916, 369)
+scale = Vector2(0.435, 0.435)
+texture = ExtResource("33_ymulg")
+
+[node name="Talking" type="Sprite2D" parent="Devil"]
+visible = false
+position = Vector2(923, 363)
+scale = Vector2(0.435, 0.435)
+texture = ExtResource("34_x45kk")
+
+[node name="VoiceLines" parent="Devil" node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
+position = Vector2(1321, 188)
+player_wins_final_hand = ExtResource("34_prgo8")
+table_parent = NodePath("../..")
+
+[node name="DoorButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1754.0
+offset_top = 496.0
+offset_right = 1925.0
+offset_bottom = 643.0
+texture_normal = ExtResource("35_fv2cx")
+texture_pressed = ExtResource("36_0urld")
+texture_hover = ExtResource("37_cbl5d")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("38_y1gsl")
+room_to_change_to = 2
+
+[node name="Label" type="Label" parent="DoorButton"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 51.0
+offset_right = 136.0
+offset_bottom = 90.0
+text = "Door"
+label_settings = ExtResource("39_7fc6n")
+
+[node name="BarButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -14.0
+offset_top = 477.0
+offset_right = 157.0
+offset_bottom = 624.0
+texture_normal = ExtResource("35_fv2cx")
+texture_pressed = ExtResource("36_0urld")
+texture_hover = ExtResource("37_cbl5d")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+script = ExtResource("38_y1gsl")
+
+[node name="Label" type="Label" parent="BarButton"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 51.0
+offset_right = 126.0
+offset_bottom = 90.0
+text = "Bar"
+label_settings = ExtResource("39_7fc6n")
+
+[node name="HoverUI" type="Sprite2D" parent="."]
+z_index = 3
+position = Vector2(-257, 466)
+scale = Vector2(0.481, 0.51)
+texture = ExtResource("39_inh2p")
+offset = Vector2(-20.6399, -596.713)
+script = ExtResource("40_sn8pc")
+
+[node name="DrinkName" type="Label" parent="HoverUI"]
+offset_left = -207.9
+offset_top = -886.274
+offset_right = 195.1
+offset_bottom = -729.274
+text = "Double or Die"
+label_settings = ExtResource("41_umwha")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="HoverUI"]
+offset_left = -202.118
+offset_top = -694.098
+offset_right = 194.882
+offset_bottom = -419.098
+text = "This is a description of the drink!"
+label_settings = ExtResource("42_sph80")
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="HoverUI"]
+visible = false
+offset_left = -379.037
+offset_top = 647.078
+offset_right = -142.037
+offset_bottom = 748.078
+text = "10000"
+label_settings = ExtResource("43_prgo8")
+
+[node name="Sprite2D" type="Sprite2D" parent="HoverUI"]
+visible = false
+position = Vector2(-493.383, 698.059)
+scale = Vector2(0.862617, 0.883632)
+texture = ExtResource("44_gdkb8")
+
+[connection signal="pressed" from="PlayButtons/HitTextureButton" to="." method="_on_hit_button_pressed"]
+[connection signal="pressed" from="PlayButtons/StandTextureButton" to="." method="_on_stand_button_pressed"]
+[connection signal="pressed" from="PlayButtons/DoubeDownTextureButton" to="." method="_on_double_down_button_pressed"]
+[connection signal="pressed" from="PlayButtons/SplitTextureButton" to="." method="_on_split_button_pressed"]
 [connection signal="pressed" from="debug_dupe_top_card" to="." method="_on_debug_dupe_top_card_pressed"]
+[connection signal="pressed" from="debug_test_shuffle" to="." method="_on_debug_test_shuffle_pressed"]

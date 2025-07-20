@@ -3,7 +3,8 @@ extends Node2D
 
 var total_chips_value : int = 0
 var chips_amount_in_pile : Dictionary = {}
-var chips_y_offset = -11
+var chips_y_offset = -13
+
 
 func _ready() -> void:
 	for color in BetVisualManager.CHIP_COLORS.values():

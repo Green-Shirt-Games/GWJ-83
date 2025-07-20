@@ -2,7 +2,7 @@ class_name BetVisualManager
 extends Node2D
 
 @export var piles : Array[PileOfChips]
-@export var soft_limit_of_chips_in_pile : int = 20
+@export var soft_limit_of_chips_in_pile : int = 10
 
 enum CHIP_COLORS{YELLOW, BLACK, GREEN, BLUE, RED, WHITE}
 const CHIP_DATA : Dictionary[CHIP_COLORS,Dictionary] = {
@@ -106,11 +106,9 @@ func split_full_list_of_chips_between_piles(full_list_of_chips : Dictionary[CHIP
 func reset_chips_in_pile(pile : PileOfChips, list_of_chips : Dictionary[CHIP_COLORS, int]) -> void:
 	pile.clear()
 	if !list_of_chips.is_empty():
-		SfxAutoload.place_chips()
 		for chip_type in list_of_chips.keys():
 			for i in list_of_chips[chip_type]:
 				spawn_chip(chip_type, pile)
-
 
 
 func update_chips_in_pile(pile : PileOfChips, list_of_chips : Dictionary[CHIP_COLORS, int]) -> void:

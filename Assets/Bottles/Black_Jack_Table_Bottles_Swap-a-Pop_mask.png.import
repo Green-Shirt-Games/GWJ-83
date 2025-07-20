@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://c03mqaok4lmd8"
+path="res://.godot/imported/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png-3583f6c2a38bfcf5f9a3684792ea163a.res"
+
+[deps]
+
+source_file="res://Assets/Bottles/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png"
+dest_files=["res://.godot/imported/Black_Jack_Table_Bottles_Swap-a-Pop_mask.png-3583f6c2a38bfcf5f9a3684792ea163a.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

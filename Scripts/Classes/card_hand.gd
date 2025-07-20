@@ -5,6 +5,7 @@ extends Node2D
 
 var bust : bool = false
 var best_score : int = 0
+var waiting_for_first_action : bool = true
 
 ## hand-specific modifiers
 @export var table_size_x : float = 3456.0
@@ -28,16 +29,10 @@ func reset() -> void:
 		else:
 			child.queue_free()
 	bust = false
+	waiting_for_first_action = true
 
 func get_cards_amount() -> int:
 	return get_child_count()
-
-# use reparent(*, true)
-#func pre_parenting_card_position_adjustment(card : CardVisual) -> void:
-	#card.position -= self.position
-#
-#func unparenting_card_position_adjustment(card : CardVisual) -> void:
-	#card.position += self.position
 
 func _update_card_positions(_child : Node):
 	var offset : float = 0.0
@@ -97,3 +92,18 @@ func _update_best_score(_child : Node):
 			if score > max_score and score <= Global.POINTS_LIMIT:
 				max_score = score
 		best_score = max_score
+
+func update_visibility(full : bool) -> void:
+	if full:
+		modulate.a = 1
+	else:
+		modulate.a = 0.5
+
+func reveal_all_cards():
+	for i in get_cards_amount():
+		await (get_child(i) as CardVisual).reveal()
+	_update_best_score(null)
+
+func hide_all_cards():
+	for i in get_cards_amount():
+		(get_child(i) as CardVisual).flip(false)

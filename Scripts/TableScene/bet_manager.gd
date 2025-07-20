@@ -56,6 +56,10 @@ func _update_buttons() -> void:
 	confirm_bet.text = str(current_bet)
 
 
+func final_hand_bet() -> void:
+	current_bet = Global.money
+	_on_bet_button_pressed()
+
 func _on_bet_button_pressed() -> void:
 	Global.money -= current_bet
 	table.bet = current_bet
@@ -65,20 +69,24 @@ func _on_bet_button_pressed() -> void:
 func _on_increase_bet_button_pressed() -> void:
 	if current_bet_multiplier < current_max_bet_multiplier:
 		current_bet_multiplier += 1
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_decrease_bet_button_pressed() -> void:
 	if current_bet_multiplier > 1:
 		current_bet_multiplier -= 1
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_max_bet_button_pressed() -> void:
 	current_bet_multiplier = current_max_bet_multiplier
+	SfxAutoload.place_chips()
 	_update_bet()
 
 
 func _on_min_bet_button_pressed() -> void:
 	current_bet_multiplier = 1
+	SfxAutoload.place_chips()
 	_update_bet()
