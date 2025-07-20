@@ -18,6 +18,7 @@ extends Control
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
+@export var discard_pile_visual : TextureRect
 
 signal player_blackjack
 signal dealer_blackjack
@@ -83,6 +84,7 @@ func _reset_deck() -> void:
 	if !discard_deck.is_empty():
 		draw_deck.append_array(discard_deck)
 		discard_deck.clear()
+	discard_pile_visual.visible = false
 	if visible:
 		SfxAutoload.shuffle_cards()
 	draw_deck.shuffle()
@@ -329,6 +331,7 @@ func move_card_to_shoe(card_to_move : CardVisual):
 func move_card_to_discard(card_to_move : CardVisual):
 	card_to_move.flip(false)
 	await cards_table.move_card_to_discard(card_to_move)
+	discard_pile_visual.visible = true
 	discard_deck.append(card_to_move.card_data)
 	card_to_move.queue_free()
 
