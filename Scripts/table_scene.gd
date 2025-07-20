@@ -262,8 +262,6 @@ func _draw_card() -> CardVisual:
 		SfxAutoload.draw_card()
 		return card
 
-func _on_debug_dupe_top_card_pressed() -> void:
-	draw_deck.insert(0, draw_deck[0])
 #endregion
 
 #region Game results
@@ -611,7 +609,3 @@ func _update_active_hand_visibility() -> void:
 	else:
 		for hand in player_hands:
 			hand.update_visibility(true)
-
-
-func _on_debug_test_shuffle_pressed() -> void:
-	_reset_deck()
