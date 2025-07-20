@@ -6,6 +6,6 @@
 script = ExtResource("1_ylu0n")
 type = 2
 drink_name = "Second Hand"
-description = "Exchange your left-most card with the dealers face down card."
+description = "Exchange a random card for a random card in the dealers hand."
 price = 100
 metadata/_custom_type_script = "uid://b2l7btycw868p"

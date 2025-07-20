@@ -12,7 +12,7 @@ var current_room : Global.ROOMS = Global.ROOMS.BAR
 func _ready() -> void:
 	Global.change_room.connect(_change_room)
 	Global.player_exited_door.connect(on_door_opened)
-	
+	Global.final_hand_over.connect(end_final_hand)
 	_change_room(Global.ROOMS.DOOR)
 	
 
@@ -72,5 +72,15 @@ func show_win_splash():
 	end_sprite.visible = false
 
 
-func show_you_lose_splash():
-	pass
+func end_final_hand(won):
+	if won: return
+	
+	end_sprite.visible = true
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
+	await tween.finished
+	$EndSplash.visible = true
+	SfxAutoload.player_wins()
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
+	await  tween.finished

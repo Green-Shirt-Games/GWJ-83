@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
 [ext_resource type="Texture2D" uid="uid://dm10lmhkdoew" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_hover.png" id="8_jv1fb"]
-[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
+[ext_resource type="Script" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
 [ext_resource type="BitMap" uid="uid://3b1w51dr1vvq" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png" id="9_wyg6t"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://qycr6t4senaq" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_normal.png" id="10_yrntg"]

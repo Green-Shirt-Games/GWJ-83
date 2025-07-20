@@ -15,14 +15,19 @@ signal finished
 @export var free_drink : VoiceLine
 @export var player_wins_final_hand : VoiceLine
 @export var player_loses_final_hand : Array[VoiceLine]
+@export var player_can_afford : VoiceLine
 
 @export var cooldown : float = 3.0
 @export var table_parent : TableScene
 var on_cooldown : bool = false
 
+@export var key_data : BottleData
+
 @onready var stream_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var voiceline_text_area : Label = $Sprite2D/Label
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
+
+var played_player_can_afford : bool = false
 
 var greetings_said : bool = false
 
@@ -37,6 +42,7 @@ func _ready() -> void:
 	Global.change_room.connect(_on_room_change)
 	Global.final_hand_started.connect(on_final_hand_start)
 	stream_player.finished.connect(finished.emit)
+	Global.final_hand_over.connect(func(win):_on_player_wins_final_hand() if win else _on_player_lose_final_hand())
 
 func _on_room_change(room : Global.ROOMS):
 	if !greetings_said and room == Global.ROOMS.TABLE:
@@ -53,7 +59,11 @@ func on_dealer_win():
 	_play(dealer_wins.pick_random())
 
 func on_player_win():
-	_play(player_wins.pick_random())
+	if Global.money >= key_data.price && !played_player_can_afford:
+		played_player_can_afford = true
+		_play(player_can_afford)
+	else:
+		_play(player_wins.pick_random())
 
 func on_greetings():
 	_play(greetings.pick_random())
