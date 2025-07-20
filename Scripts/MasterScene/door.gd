@@ -2,21 +2,14 @@ extends Node2D
 class_name Door
 
 signal door_opened
-signal to_table_pressed
 signal exit_pressed
 
-@onready var to_table_button1 : Button = $Button
 @onready var toggle_fullscreen_button : Button = $FullscreenToggle
 @onready var exit_game : Button = $Exit
 
 var door_open_count : int = 0
 
-func _ready() -> void:
-	to_table_button1.pressed.connect(
-		func():
-			to_table_pressed.emit()
-	)
-	
+func _ready() -> void:	
 	toggle_fullscreen_button.pressed.connect(toggle_fullscreen)
 	exit_game.pressed.connect(on_exit)
 

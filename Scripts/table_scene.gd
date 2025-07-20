@@ -14,7 +14,7 @@ extends Control
 @export var double_down_button : TextureButtonWithSFX
 @export_subgroup("Other")
 @export var player_money_label : Label
-@export var change_room_to_bar_button : RoomChangeButton
+@export var change_room_to_bar_button : TextureButton
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D

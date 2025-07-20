@@ -1,13 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt5odtoulb7f"]
+[gd_scene load_steps=14 format=3 uid="uid://dt5odtoulb7f"]
 
 [ext_resource type="Script" uid="uid://bc1mqqf0evoe0" path="res://Scripts/MasterScene/door.gd" id="1_mmqko"]
 [ext_resource type="Texture2D" uid="uid://b1vihdra7lcvi" path="res://Assets/Placeholders/door.png" id="2_h6ttj"]
-[ext_resource type="Script" uid="uid://ctj7y128tfi67" path="res://Scripts/Classes/room_change_button.gd" id="3_i5fjo"]
 [ext_resource type="PackedScene" uid="uid://ctyw6bsroijy" path="res://Scenes/DoorScene/volume_control.tscn" id="4_h6ttj"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="5_i5fjo"]
+[ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="6_gkxqk"]
 [ext_resource type="Texture2D" uid="uid://ch05vgqs4yaku" path="res://Assets/BlackJack_Cards_Back.png" id="6_ubay0"]
+[ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="7_bwph3"]
 [ext_resource type="Script" uid="uid://goa6p2wfr153" path="res://Scripts/DoorScene/door_object.gd" id="7_ymaf3"]
+[ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="8_6cu4b"]
 [ext_resource type="AudioStream" uid="uid://dinn4dbc571qu" path="res://Assets/audio/sfx/sfx_chain.wav" id="8_ymaf3"]
+[ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="9_21srs"]
+[ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="10_xh1u0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xb5ej"]
 size = Vector2(285.289, 422.741)
@@ -19,16 +23,6 @@ script = ExtResource("1_mmqko")
 position = Vector2(959.5, 537.5)
 scale = Vector2(0.999479, 1.00093)
 texture = ExtResource("2_h6ttj")
-
-[node name="Button" type="Button" parent="."]
-offset_left = 24.0
-offset_top = 458.0
-offset_right = 137.0
-offset_bottom = 518.0
-text = "Table"
-script = ExtResource("3_i5fjo")
-room_to_change_to = 1
-metadata/_custom_type_script = "uid://ctj7y128tfi67"
 
 [node name="MasterVolumeControl" parent="." instance=ExtResource("4_h6ttj")]
 position = Vector2(191, 303)
@@ -102,6 +96,29 @@ offset_top = 804.0
 offset_right = 242.0
 offset_bottom = 812.0
 text = "toggle fullscreen"
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -6.0
+offset_top = 415.0
+offset_right = 165.0
+offset_bottom = 562.0
+texture_normal = ExtResource("6_gkxqk")
+texture_pressed = ExtResource("7_bwph3")
+texture_hover = ExtResource("8_6cu4b")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+script = ExtResource("9_21srs")
+room_to_change_to = 1
+
+[node name="Label" type="Label" parent="TextureButton"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 51.0
+offset_right = 117.0
+offset_bottom = 90.0
+text = "Table"
+label_settings = ExtResource("10_xh1u0")
 
 [node name="DoorObject" type="Sprite2D" parent="."]
 position = Vector2(930, 538)

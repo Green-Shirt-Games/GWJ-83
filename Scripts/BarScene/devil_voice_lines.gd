@@ -1,6 +1,9 @@
 extends Node2D
 class_name DevilVoiceLines
 
+signal started
+signal finished
+
 @export var dealer_blackjack : Array[VoiceLine]
 @export var player_blackjack : Array[VoiceLine]
 @export var dealer_wins : Array[VoiceLine]
@@ -30,6 +33,7 @@ func _ready() -> void:
 	table_parent.player_win.connect(on_player_win)
 	table_parent.dealer_win.connect(on_dealer_win)
 	Global.change_room.connect(_on_room_change)
+	stream_player.finished.connect(finished.emit)
 
 func _on_room_change(room : Global.ROOMS):
 	if !greetings_said and room == Global.ROOMS.TABLE:
@@ -74,6 +78,7 @@ func _play(voice_line : VoiceLine) -> void:
 		return
 	if stream_player.playing:
 		return
+	started.emit()
 	stream_player.stream = voice_line.audio_stream
 	stream_player.play()
 	voiceline_text_area.text = voice_line.text

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var btv : BartenderVoiceLines = $VoiceLines
+@onready var btv = $VoiceLines
 @onready var idle : Sprite2D = $Idle
 @onready var talking : Sprite2D = $Talking
 func _ready() -> void:
