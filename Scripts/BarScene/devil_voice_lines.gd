@@ -35,6 +35,7 @@ func _ready() -> void:
 	table_parent.player_win.connect(on_player_win)
 	table_parent.dealer_win.connect(on_dealer_win)
 	Global.change_room.connect(_on_room_change)
+	Global.final_hand_started.connect(on_final_hand_start)
 	stream_player.finished.connect(finished.emit)
 
 func _on_room_change(room : Global.ROOMS):
@@ -56,7 +57,11 @@ func on_player_win():
 
 func on_greetings():
 	_play(greetings.pick_random())
-	
+
+
+func on_final_hand_start():
+	_play(end_game)
+
 
 func _on_greetings_finished():
 	Global.welcome_line_finished.emit()

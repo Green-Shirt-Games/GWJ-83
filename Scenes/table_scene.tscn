@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=51 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://c1pnhyq83cvhl" path="res://Assets/BlackJackTable/TableSpecificButtons/split_hover.png" id="20_d8idy"]
 [ext_resource type="Script" uid="uid://dm40oxs6gpihi" path="res://Scenes/BarScene/bartender.gd" id="31_odtw8"]
 [ext_resource type="Texture2D" uid="uid://05ti5qpdjlir" path="res://Assets/Placeholders/Black_Jack_Table_Devil.png" id="33_ymulg"]
+[ext_resource type="Resource" uid="uid://na33v6l55jku" path="res://Scenes/Voicelines/devil/devil_winFinalRound.tres" id="34_prgo8"]
 [ext_resource type="Script" uid="uid://b3xr6xsonyukf" path="res://Scripts/Voicelines/voice_line.gd" id="34_sph80"]
 [ext_resource type="Texture2D" uid="uid://3fck3py7mw2t" path="res://Assets/Placeholders/Black_Jack_Table_Devil_Speaking.png" id="34_x45kk"]
 [ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="35_fv2cx"]
@@ -358,6 +359,7 @@ texture = ExtResource("34_x45kk")
 
 [node name="VoiceLines" parent="Devil" node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
 position = Vector2(1321, 188)
+player_wins_final_hand = ExtResource("34_prgo8")
 player_loses_final_hand = Array[ExtResource("34_sph80")]([ExtResource("35_prgo8"), ExtResource("36_gdkb8")])
 table_parent = NodePath("../..")
 

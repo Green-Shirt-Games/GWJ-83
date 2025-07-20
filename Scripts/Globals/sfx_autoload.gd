@@ -78,3 +78,7 @@ func dealer_laugh():
 
 func table_button():
 	$table_button.play()
+
+
+func player_wins():
+	$player_wins.play()

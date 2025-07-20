@@ -42,24 +42,34 @@ func _change_room(to : Global.ROOMS) -> void:
 var tween : Tween
 func on_door_opened(count):
 	if count == 1: start_final_encounter()
-	if count > 1: show_win_splash()
+	if count == 2: show_win_splash()
 
 
 func start_final_encounter():
 	end_sprite.visible = true
 	tween = create_tween()
-	tween.tween_property(end_sprite, "scale", end_sprite.scale * 10, 4)
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
 	await tween.finished
 	_change_room(Global.ROOMS.TABLE)
 	tween = create_tween()
 	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
 	await  tween.finished
 	end_sprite.visible = false
-	Global
+	Global.final_hand_started.emit()
 
+@onready var end_sprite_scale : Vector2 = $endTransition.scale
 
 func show_win_splash():
-	pass
+	end_sprite.visible = true
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", end_sprite_scale * 10, 4)
+	await tween.finished
+	$EndSplash.visible = true
+	SfxAutoload.player_wins()
+	tween = create_tween()
+	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
+	await  tween.finished
+	end_sprite.visible = false
 
 
 func show_you_lose_splash():
