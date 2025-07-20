@@ -39,7 +39,7 @@ axis_stretch_vertical = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47761"]
 
-[node name="EndSplashScreen" type="Control" node_paths=PackedStringArray("exit_button")]
+[node name="EndSplashScreen" type="Control" node_paths=PackedStringArray("game_result_label", "exit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,6 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_47761")
+game_result_label = NodePath("MarginContainer/CenterText/GameResultLabel")
 exit_button = NodePath("MarginContainer/CenterText/Label")
 
 [node name="BackGround" type="Control" parent="."]
