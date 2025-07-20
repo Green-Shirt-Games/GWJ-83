@@ -20,7 +20,7 @@ const SUBSCENE_PATHS : Dictionary[String, String] = {
 const POINTS_LIMIT = 21
 
 # Player's data
-var money = 10000 :
+var money = 666 :
 	set(value):
 		var old_value = money
 		money = value
