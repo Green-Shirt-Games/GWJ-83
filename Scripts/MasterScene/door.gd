@@ -3,13 +3,11 @@ class_name Door
 
 signal exit_pressed
 
-@onready var toggle_fullscreen_button : Button = $FullscreenToggle
 @onready var exit_game : TextureButtonWithSFX = $Exit
 
 
 
 func _ready() -> void:	
-	toggle_fullscreen_button.pressed.connect(toggle_fullscreen)
 	exit_game.pressed.connect(on_exit)
 
 
@@ -24,6 +22,8 @@ func toggle_fullscreen():
 
 func on_exit():
 	#chnage to thanks splash
+	if OS.has_feature("web"):
+		return
 	is_fullscreen = true
 	exit_pressed.emit()
 	toggle_fullscreen()

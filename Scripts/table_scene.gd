@@ -329,6 +329,9 @@ func _player_lost(_hand_id : int):
 			bet_visual_managers_multiple_hands[1].update_bet(0)
 	if !final_hand:
 		change_room_to_bar_button.visible = true
+	
+	if Global.money == 0:
+		Global.player_lost_all_chips.emit()
 
 func _player_tied(hand_id : int):
 	tie.emit()
