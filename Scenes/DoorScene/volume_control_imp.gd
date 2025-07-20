@@ -13,7 +13,7 @@ extends Node2D
 var dragging : bool = false
 var glow_sprite : Sprite2D
 var bus_default_db : float = 0.0
-
+var mouse_start_y : float
 
 
 @export var bus_name : String = "Master"
@@ -29,18 +29,21 @@ func _ready() -> void:
 	bus_default_db = AudioServer.get_bus_volume_db(AudioServer.get_bus_index(bus_name))
 	sample_stream.bus = bus_name
 	value = 1
+	position.y = max_movement
 
 func _process(_delta: float) -> void:
 	if !dragging:
 		return
 	
 	var old_y = global_position.y
-	var y_delta = starting_y - get_global_mouse_position().y
-	y_delta = clampf(y_delta, 0, max_movement)
-	global_position.y = starting_y + y_delta
-	var new_vol = remap(y_delta, 0, max_movement, 0, 1)
+	var y_delta =  get_global_mouse_position().y - mouse_start_y
+	var new_y = position.y + y_delta
+	new_y = clampf(new_y, 0, max_movement)
+	position.y = new_y
+	var new_vol = remap(position.y, 0, max_movement, 0, 1)
 	value = new_vol
 	set_volume(value)
+	mouse_start_y = get_global_mouse_position().y
 
 
 var old_vol : float = 1
@@ -56,6 +59,7 @@ func set_volume(_value : float):
 func _input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		dragging = true
+		mouse_start_y = get_global_mouse_position().y
 
 func _input(event):
 	if dragging and event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -71,10 +75,12 @@ func create_glow_sprite():
 	glow_sprite = Sprite2D.new()
 	glow_sprite.texture = imp_sprite.texture
 	glow_sprite.modulate = Color(1, 1, 0, 0.5)
-	glow_sprite.scale = Vector2.ONE * 1.2
+	glow_sprite.scale = Vector2.ONE * 1.1
 	glow_sprite.position = Vector2.ZERO
 	glow_sprite.show_behind_parent = true
 	glow_sprite.name = "Highlight"
 	glow_sprite.visible = false
+	glow_sprite.region_enabled = true
+	glow_sprite.region_rect = imp_sprite.region_rect
 
 	imp_sprite.add_child(glow_sprite)
