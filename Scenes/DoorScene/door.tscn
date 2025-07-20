@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dt5odtoulb7f"]
+[gd_scene load_steps=17 format=3 uid="uid://dt5odtoulb7f"]
 
 [ext_resource type="Script" uid="uid://bc1mqqf0evoe0" path="res://Scripts/MasterScene/door.gd" id="1_mmqko"]
 [ext_resource type="Texture2D" uid="uid://c1pfrucpvrls" path="res://Assets/Placeholders/Black_Jack_Table_Exit.png" id="2_0vfa3"]
 [ext_resource type="PackedScene" uid="uid://ctyw6bsroijy" path="res://Scenes/DoorScene/volume_control.tscn" id="4_h6ttj"]
+[ext_resource type="Texture2D" uid="uid://b0gmr6k28rb00" path="res://Assets/Door/pit_normal.png" id="5_6cu4b"]
 [ext_resource type="LabelSettings" uid="uid://bvfktjx28fn6c" path="res://Scenes/LabelSettings/hover_ui_price.tres" id="5_i5fjo"]
+[ext_resource type="Texture2D" uid="uid://ds1khckriog5m" path="res://Assets/Door/pit_hover.png" id="6_21srs"]
 [ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="6_gkxqk"]
 [ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="7_bwph3"]
+[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="7_xh1u0"]
 [ext_resource type="Script" uid="uid://goa6p2wfr153" path="res://Scripts/DoorScene/door_object.gd" id="7_ymaf3"]
 [ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="8_6cu4b"]
 [ext_resource type="AudioStream" uid="uid://dinn4dbc571qu" path="res://Assets/audio/sfx/sfx_chain.wav" id="8_ymaf3"]
@@ -75,12 +78,25 @@ position = Vector2(95, 173)
 scale = Vector2(0.3, 0.3)
 bus_name = "dialogue"
 
-[node name="Exit" type="Button" parent="."]
-offset_left = 1650.0
-offset_top = 930.0
-offset_right = 1687.0
-offset_bottom = 961.0
-text = "Exit"
+[node name="Exit" type="TextureButton" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1391.0
+offset_top = 807.0
+offset_right = 1926.0
+offset_bottom = 1081.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("5_6cu4b")
+texture_pressed = ExtResource("6_21srs")
+texture_hover = ExtResource("6_21srs")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_xh1u0")
+metadata/_custom_type_script = "uid://b137uwxn5h5uc"
 
 [node name="FullscreenToggle" type="Button" parent="."]
 offset_left = 234.0
