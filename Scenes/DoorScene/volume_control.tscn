@@ -1,54 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctyw6bsroijy"]
+[gd_scene load_steps=5 format=3 uid="uid://ctyw6bsroijy"]
 
 [ext_resource type="Script" uid="uid://bxgu2sfb477ol" path="res://Scenes/DoorScene/volume_control_imp.gd" id="1_4vnwd"]
-[ext_resource type="Texture2D" uid="uid://b47i36d5ovwnx" path="res://Assets/Placeholders/imp_tail.png" id="1_dyu7i"]
-[ext_resource type="Texture2D" uid="uid://jri8vumbkcgv" path="res://Assets/Placeholders/volume_imp.png" id="2_4vnwd"]
-[ext_resource type="Texture2D" uid="uid://b112o0awrw4os" path="res://Assets/Placeholders/imp_eye.png" id="4_s2w5v"]
+[ext_resource type="Texture2D" uid="uid://dxwyrt0pf1qta" path="res://Assets/Placeholders/Black_Jack_Table_Sound_Effect_Imps.png" id="3_4vnwd"]
 [ext_resource type="AudioStream" uid="uid://bwildn0gkugql" path="res://Assets/audio/sfx/sfx_cashRegisterTick.wav" id="5_ec5fk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4vnwd"]
+radius = 203.0
+height = 614.0
 
 [node name="VolumeControl" type="Node2D"]
 script = ExtResource("1_4vnwd")
-
-[node name="TailRect" type="ColorRect" parent="."]
-offset_left = -24.0
-offset_top = 133.0
-offset_right = 24.0
-offset_bottom = 209.0
-pivot_offset = Vector2(24, 0)
-mouse_filter = 2
-color = Color(0.709804, 0, 0.0705882, 1)
-
-[node name="ImpTail" type="Sprite2D" parent="."]
-modulate = Color(0.709804, 0, 0.0705882, 1)
-position = Vector2(4, 209)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_dyu7i")
-
-[node name="Area2D" type="Area2D" parent="ImpTail"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ImpTail/Area2D"]
-polygon = PackedVector2Array(-272, -140, -12, 264, 236, -136)
-
-[node name="VolumeImp" type="Sprite2D" parent="."]
-position = Vector2(26, 46)
-texture = ExtResource("2_4vnwd")
-
-[node name="eyes" type="Node2D" parent="VolumeImp"]
-position = Vector2(-25, -195)
-
-[node name="eye" type="Sprite2D" parent="VolumeImp/eyes"]
-position = Vector2(45, 0)
-scale = Vector2(0.139063, 0.160417)
-texture = ExtResource("4_s2w5v")
-
-[node name="eye2" type="Sprite2D" parent="VolumeImp/eyes"]
-position = Vector2(-45, 0)
-scale = Vector2(0.139063, 0.160417)
-texture = ExtResource("4_s2w5v")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ec5fk")
 volume_db = 6.0
 max_polyphony = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-14, -641)
+texture = ExtResource("3_4vnwd")
+region_enabled = true
+region_rect = Rect2(0, 0, 652.045, 2087)
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+position = Vector2(19, 664)
+shape = SubResource("CapsuleShape2D_4vnwd")
