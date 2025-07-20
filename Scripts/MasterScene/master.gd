@@ -10,9 +10,8 @@ extends Control
 var current_room : Global.ROOMS = Global.ROOMS.BAR
 
 func _ready() -> void:
-	
 	Global.change_room.connect(_change_room)
-	door.door_opened.connect(on_door_opened)
+	Global.player_exited_door.connect(on_door_opened)
 	
 	_change_room(Global.ROOMS.DOOR)
 	
@@ -41,9 +40,9 @@ func _change_room(to : Global.ROOMS) -> void:
 	current_room = to
 
 var tween : Tween
-func on_door_opened():
-	if door.door_open_count == 1: start_final_encounter()
-	if door.door_open_count > 1: show_win_splash()
+func on_door_opened(count):
+	if count == 1: start_final_encounter()
+	if count > 1: show_win_splash()
 
 
 func start_final_encounter():
@@ -56,6 +55,7 @@ func start_final_encounter():
 	tween.tween_property(end_sprite, "scale", Vector2.ZERO, 4)
 	await  tween.finished
 	end_sprite.visible = false
+	Global
 
 
 func show_win_splash():

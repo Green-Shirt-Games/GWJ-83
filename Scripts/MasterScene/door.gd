@@ -1,13 +1,12 @@
 extends Node2D
 class_name Door
 
-signal door_opened
 signal exit_pressed
 
 @onready var toggle_fullscreen_button : Button = $FullscreenToggle
 @onready var exit_game : Button = $Exit
 
-var door_open_count : int = 0
+
 
 func _ready() -> void:	
 	toggle_fullscreen_button.pressed.connect(toggle_fullscreen)
@@ -29,8 +28,3 @@ func on_exit():
 	exit_pressed.emit()
 	toggle_fullscreen()
 	get_tree().quit()
-
-
-func _on_door_opened():
-	door_open_count += 1
-	door_opened.emit()
