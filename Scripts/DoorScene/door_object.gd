@@ -25,10 +25,11 @@ func _on_select():
 	if locked:
 		locked_audio.play()
 	else:
-		locked_audio.play()
-		locked = true
-		backgroundSprite.texture = lockedBackground
 		door_open_count += 1
+		if door_open_count == 1:
+			locked_audio.play()
+			locked = true
+			backgroundSprite.texture = lockedBackground
 		Global.player_exited_door.emit(door_open_count)
 
 
