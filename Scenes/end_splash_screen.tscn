@@ -1,0 +1,213 @@
+[gd_scene load_steps=12 format=3 uid="uid://bkytewii15gd5"]
+
+[ext_resource type="Script" uid="uid://bxdovq7pwbql3" path="res://Scripts/end_splash_screen.gd" id="1_47761"]
+[ext_resource type="Texture2D" uid="uid://b28o7cbkwkl18" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BBG.png" id="2_dl3hi"]
+[ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="3_dyj6x"]
+[ext_resource type="FontFile" uid="uid://djiqej0poy5tf" path="res://Assets/Fonts/Merriweather-VariableFont.ttf" id="4_8dpxp"]
+[ext_resource type="Texture2D" uid="uid://bcwxwbwsqeahd" path="res://Assets/BlackJackTable/TableSpecificButtons/Black_Jack_Table_Table_Button_Highlight.png" id="5_nqt0m"]
+[ext_resource type="Texture2D" uid="uid://cmxhmqoteo4ma" path="res://Assets/BlackJackTable/TableSpecificButtons/Black_Jack_Table_Table_Button_Press.png" id="6_t4pjf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_41jp2"]
+texture = ExtResource("5_nqt0m")
+texture_margin_left = 94.0
+texture_margin_top = 50.0
+texture_margin_right = 95.0
+texture_margin_bottom = 50.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xkipi"]
+texture = ExtResource("6_t4pjf")
+texture_margin_left = 94.0
+texture_margin_top = 50.0
+texture_margin_right = 95.0
+texture_margin_bottom = 50.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_atc4h"]
+load_path = "res://.godot/imported/Black_Jack_Table_Table_Button_Normal.png-a1dd92f50a855e87d662cab745a365fb.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1yugp"]
+texture = SubResource("CompressedTexture2D_atc4h")
+texture_margin_left = 94.0
+texture_margin_top = 50.0
+texture_margin_right = 95.0
+texture_margin_bottom = 50.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47761"]
+
+[node name="EndSplashScreen" type="Control" node_paths=PackedStringArray("game_result_label", "exit_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_47761")
+game_result_label = NodePath("MarginContainer/CenterText/GameResultLabel")
+exit_button = NodePath("MarginContainer/CenterText/Label")
+
+[node name="BackGround" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background_0" type="TextureRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dl3hi")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dyj6x")
+expand_mode = 3
+
+[node name="DarkeningEffect" type="ColorRect" parent="BackGround"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="CenterText" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="GameResultLabel" type="Label" parent="MarginContainer/CenterText"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 82
+text = "Game over / Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/CenterText"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 56
+text = "Thank you for playing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="MarginContainer/CenterText"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_41jp2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_41jp2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xkipi")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1yugp")
+text = "Exit"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_47761")
+
+[node name="BotLeftCredits" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="RoleName" type="Label" parent="MarginContainer/PanelContainer/BotLeftCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "Programmers:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Inver" type="Label" parent="MarginContainer/PanelContainer/BotLeftCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "InVeRnyako"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Jake" type="Label" parent="MarginContainer/PanelContainer/BotLeftCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "Chacob"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BotMidCredits" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="RoleName" type="Label" parent="MarginContainer/PanelContainer/BotMidCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "Visual design / Artist:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RobertG" type="Label" parent="MarginContainer/PanelContainer/BotMidCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "RobertG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotRightCredits" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="RoleName" type="Label" parent="MarginContainer/PanelContainer/BotRightCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "Sound design / Compositor:"
+vertical_alignment = 1
+
+[node name="Just a Guy" type="Label" parent="MarginContainer/PanelContainer/BotRightCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8dpxp")
+theme_override_font_sizes/font_size = 32
+text = "Just a Guy"
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/CenterText/Exit" to="." method="_on_exit_pressed"]
