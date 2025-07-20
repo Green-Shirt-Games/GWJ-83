@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cpu1cuqfxqmqa" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_BG_Table.png" id="7_6mqhf"]
 [ext_resource type="Texture2D" uid="uid://c4fshuce73ipl" path="res://Assets/BlackJackTable/Black_Jack_Table_Scene_FG_Objects.png" id="8_gauwj"]
 [ext_resource type="Texture2D" uid="uid://dm10lmhkdoew" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_hover.png" id="8_jv1fb"]
-[ext_resource type="Script" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
+[ext_resource type="Script" uid="uid://b137uwxn5h5uc" path="res://Scripts/Classes/texture_button_with_sfx.gd" id="9_rkxeq"]
 [ext_resource type="BitMap" uid="uid://3b1w51dr1vvq" path="res://Assets/BlackJackTable/TableSpecificButtons/hit_mask.png" id="9_wyg6t"]
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 [ext_resource type="Texture2D" uid="uid://qycr6t4senaq" path="res://Assets/BlackJackTable/TableSpecificButtons/stand_normal.png" id="10_yrntg"]
@@ -57,7 +57,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "change_room_to_door_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away", "discard_pile_visual", "shoe_visual_position")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -76,6 +76,7 @@ split_button = NodePath("PlayButtons/SplitTextureButton")
 double_down_button = NodePath("PlayButtons/DoubeDownTextureButton")
 player_money_label = NodePath("PlayerMoneyLabel")
 change_room_to_bar_button = NodePath("BarButton")
+change_room_to_door_button = NodePath("DoorButton")
 bet_visual_managers_multiple_hands = [NodePath("PlayerHandBetVisual_0"), NodePath("PlayerHandBetVisual_1")]
 bet_visual_manager_single_hand = NodePath("OnlyPlayerHandBetVisual")
 place_for_chips_to_fly_away = NodePath("ChipsFlyAwayTo")

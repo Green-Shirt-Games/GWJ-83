@@ -15,6 +15,7 @@ extends Control
 @export_subgroup("Other")
 @export var player_money_label : Label
 @export var change_room_to_bar_button : TextureButton
+@export var change_room_to_door_button : TextureButton
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
 @export var bet_visual_manager_single_hand : BetVisualManager
 @export var place_for_chips_to_fly_away : Marker2D
@@ -67,6 +68,7 @@ func _ready() -> void:
 	change_room_to_bar_button.visible = false
 	_game_start()
 	_change_state(Global.GAME_STATES.INTRO)
+	Global.final_hand_started.connect(_prepare_final_round)
 
 func _game_start() -> void:
 	_prepare_deck()
@@ -91,6 +93,12 @@ func _reset_deck() -> void:
 		SfxAutoload.shuffle_cards()
 	draw_deck.shuffle()
 
+func _prepare_final_round() -> void:
+	final_hand = true
+	change_room_to_bar_button.visible = false
+	change_room_to_door_button.visible = false
+	_change_state(Global.GAME_STATES.BETTING)
+
 func _change_state(new_state : Global.GAME_STATES) -> void:
 	current_state = new_state
 	state_changed.emit(new_state)
@@ -100,7 +108,8 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			# Logic, dialog and animations go here
 			_change_state(Global.GAME_STATES.BETTING)
 		Global.GAME_STATES.BETTING:
-			pass
+			if final_hand:
+				bet_manager.final_hand_bet()
 		Global.GAME_STATES.DEALING:
 			if skip_dealing:
 				skip_dealing = false
@@ -250,6 +259,9 @@ func _on_debug_dupe_top_card_pressed() -> void:
 #region Game results
 
 func _player_won(hand_id : int):
+	if final_hand:
+		Global.final_hand_over.emit(true)
+		return
 	match hand_id:
 		0:
 			if player_hands[1].is_active:
@@ -289,6 +301,10 @@ func _player_won(hand_id : int):
 				Global.money += second_hand_bet * 2
 
 func _player_lost(_hand_id : int):
+	if final_hand:
+		Global.final_hand_over.emit(false)
+		return
+	
 	if dealer_hand.best_score == Global.POINTS_LIMIT:
 		dealer_blackjack.emit()
 	else:

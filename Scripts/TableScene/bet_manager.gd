@@ -56,6 +56,10 @@ func _update_buttons() -> void:
 	confirm_bet.text = str(current_bet)
 
 
+func final_hand_bet() -> void:
+	current_bet = Global.money
+	_on_bet_button_pressed()
+
 func _on_bet_button_pressed() -> void:
 	Global.money -= current_bet
 	table.bet = current_bet
