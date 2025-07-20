@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://csmtb1unug2lj"]
+[gd_scene load_steps=56 format=3 uid="uid://csmtb1unug2lj"]
 
 [ext_resource type="Script" uid="uid://dbsaeppeogjeq" path="res://Scripts/BarScene/bar.gd" id="1_2sgqr"]
 [ext_resource type="Script" uid="uid://c2qvufkgtp75d" path="res://Scripts/BarScene/register.gd" id="3_7xow3"]
@@ -33,7 +33,6 @@
 [ext_resource type="Resource" uid="uid://b7g5qs7vme4uv" path="res://Scenes/Voicelines/bartender/bartender_noMoney_3.tres" id="22_q1qnd"]
 [ext_resource type="Resource" uid="uid://40pu7uk20ar4" path="res://Scenes/Voicelines/bartender/bartender_noMoney_4.tres" id="23_gvgwj"]
 [ext_resource type="Resource" uid="uid://bncsi24k2bkwb" path="res://Scenes/Voicelines/bartender/bartender_full_1.tres" id="24_ieg7i"]
-[ext_resource type="LabelSettings" uid="uid://cv72tjfrif87y" path="res://Scenes/LabelSettings/hover_ui_drink_name.tres" id="25_1gf8g"]
 [ext_resource type="Resource" uid="uid://bwmfxtuy45hby" path="res://Scenes/Voicelines/bartender/bartender_full_2.tres" id="25_ysudv"]
 [ext_resource type="LabelSettings" uid="uid://dr08nyvnvmp5k" path="res://Scenes/LabelSettings/hover_ui_description.tres" id="26_iif6y"]
 [ext_resource type="Resource" uid="uid://cdaj10ugn55kh" path="res://Scenes/Voicelines/bartender/bartender_full_3.tres" id="26_vemb2"]
@@ -41,12 +40,14 @@
 [ext_resource type="PackedScene" uid="uid://bnjnkgwuh4jh5" path="res://Scenes/BarScene/drinks/sfx_objects/key_collision_stream.tscn" id="34_fr68e"]
 [ext_resource type="Texture2D" uid="uid://cwysa365f11u4" path="res://Assets/Placeholders/Black_Jack_Table_Information_Box.png" id="35_ieg7i"]
 [ext_resource type="PackedScene" uid="uid://oyh3acymrvuq" path="res://Scenes/BarScene/drinks/sfx_objects/key_pickup_stream.tscn" id="35_spdk7"]
+[ext_resource type="LabelSettings" uid="uid://perijp1mdf8x" path="res://Scenes/LabelSettings/key_prize.tres" id="39_w168g"]
 [ext_resource type="Texture2D" uid="uid://ccfpphfa2i61b" path="res://Assets/Chips/Black_Jack_Chips_Red.png" id="40_ysudv"]
 [ext_resource type="Texture2D" uid="uid://d2psx33bfglqp" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Neutral.png" id="41_3biuj"]
 [ext_resource type="Texture2D" uid="uid://ekdqvvvti0oc" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Press.png" id="42_hr7x7"]
 [ext_resource type="Texture2D" uid="uid://cjdhxxu342by4" path="res://Assets/Placeholders/Black_Jack_Table_Change_Button_Highlight.png" id="43_nubj8"]
 [ext_resource type="Script" uid="uid://2n7ndr2k3xpn" path="res://Scenes/BarScene/texture_button.gd" id="44_hr7x7"]
 [ext_resource type="LabelSettings" uid="uid://b8mquf1uuuqx1" path="res://Scenes/LabelSettings/change_room_button.tres" id="44_w168g"]
+[ext_resource type="FontFile" uid="uid://djiqej0poy5tf" path="res://Assets/Fonts/Merriweather-VariableFont.ttf" id="48_fr68e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xr7ad"]
 
@@ -64,6 +65,11 @@ random_pitch = 2.35
 random_volume_offset_db = 11.73
 streams_count = 1
 stream_0/stream = ExtResource("15_bq1mk")
+
+[sub_resource type="LabelSettings" id="LabelSettings_spdk7"]
+font = ExtResource("48_fr68e")
+font_size = 25
+font_color = Color(0.151276, 0.151276, 0.151276, 1)
 
 [node name="Bar" type="Node2D"]
 script = ExtResource("1_2sgqr")
@@ -377,7 +383,7 @@ offset_top = 35.2941
 offset_right = -141.902
 offset_bottom = 192.294
 text = "Double or Die"
-label_settings = ExtResource("25_1gf8g")
+label_settings = ExtResource("39_w168g")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -425,3 +431,16 @@ offset_right = 132.0
 offset_bottom = 90.0
 text = "Table"
 label_settings = ExtResource("44_w168g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1803, 29)
+scale = Vector2(0.298454, 0.0636364)
+texture = ExtResource("35_ieg7i")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1735.0
+offset_top = 20.0
+offset_right = 2085.0
+offset_bottom = 97.0
+text = "Grand Prize!"
+label_settings = SubResource("LabelSettings_spdk7")

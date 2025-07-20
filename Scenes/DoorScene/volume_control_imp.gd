@@ -75,7 +75,7 @@ func create_glow_sprite():
 	glow_sprite = Sprite2D.new()
 	glow_sprite.texture = imp_sprite.texture
 	glow_sprite.modulate = Color(1, 1, 0, 0.5)
-	glow_sprite.scale = Vector2.ONE * 1.1
+	glow_sprite.scale = Vector2.ONE * 1.01
 	glow_sprite.position = Vector2.ZERO
 	glow_sprite.show_behind_parent = true
 	glow_sprite.name = "Highlight"
