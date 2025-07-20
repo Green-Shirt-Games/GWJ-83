@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3fhimy2ae3ts"]
+[gd_scene load_steps=18 format=3 uid="uid://c3fhimy2ae3ts"]
 
 [ext_resource type="Script" uid="uid://c2ykj02lybxxg" path="res://Scripts/table_scene.gd" id="1_u3oja"]
 [ext_resource type="PackedScene" uid="uid://778cx47lq7g5" path="res://Scenes/TableScene/table_real_cards.tscn" id="3_14o7i"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://kk8ghlepsbb5" path="res://Scenes/TableScene/bottles_on_table_manager.tscn" id="10_5mnm2"]
 [ext_resource type="PackedScene" uid="uid://cdnnc236wpjht" path="res://Scenes/TableScene/bet_visual_manager.tscn" id="11_6mqhf"]
 [ext_resource type="PackedScene" uid="uid://bwuc7joieayh" path="res://Scenes/BarScene/devil_voice_lines.tscn" id="13_remoh"]
+[ext_resource type="Texture2D" uid="uid://8e3bxteo0s0m" path="res://Assets/BlackJackTable/Black_Jack_Table_Shoe.png" id="14_p5xy4"]
+[ext_resource type="Texture2D" uid="uid://n1d1pv8tutur" path="res://Assets/BlackJackTable/Black_Jack_Table_Discard.png" id="15_pxcaq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4te6f"]
 shader = ExtResource("6_4te6f")
@@ -25,7 +27,7 @@ shader_parameter/plane_size = Vector2(0, 0)
 [sub_resource type="ViewportTexture" id="ViewportTexture_mqeqr"]
 viewport_path = NodePath("TableSubViewPort")
 
-[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
+[node name="TableScene" type="Control" node_paths=PackedStringArray("bet_manager", "bottles_manager", "cards_table", "play_buttons_container", "stand_button", "hit_button", "split_button", "double_down_button", "player_money_label", "change_room_to_bar_button", "bet_visual_managers_multiple_hands", "bet_visual_manager_single_hand", "place_for_chips_to_fly_away")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -38,6 +40,7 @@ bet_manager = NodePath("BetManager")
 bottles_manager = NodePath("BottlesOnTableManager")
 cards_table = NodePath("TableSubViewPort/TableRealCards")
 play_buttons_container = NodePath("PlayButtons")
+stand_button = NodePath("PlayButtons/StandButton")
 hit_button = NodePath("PlayButtons/HitButton")
 split_button = NodePath("PlayButtons/SplitButton")
 double_down_button = NodePath("PlayButtons/DoubleDownButton")
@@ -265,6 +268,29 @@ position = Vector2(2083, 1150)
 [node name="VoiceLines" parent="." node_paths=PackedStringArray("table_parent") instance=ExtResource("13_remoh")]
 position = Vector2(1183, 267)
 table_parent = NodePath("..")
+
+[node name="Shoe" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1386.0
+offset_top = 391.0
+offset_right = 2019.0
+offset_bottom = 873.0
+mouse_filter = 2
+texture = ExtResource("14_p5xy4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Discard" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 287.0
+offset_top = 626.0
+offset_right = 511.0
+offset_bottom = 767.0
+mouse_filter = 2
+texture = ExtResource("15_pxcaq")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="pressed" from="PlayButtons/StandButton" to="." method="_on_stand_button_pressed"]
 [connection signal="pressed" from="PlayButtons/HitButton" to="." method="_on_hit_button_pressed"]

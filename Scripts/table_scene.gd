@@ -7,9 +7,12 @@ extends Control
 @export_subgroup("UI elements")
 @export var cards_table : CardsTable
 @export var play_buttons_container : Control
+@export_subgroup("Play buttons")
+@export var stand_button : Button
 @export var hit_button : Button
 @export var split_button : Button
 @export var double_down_button : Button
+@export_subgroup("Other")
 @export var player_money_label : Label
 @export var change_room_to_bar_button : RoomChangeButton
 @export var bet_visual_managers_multiple_hands : Array[BetVisualManager]
@@ -102,10 +105,11 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 				play_buttons_container.visible = false
 				while player_hands[0].get_cards_amount() < 2:
 					await _add_card_to_player_hand()
-				if dealer_hand.get_cards_amount() < 1:
-					await _add_card_to_dealer_hand(true)
-				if dealer_hand.get_cards_amount() < 2:
-					await _add_card_to_dealer_hand(false)
+				while dealer_hand.get_cards_amount() < 2:
+					await _add_card_to_dealer_hand()
+				_reveal_dealers_hand()
+				_reveal_players_hand()
+				await get_tree().create_timer(default_timer_timeout).timeout
 			_change_state(Global.GAME_STATES.HOLE_CARD)
 		Global.GAME_STATES.HOLE_CARD:
 			if !Global.hole_rule_active:
@@ -123,7 +127,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			else:
 				_change_state(Global.GAME_STATES.PLAYER_TURN)
 		Global.GAME_STATES.PLAYER_TURN:
-			pass
+			_hide_all_play_buttons()
 		Global.GAME_STATES.DEALER_TURN:
 			for hand in player_hands:
 				for card in hand.get_children():
@@ -139,7 +143,8 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			for card in dealer_hand.get_children():
 				await (card as CardVisual).reveal()
 			while dealer_hand.best_score < 17:
-				await _add_card_to_dealer_hand(true)
+				await _add_card_to_dealer_hand()
+				await _reveal_dealers_hand(true)
 			_change_state(Global.GAME_STATES.RESULT)
 		Global.GAME_STATES.RESULT:
 			for i in player_hands.size():
@@ -163,6 +168,10 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			await get_tree().create_timer(2).timeout #TODO move this await to voiceline trigger
 			_change_state(Global.GAME_STATES.RESET)
 		Global.GAME_STATES.RESET:
+			dealer_hand.hide_all_cards()
+			for hand in player_hands:
+				hand.hide_all_cards()
+			await get_tree().create_timer(default_timer_timeout * 2).timeout
 			for card in dealer_hand.get_children():
 				if !(card as CardVisual).is_frozen:
 					move_card_to_discard(card)
@@ -175,6 +184,7 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 			if player_hands[1].is_active:
 				for card in player_hands[1].get_children():
 					move_card_to_hand(card, player_hands[0])
+			SfxAutoload.draw_card()
 			player_hands[1].is_active = false
 			active_player_hand = 0
 			cards_table.second_players_hand(false)
@@ -190,6 +200,10 @@ func _change_state(new_state : Global.GAME_STATES) -> void:
 func _add_card_to_player_hand():
 	var hand : CardHand = player_hands[active_player_hand]
 	await move_card_to_hand(_draw_card(), hand)
+
+func _reveal_players_hand():
+	var hand : CardHand = player_hands[active_player_hand]
+	await hand.reveal_all_cards()
 	if hand.bust:
 		if active_player_hand == 0 and player_hands[1].is_active:
 			active_player_hand = 1
@@ -197,21 +211,34 @@ func _add_card_to_player_hand():
 			_change_state(Global.GAME_STATES.RESULT)
 	_update_play_buttons_visibility()
 
-func _add_card_to_dealer_hand(face_up : bool) -> void:
+func _add_card_to_dealer_hand() -> void:
 	var new_card : CardVisual = _draw_card()
-	new_card.face_up = face_up
 	new_card.update_visual()
 	await move_card_to_hand(new_card, dealer_hand)
 
+func _reveal_dealers_hand(full : bool = false) -> void:
+	if dealer_hand.get_cards_amount() > 0:
+		await (dealer_hand.get_child(0) as CardVisual).reveal()
+	if full:
+		for card in dealer_hand.get_children():
+			await (card as CardVisual).reveal()
+	dealer_hand._update_best_score(null)
+
 func _draw_card() -> CardVisual:
-	var card : CardVisual = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
-	card.get_data(draw_deck.pop_front())
+	var card : CardVisual
+	print(cards_table.shoe_card)
 	if cards_table.shoe_card:
-		cards_table.remove_peeked_shoe()
-	cards_table.add_child(card)
-	SfxAutoload.draw_card()
-	card.position = cards_table.shoe_marker.position
-	return card
+		SfxAutoload.draw_card()
+		return cards_table.pass_shoe_revealed_card()
+	else:
+		card = (load(Global.SUBSCENE_PATHS.card_visual) as PackedScene).instantiate()
+		card.get_data(draw_deck.pop_front())
+		cards_table.add_child(card)
+		card.position = cards_table.shoe_marker.position
+		card.face_up = false
+		card.update_visual()
+		SfxAutoload.draw_card()
+		return card
 
 func _on_debug_dupe_top_card_pressed() -> void:
 	draw_deck.insert(0, draw_deck[0])
@@ -318,10 +345,12 @@ func _on_hit_button_pressed() -> void:
 	player_hands[active_player_hand].waiting_for_first_action = false
 	play_buttons_container.visible = false
 	await _add_card_to_player_hand()
+	await _reveal_players_hand()
 	play_buttons_container.visible = true
 
 func _on_split_button_pressed() -> void:
 	if Global.money >= bet:
+		play_buttons_container.visible = false
 		Global.money -= bet
 		second_hand_bet = bet
 		player_hands[1].is_active = true
@@ -336,7 +365,12 @@ func _on_split_button_pressed() -> void:
 		SfxAutoload.place_chips()
 		player_hands[0].waiting_for_first_action = true
 		player_hands[1].waiting_for_first_action = true
-		await _add_card_to_player_hand()
+		_add_card_to_player_hand()
+		active_player_hand = 1
+		_reveal_players_hand()
+		active_player_hand = 0
+		await _reveal_players_hand()
+		play_buttons_container.visible = true
 	else:
 		Global.not_enough_money.emit()
 
@@ -352,6 +386,7 @@ func _on_double_down_button_pressed() -> void:
 	play_buttons_container.visible = false
 	if _double_bet():
 		await _add_card_to_player_hand()
+		await _reveal_players_hand()
 		if player_hands[active_player_hand].bust:
 			if active_player_hand == 0 and player_hands[1].is_active:
 				active_player_hand = 1
@@ -404,9 +439,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 	match bottle_type:
 		BottleData.TYPE.PEEK_DEALER:
 			if dealer_hand.get_cards_amount() > 0:
-				for card in dealer_hand:
-					if card is CardVisual:
-						card.reveal()
+				dealer_hand.reveal_all_cards()
 			else:
 				return false
 		BottleData.TYPE.PEEK_SHOE:
@@ -428,6 +461,7 @@ func bottle_pressed(bottle_type : BottleData.TYPE) -> bool:
 			if player_hands[active_player_hand].get_child_count() > 0:
 				_add_card_to_player_hand()
 				await move_card_to_shoe(player_hands[active_player_hand].get_children().pick_random())
+				await _reveal_players_hand()
 			else:
 				return false
 		BottleData.TYPE.ROTATE:
@@ -477,6 +511,13 @@ func _update_play_buttons_visibility() -> void:
 	split_button.visible = _check_if_split_allowed()
 	hit_button.visible = _check_if_hit_allowed()
 	double_down_button.visible = _check_if_double_down_allowed()
+	stand_button.visible = _check_if_stand_allowed()
+
+func _hide_all_play_buttons() -> void:
+	split_button.visible = false
+	hit_button.visible = false
+	double_down_button.visible = false
+	stand_button.visible = false
 
 func _check_if_split_allowed() -> bool:
 	if player_hands[1].is_active:
@@ -497,6 +538,11 @@ func _check_if_hit_allowed() -> bool:
 	if player_hands[active_player_hand].best_score >= Global.POINTS_LIMIT:
 		return false
 	
+	return true
+
+func _check_if_stand_allowed() -> bool:
+	if player_hands[active_player_hand].best_score > Global.POINTS_LIMIT:
+		return false
 	return true
 
 func _check_if_double_down_allowed() -> bool:
